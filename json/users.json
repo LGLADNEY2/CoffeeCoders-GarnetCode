@@ -1,1 +1,26 @@
-test json file
+[
+    {
+        "accountID": 1,
+        "firstName": "Oliver",
+        "lastName": "Smith",
+        "username": "OSmith",
+        "password": "password123",
+        "guestMode": false
+    },
+    {
+        "accountID": 2,
+        "firstName": "Emma",
+        "lastName": "Johnson",
+        "username": "EJohnson",
+        "password": "password456",
+        "guestMode": false
+    },
+    {
+        "accountID": 3,
+        "firstName": "Liam",
+        "lastName": "Williams",
+        "username": "LWilliams",
+        "password": "password789",
+        "guestMode": false
+    }
+]
