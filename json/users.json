@@ -3,16 +3,18 @@
         "accountID": "5075dde5-9721-4dc3-8ee9-dc36dd85186f",
         "firstName": "Oliver",
         "lastName": "Smith",
+        "email": "OllieSmith@example.com",
         "username": "OSmith",
-        "password": "password123",
+        "password": "HaMMer@STing223",
         "role": "Student"
     },
     {
         "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
         "firstName": "Emma",
         "lastName": "Johnson",
+        "email": "Emma.Johnson@example.com",
         "username": "EJohnson",
-        "password": "password456",
+        "password": "Lightn@52ing",
         "role": "Student"
     
     },
@@ -20,8 +22,9 @@
         "accountID": "4460fe58-54de-4eba-b277-72724d408588",
         "firstName": "Liam",
         "lastName": "Williams",
+        "email": "Lwilliams@yahoo.com",
         "username": "LWilliams",
-        "password": "password789",
+        "password": "password67",
         "role" : "Editor"
     }
 ]
