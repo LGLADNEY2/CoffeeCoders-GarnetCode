@@ -4,20 +4,24 @@
         "firstName": "Oliver",
         "lastName": "Smith",
         "username": "OSmith",
-        "password": "password123"
+        "password": "password123",
+        "role": "Student"
     },
     {
         "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
         "firstName": "Emma",
         "lastName": "Johnson",
         "username": "EJohnson",
-        "password": "password456"
+        "password": "password456",
+        "role": "Student"
+    
     },
     {
         "accountID": "4460fe58-54de-4eba-b277-72724d408588",
         "firstName": "Liam",
         "lastName": "Williams",
         "username": "LWilliams",
-        "password": "password789"
+        "password": "password789",
+        "role" : "Editor"
     }
 ]
