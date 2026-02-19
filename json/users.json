@@ -4,23 +4,20 @@
         "firstName": "Oliver",
         "lastName": "Smith",
         "username": "OSmith",
-        "password": "password123",
-        "guestMode": false
+        "password": "password123"
     },
     {
         "accountID": 2,
         "firstName": "Emma",
         "lastName": "Johnson",
         "username": "EJohnson",
-        "password": "password456",
-        "guestMode": false
+        "password": "password456"
     },
     {
         "accountID": 3,
         "firstName": "Liam",
         "lastName": "Williams",
         "username": "LWilliams",
-        "password": "password789",
-        "guestMode": false
+        "password": "password789"
     }
 ]
