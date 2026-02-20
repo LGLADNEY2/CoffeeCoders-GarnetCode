@@ -2,16 +2,36 @@
     {
         "questionID": "a7658164-21a9-4f5e-a253-c331a9a783e7",
         "authorID": "4460fe58-54de-4eba-b277-72724d408588",
-        "title": "",
-        "rating":"",
-        "difficulty": "",
-        "recommendedTime": "",
-        "problem": "",
+        "title": "Check Even or Odd",
+        "rating":"0",
+        "difficulty": "BEGINNER",
+        "recommendedTime": "4",
+        "problem": "Write a function that takes an integer as input and returns 'Even' if the number is even, and 'Odd' if the number is odd.",
         "code": "",
-        "questionTag": "",
-            "category": "",
-            "course": "",
-            "language": "",
+        "questionTag": {
+            "category": "CLASS",
+            "course": "CSCE_145",
+            "language": "JAVA"
+        },
+        "examples": [
+            {
+                "input": "4",
+                "output": "Even"
+            },
+            {
+                "input": "7",
+                "output": "Odd"
+            }
+        ],
+        "constraints": [
+            "The input will be a valid integer.",        
+        ],
+        "hints": [
+            "Use the modulus operator (%) to determine if the number is even or odd.",
+            "If the number % 2 equals 0, it is even; otherwise, it is odd."
+        ],
+        "solution": [],
+        "comments": []
     },
     {
       "questionID": "",
@@ -22,55 +42,16 @@
         "recommendedTime": "",
         "problem": "",
         "code": "",
-        "questionTag": "",
+        "questionTag": {
             "category": "",
             "course": "",
-            "language": "",
+            "language": ""
+        },
+        "examples": [],
+        "constraints": [],
+        "hints": [],
+        "solution": [],
+        "comments": []
 
     },
-    {
-        "questionID": "",
-        "authorID": "",
-        "title": "",
-        "rating":"",
-        "difficulty": "",
-        "recommendedTime": "",
-        "problem": "",
-        "code": "",
-        "questionTag": "",
-            "category": "",
-            "course": "",
-            "language": "",
-
-    },
-    {
-        "questionID": "",
-        "authorID": "",
-        "title": "",
-        "rating":"",
-        "difficulty": "",
-        "recommendedTime": "",
-        "problem": "",
-        "code": "",
-        "questionTag": "",
-            "category": "",
-            "course": "",
-            "language": "",
-
-    },
-    {
-        "questionID": "",
-        "authorID": "",
-        "title": "",
-        "rating":"",
-        "difficulty": "",
-        "recommendedTime": "",
-        "problem": "",
-        "code": "",
-        "questionTag": "",
-            "category": "",
-            "course": "",
-            "language": "",
-
-    }
 ]
