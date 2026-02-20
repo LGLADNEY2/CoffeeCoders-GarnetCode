@@ -9,8 +9,8 @@
         "role": "Student",
 
         "dailyStreak": 4,
-        "favoriteQuestions": [],
-        "completedQuestions": []
+        "favoriteQuestions": ["ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9"],
+        "completedQuestions": ["ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9"]
     },
     {
         "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
@@ -22,8 +22,9 @@
         "role": "Student",
 
         "dailyStreak": 1,
-        "favoriteQuestions": [],
-        "completedQuestions": []
+        "favoriteQuestions": ["a7658164-21a9-4f5e-a253-c331a9a783e7"],
+        "completedQuestions": ["a7658164-21a9-4f5e-a253-c331a9a783e7",
+                            "ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9"]
     
     },
     {
