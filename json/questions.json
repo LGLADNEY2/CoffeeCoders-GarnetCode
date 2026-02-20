@@ -24,7 +24,7 @@
             }
         ],
         "constraints": [
-            "The input will be a valid integer.",        
+            "The input will be a valid integer."        
         ],
         "hints": [
             "Use the modulus operator (%) to determine if the number is even or odd.",
@@ -53,5 +53,5 @@
         "solution": [],
         "comments": []
 
-    },
+    }
 ]
