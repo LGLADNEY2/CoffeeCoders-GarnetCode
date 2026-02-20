@@ -1,17 +1,34 @@
 [
     {
+        "questionID": "",
+        "authorID": "",
+        "title": "",
+        "rating":"",
+        "difficulty": "",
+        "recommendedTime": "",
+        "problem": "",
+        "code": "",
+        "questionTag": "",
+            "category": "",
+            "course": "",
+            "language": "",
+    },
+    {
+      
+
+
+    },
+    {
+     
 
     },
     {
 
-    },
-    {
 
-    },
-    {
 
     },
     {
         
+
     }
 ]
