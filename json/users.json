@@ -20,6 +20,13 @@
         "username": "EJohnson",
         "password": "Lightn@52ing",
         "role": "Student",
+        "trustedRoles":[
+            {
+                "category":["CLASS"],
+                "language":["JAVA"],
+                "course":["CSCE_145"]
+            }
+        ],
 
         "dailyStreak": 1,
         "favoriteQuestions": ["a7658164-21a9-4f5e-a253-c331a9a783e7"],

@@ -6,43 +6,69 @@
         "rating":"0",
         "difficulty": "BEGINNER",
         "recommendedTime": "4",
-        "problem": "Write a function that takes an integer as input and returns 'Even' if the number is even, and 'Odd' if the number is odd.",
-        "code": "",
+        "segementOrder": [
+            "PROBLEMDESC",
+            "CONSTRAINTS",
+            "CODE",
+            "EXAMPLES"
+        ],
+        "segments": [
+            "Problem:\nWrite a function that takes an integer as input and returns 'Even' if the number is even, and 'Odd' if the number is odd.",
+            "Constraint:\nThe input will be a valid integer.",
+            "Code:\nclass EvenOrOdd { \n   public String isEvenOrOdd(int x) {\n\n    }\n}",
+            "Example 1:\nInput: 4 \nOutput: Even\n\nExample 2: \nInput: 7\nOutput: Odd"
+        ],
         "questionTag": {
-            "category": "CLASS",
-            "course": "CSCE_145",
-            "language": "JAVA"
+            "category": [
+                "CLASS"
+            ],
+            "language": [
+                "JAVA"
+            ],
+            "course": [
+                "CSCE_145"
+            ]
         },
-        "examples": [
-            {
-                "input": "4",
-                "output": "Even"
-            },
-            {
-                "input": "7",
-                "output": "Odd"
-            }
-        ],
-        "constraints": [
-            "The input will be a valid integer."        
-        ],
         "hints": [
             "Use the modulus operator (%) to determine if the number is even or odd.",
             "If the number % 2 equals 0, it is even; otherwise, it is odd."
         ],
-        "solutions": [],
+        "solutions": [
+            {
+                "authorID": "4460fe58-54de-4eba-b277-72724d408588",
+                "language":"JAVA",
+                "title":"Java Even or Odd Solution",
+                "segementOrder":[
+                    "INTUITION",
+                    "IMPLEMENTATION",
+                    "CODE",
+                    "ANALYSIS",
+                    "COMPLEXITY"
+                ],
+                "segments":[
+                    "Intuition: \nFirst I remebered that any even integer is divisible by two, but odd integers are one greater than an even integer.",
+                    "Implementation: \nFor this problem I used the modulos operator, Math.abs, and an if statement.",
+                    "Code: \nclass EvenOrOdd { \n   public String isEvenOrOdd(int x) { \n       if(Math.abs(x%2) == 0) \n           return \"Even\"; \n       return \"Odd\"; \n    } \n}",
+                    "Analysis: \nIf the integer 10 is inputted, 10 modulos 2 will return 0, the Math.abs does nothing, but 0 is equal to 0 so the method will return even. If the integer is -9, -9 modulos 2 will return -1, the Math.abs makes this integer a positive 1, since 1 is not equal to 0, the if statement is ignored and the method returns Odd.",
+                    "Complexity: \nThis approach has a time complexity of O(1) since the method takes the same amount of operations for any integer."
+                ],
+                "comments":[],
+                "likes":"0",
+                "approved":""
+            }
+        ],
         "comments": [
             {
                 "text": "I liked this question!",
                 "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
-                "datePosted": 11212026,
-                "likes": 0,
+                "datePosted": "11212026",
+                "likes": "0",
                 "replies":[
                     {
                         "text": "I liked this comment!",
                         "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
-                        "datePosted": 11232026,
-                        "likes": 1,
+                        "datePosted": "11232026",
+                        "likes": "0",
                         "replies":[]
                     }
                 ]
@@ -50,8 +76,8 @@
             {
                 "text": "I don't like this question.",
                 "accountID": "5075dde5-9721-4dc3-8ee9-dc36dd85186f",
-                "datePosted": 11222026,
-                "likes": -2,
+                "datePosted": "11222026",
+                "likes": "-1",
                 "replies":[]
             }
         ]
@@ -63,17 +89,26 @@
         "rating":"",
         "difficulty": "",
         "recommendedTime": "",
-        "problem": "",
-        "code": "",
+        "segmentOrder": [],
+        "segments": [],
         "questionTag": {
-            "category": "",
-            "course": "",
-            "language": ""
+            "category": [],
+            "language": [],
+            "course": []
         },
-        "examples": [],
-        "constraints": [],
         "hints": [],
-        "solution": [],
+        "solution": [
+            {
+                "authorID":"",
+                "language":"",
+                "title":"",
+                "segementOrder":[],
+                "segments":[],
+                "comments":[],
+                "likes":"",
+                "approved":""
+            }
+        ],
         "comments": []
     }
 ]
