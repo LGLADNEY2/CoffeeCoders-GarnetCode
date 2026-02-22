@@ -30,44 +30,31 @@
             "Use the modulus operator (%) to determine if the number is even or odd.",
             "If the number % 2 equals 0, it is even; otherwise, it is odd."
         ],
-        "solution": [],
-        "comments": []
-    },
-    {
-      "questionID": "ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9",
-        "authorID": "4460fe58-54de-4eba-b277-72724d408588",
-        "title": "Two Sum",
-        "rating":"0",
-        "difficulty": "INTERMEDIATE",
-        "recommendedTime": "20",
-        "problem": "Given an array of integers and a target integer, return the indices of the two numbers that add up to the target.",
-        "code": "",
-        "questionTag": {
-            "category": "INTERVIEW",
-            "course": "NONE",
-            "language": "JAVA"
-        },
-        "examples": [
+        "solutions": [],
+        "comments": [
             {
-                "input": "nums = [2, 7, 11, 15], target = 9",
-                "output": "[0, 1]"
+                "text": "I liked this question!",
+                "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
+                "datePosted": 11212026,
+                "likes": 0,
+                "replies":[
+                    {
+                        "text": "I liked this comment!",
+                        "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
+                        "datePosted": 11232026,
+                        "likes": 1,
+                        "replies":[]
+                    }
+                ]
             },
             {
-                "input": "nums = [3, 2, 4], target = 6",
-                "output": "[1, 2]"
+                "text": "I don't like this question.",
+                "accountID": "5075dde5-9721-4dc3-8ee9-dc36dd85186f",
+                "datePosted": 11222026,
+                "likes": -2,
+                "replies":[]
             }
-        ],
-        "constraints": [
-            "Each input would have exactly one solution.",
-            "You may not use the same element twice."
-        ],
-        "hints": [
-            "Use a hash map to store the indices of the numbers as you iterate through the array.",
-            "For each number, check if the complement (target - current number) exists in the hash map."
-        ],
-        "solution": [],
-        "comments": []
-
+        ]
     },
     {
       "questionID": "",
@@ -88,6 +75,5 @@
         "hints": [],
         "solution": [],
         "comments": []
-
     }
 ]
