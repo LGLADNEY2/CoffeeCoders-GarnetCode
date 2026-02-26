@@ -3,9 +3,10 @@
         "questionID": "a7658164-21a9-4f5e-a253-c331a9a783e7",
         "authorID": "4460fe58-54de-4eba-b277-72724d408588",
         "title": "Check Even or Odd",
-        "rating":"0",
+        "rating":0,
+        "datePosted": 01102026,
         "difficulty": "BEGINNER",
-        "recommendedTime": "4",
+        "recommendedTime": 4,
         "segementOrder": [
             "PROBLEMDESC",
             "CONSTRAINTS",
@@ -61,14 +62,14 @@
             {
                 "text": "I liked this question!",
                 "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
-                "datePosted": "11212026",
-                "likes": "0",
+                "datePosted": 11212026,
+                "likes": 0,
                 "replies":[
                     {
                         "text": "I liked this comment!",
                         "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
-                        "datePosted": "11232026",
-                        "likes": "0",
+                        "datePosted": 11232026,
+                        "likes": 0,
                         "replies":[]
                     }
                 ]
