@@ -3,8 +3,8 @@
         "questionID": "a7658164-21a9-4f5e-a253-c331a9a783e7",
         "authorID": "4460fe58-54de-4eba-b277-72724d408588",
         "title": "Check Even or Odd",
-        "rating":0,
-        "datePosted": 01102026,
+        "rating": 0,
+        "datePosted":"01102026",
         "difficulty": "BEGINNER",
         "recommendedTime": 4,
         "segementOrder": [
@@ -14,10 +14,36 @@
             "EXAMPLES"
         ],
         "segments": [
-            "Problem:\nWrite a function that takes an integer as input and returns 'Even' if the number is even, and 'Odd' if the number is odd.",
-            "Constraint:\nThe input will be a valid integer.",
-            "Code:\nclass EvenOrOdd { \n   public String isEvenOrOdd(int x) {\n\n    }\n}",
-            "Example 1:\nInput: 4 \nOutput: Even\n\nExample 2: \nInput: 7\nOutput: Odd"
+            {
+                "title":"Problem",
+                "desc":"Write a function that takes an integer as input and returns 'Even' if the number is even, and 'Odd' if the number is odd.",
+                "dataType":"None",
+                "data":""
+            },
+            {
+                "title":"Constraint",
+                "desc":"The input will be a valid integer.",
+                "dataType":"None",
+                "data":""
+            },
+            {
+                "title":"Code",
+                "desc":"",
+                "dataType":"Code",
+                "data":"class EvenOrOdd { \n   public String isEvenOrOdd(int x) {\n\n    }\n}"
+            },
+            {
+                "title":"Example 1",
+                "desc":"Input: 4 \nOutput: Even",
+                "dataType":"None",
+                "data":""
+            },
+            {
+                "title":"Example 2",
+                "desc":"Input: 7\nOutput: Odd",
+                "dataType":"None",
+                "data":""
+            }
         ],
         "questionTag": {
             "category": [
@@ -47,11 +73,36 @@
                     "COMPLEXITY"
                 ],
                 "segments":[
-                    "Intuition: \nFirst I remebered that any even integer is divisible by two, but odd integers are one greater than an even integer.",
-                    "Implementation: \nFor this problem I used the modulos operator, Math.abs, and an if statement.",
-                    "Code: \nclass EvenOrOdd { \n   public String isEvenOrOdd(int x) { \n       if(Math.abs(x%2) == 0) \n           return \"Even\"; \n       return \"Odd\"; \n    } \n}",
-                    "Analysis: \nIf the integer 10 is inputted, 10 modulos 2 will return 0, the Math.abs does nothing, but 0 is equal to 0 so the method will return even. If the integer is -9, -9 modulos 2 will return -1, the Math.abs makes this integer a positive 1, since 1 is not equal to 0, the if statement is ignored and the method returns Odd.",
-                    "Complexity: \nThis approach has a time complexity of O(1) since the method takes the same amount of operations for any integer."
+                    {
+                        "title":"Intuition",
+                        "desc":"First I remebered that any even integer is divisible by two, but odd integers are one greater than an even integer.",
+                        "dataType":"",
+                        "data":""
+                    },
+                    {
+                        "title":"Implementation",
+                        "desc":"For this problem I used the modulos operator, Math.abs, and an if statement.",
+                        "dataType":"None",
+                        "data":""
+                    },
+                    {
+                        "title":"Implementation",
+                        "desc":"",
+                        "dataType":"Code",
+                        "data":"class EvenOrOdd { \n   public String isEvenOrOdd(int x) { \n       if(Math.abs(x%2) == 0) \n           return \"Even\"; \n       return \"Odd\"; \n    } \n}"
+                    },
+                    {
+                        "title":"Analysis",
+                        "desc":"If the integer 10 is inputted, 10 modulos 2 will return 0, the Math.abs does nothing, but 0 is equal to 0 so the method will return even. If the integer is -9, -9 modulos 2 will return -1, the Math.abs makes this integer a positive 1, since 1 is not equal to 0, the if statement is ignored and the method returns Odd.",
+                        "dataType":"None",
+                        "data":""
+                    },
+                    {
+                        "title":"Complexity",
+                        "desc":"This approach has a time complexity of O(1) since the method takes the same amount of operations for any integer.",
+                        "dataType":"None",
+                        "data":""
+                    }
                 ],
                 "comments":[],
                 "likes":"0",
@@ -62,13 +113,13 @@
             {
                 "text": "I liked this question!",
                 "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
-                "datePosted": 11212026,
+                "datePosted": "11212026",
                 "likes": 0,
                 "replies":[
                     {
                         "text": "I liked this comment!",
                         "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
-                        "datePosted": 11232026,
+                        "datePosted": "11232026",
                         "likes": 0,
                         "replies":[]
                     }
@@ -84,14 +135,21 @@
         ]
     },
     {
-      "questionID": "",
+        "questionID": "",
         "authorID": "",
         "title": "",
         "rating":"",
+        "datePosted":"",
         "difficulty": "",
         "recommendedTime": "",
-        "segmentOrder": [],
-        "segments": [],
+        "segments": [
+            {
+                "title":"",
+                "desc":"",
+                "dataType":"",
+                "data":""
+            }
+        ],
         "questionTag": {
             "category": [],
             "language": [],
@@ -103,13 +161,20 @@
                 "authorID":"",
                 "language":"",
                 "title":"",
-                "segementOrder":[],
                 "segments":[],
                 "comments":[],
                 "likes":"",
                 "approved":""
             }
         ],
-        "comments": []
+        "comments": [
+            {
+                "text":"",
+                "accountID":"",
+                "datePosted":"",
+                "likes":"",
+                "replies":[]
+            }
+        ]
     }
 ]

@@ -7,10 +7,11 @@
         "username": "OSmith",
         "password": "HaMMer@STing223",
         "role": "Student",
-
         "dailyStreak": 4,
         "favoriteQuestions": ["ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9"],
-        "completedQuestions": ["ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9"]
+        "completedQuestions": ["ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9"],
+        "trustedRoles":[],
+        "userQuestions":[]
     },
     {
         "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
@@ -20,6 +21,10 @@
         "username": "EJohnson",
         "password": "Lightn@52ing",
         "role": "Student",
+        "dailyStreak": 1,
+        "favoriteQuestions": ["a7658164-21a9-4f5e-a253-c331a9a783e7"],
+        "completedQuestions": ["a7658164-21a9-4f5e-a253-c331a9a783e7",
+                            "ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9"],
         "trustedRoles":[
             {
                 "category":["CLASS"],
@@ -27,12 +32,7 @@
                 "course":["CSCE_145"]
             }
         ],
-
-        "dailyStreak": 1,
-        "favoriteQuestions": ["a7658164-21a9-4f5e-a253-c331a9a783e7"],
-        "completedQuestions": ["a7658164-21a9-4f5e-a253-c331a9a783e7",
-                            "ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9"]
-    
+        "userQuestions":[]
     },
     {
         "accountID": "4460fe58-54de-4eba-b277-72724d408588",
@@ -42,6 +42,10 @@
         "username": "LWilliams",
         "password": "password67",
         "role" : "Editor",
+        "favoriteQuestions": [],
+        "completedQuestions": [],
+        "trustedRoles":[],
+        "userQuestions":["a7658164-21a9-4f5e-a253-c331a9a783e7"],
         "admin": false
     }
 ]
