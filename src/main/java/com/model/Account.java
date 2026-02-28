@@ -2,7 +2,7 @@ package com.model;
 
 import java.util.UUID;
 
-public class Account {
+public abstract class Account {
     private UUID accountID;
     private String firstName;
     private String lastName;
