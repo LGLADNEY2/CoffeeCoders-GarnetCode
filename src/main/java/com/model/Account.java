@@ -11,6 +11,11 @@ public abstract class Account {
     private String password;
     private Role role;
 
+    public Account(String user, String password) {
+        this.accountID = UUID.randomUUID();
+        this.username = user;
+        this.password = password;
+    }
     public Account(UUID accountID, String user, String password) {
         this.accountID = accountID;
         this.username = user;
@@ -18,10 +23,6 @@ public abstract class Account {
     }
     
     public boolean addEmail(String user, String password) {
-        return true;
-    }
-
-    public boolean addName(String firstName, String lastName) {
         return true;
     }
 
