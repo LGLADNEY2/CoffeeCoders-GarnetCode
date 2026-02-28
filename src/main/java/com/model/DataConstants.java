@@ -1,0 +1,53 @@
+package com.model;
+
+public abstract class DataConstants {
+    protected static final String ACCOUNT_FILE_NAME = "src/main/java/com/data/users.json";
+	protected static final String ACCOUNT_ID = "accountID";
+	protected static final String ACCOUNT_USER_NAME = "username";
+	protected static final String ACCOUNT_FIRST_NAME = "firstName";
+	protected static final String ACCOUNT_LAST_NAME = "lastName";
+    protected static final String ACCOUNT_EMAIL = "email";
+    protected static final String ACCOUNT_PASSWORD = "password";
+    protected static final String ACCOUNT_ROLE = "role";
+    protected static final String STUDENT_DAILY_STREAK = "dailyStreak";
+    protected static final String STUDENT_FAVORITE_QUESTIONS = "favoriteQuestions";
+    protected static final String STUDENT_COMPLETED_QUESTIONS = "completedQuestions";
+    protected static final String STUDENT_TRUSTED_ROLES = "trustedRoles";
+    protected static final String STUDENT_USER_QUESTIONS = "userQuestions";
+    protected static final String EDITOR_ADMIN = "admin";
+    protected static final String QUESTION_FILE_NAME = "src/main/java/com/data/questions.json";
+    protected static final String QUESTION_ID = "questionID";
+    protected static final String AUTHOR_ID = "authorID";
+    protected static final String QUESTION_TITLE = "title";
+    protected static final String QUESTION_RATING = "rating";
+    protected static final String QUESTION_DATE_POSTED = "datePosted";
+    protected static final String QUESTION_RECOMENDED_TIME = "recomendedTime";
+    protected static final String QUESTION_DIFFICULTY = "difficulty";
+    protected static final String QUESTION_SEGMENTS = "segments";
+    protected static final String QUESTION_QUESTION_TAG = "questionTag";
+    protected static final String QUESTION_HINTS = "hints";
+    protected static final String QUESTION_SOLUTIONS = "solutions";
+    protected static final String QUESTION_COMMENTS = "comments";
+    protected static final String HINT_TEXT = "text";
+    protected static final String HINT_CODE = "code";
+    protected static final String SOLUTION_AUTHOR_ID = "authorID";
+    protected static final String SOLUTION_TITLE = "title";
+    protected static final String SOLUTION_LANGUAGE = "language";
+    protected static final String SOLUTION_SEGMENTS = "segments";
+    protected static final String SOLUTION_COMMENTS = "comments";
+    protected static final String SOLUTION_LIKES = "likes";
+    protected static final String SOLUTION_APPROVED = "approves";
+    protected static final String SEGMENT_TITLE = "title";
+    protected static final String SEGMENT_DESC = "desc";
+    protected static final String SEGMENT_DATA_TYPE = "dataType";
+    protected static final String SEGMENT_DATA = "data";
+    protected static final String COMMENT_TEXT = "text";
+    protected static final String COMMENT_ACCOUNT_ID = "accountID";
+    protected static final String COMMENT_DATE_POSTED = "datePosted";
+    protected static final String COMMENT_REPLIES = "replies";
+    protected static final String COMMENT_LIKES = "likes";
+    protected static final String QUESTION_TAG_CATEGORY = "category";
+    protected static final String QUESTION_TAG_LANGUAGE = "language";
+    protected static final String QUESTION_TAG_COURSE = "course";
+
+}
