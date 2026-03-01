@@ -15,36 +15,42 @@ public abstract class Account {
         this.accountID = UUID.randomUUID();
         this.username = user;
         this.password = password;
+        this.role = Role.STUDENT;
     }
     public Account(UUID accountID, String user, String password) {
         this.accountID = accountID;
         this.username = user;
         this.password = password;
+        this.role = Role.STUDENT;
     }
     
-    public boolean addEmail(String user, String password) {
-        return true;
-    }
+    public String getFirstName() {return firstName;}
+    public String getLastName() {return lastName;}
+    public String getEmail() {return email;}
+    public String getUsername() {return username;}
+    public String getPassword() {return password;}
+    public Role getRole() {return role;}
+
+   public void setFirstName(String firstName) {
+
+   }
+   public void setLastName(String lastName) {
+
+   }
+   public void setEmail(String email) {
+
+   }
+   public void setUsername(String username) {
+
+   }
+   public void setPassword(String password) {
+
+   }
 
     public boolean login() {
         return true;
     }
     public boolean logout() {
         return true;
-    }
-
-    public boolean removeUser(String user, String password) {
-        return true;
-    }
-
-    public boolean editUser(String user, String password) {
-        return true;
-    }
-
-    public boolean resetPassword(String user, String password) {
-        return true;
-    }
-
-    
-    
+    }    
 }
