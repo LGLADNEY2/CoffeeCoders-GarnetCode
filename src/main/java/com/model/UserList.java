@@ -3,17 +3,22 @@ package com.model;
 import java.util.ArrayList;
 
 public class UserList {
-    private ArrayList<Account> users;
     private static UserList userList;
+    private ArrayList<Account> accounts;
+
 
     private UserList() {
-        userList = DataLoader.getUsers();
+        userList = DataLoader.getAccounts();
     }
 
     public static UserList getInstanct() {
         if(userList == null)
             userList = new UserList();
         return userList;
+    }
+
+    public ArrayList<Account> getAccounts() {
+        return accounts;
     }
 
     public Account getUser() {
