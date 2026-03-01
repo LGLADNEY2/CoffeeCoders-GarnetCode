@@ -2,12 +2,12 @@ package com.model;
 
 import java.util.ArrayList;
 
-public class questionTag {
+public class QuestionTag {
     private ArrayList<Category> category;
     private ArrayList<Language> language;
     private ArrayList<Course> course;
 
-    public questionTag(ArrayList<Category> category, ArrayList<Language> language, ArrayList<Course> course) {
+    public QuestionTag(ArrayList<Category> category, ArrayList<Language> language, ArrayList<Course> course) {
         this.category = category;
         this.language = language;
         this.course = course;
