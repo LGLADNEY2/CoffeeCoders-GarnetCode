@@ -38,7 +38,9 @@ public class Comment {
     public boolean addReply(UUID accountID, String text, String datePosted) {
         return true;
     }
-
+    public boolean removeReply(UUID accountID, String datePosted) {
+        return true;
+    }
     public void like() {
         
     }
