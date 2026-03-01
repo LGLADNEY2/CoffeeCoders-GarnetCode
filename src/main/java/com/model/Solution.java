@@ -61,6 +61,12 @@ public class Solution {
     public void like() {
 
     }
+    public boolean addCommnet(String text, UUID authorID) {
+        return true;
+    }
+    public boolean removeComment(UUID accountID, String datePosted) {
+        return true;
+    }
 
     
 }
