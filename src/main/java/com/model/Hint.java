@@ -11,9 +11,17 @@ public class Hint {
 
     public Hint(String text) {
         this.text = text;
+        this.code = "";
     }
 
-    public boolean editHint(String text, String code) {
-        return true;
+    public String getText() {return text;}
+    public String getCode() {return code;}
+
+    public void setText(String text) {
+
+    }
+
+    public void setCode(String code) {
+        
     }
 }
