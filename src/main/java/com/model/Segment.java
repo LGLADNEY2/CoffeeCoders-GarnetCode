@@ -13,16 +13,21 @@ public class Segment {
         this.data = data;
     }
 
+    public String getTitle() {return title;}
+    public String getDesc() {return desc;}
+    public String getDataType() {return dataType;}
+    public String getData() {return data;}
+
     public boolean editData(String dataType, String data) {
         return true;
     }
     
-    public boolean editTitle(String title) {
-        return true;
+    public void setTitle(String title) {
+
     }
 
-    public boolean editDesc(String desc) {
-        return true;
+    public void setDesc(String desc) {
+
     }
     
 }
