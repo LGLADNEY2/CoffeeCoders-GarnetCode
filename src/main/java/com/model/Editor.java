@@ -21,10 +21,6 @@ public class Editor {
         return true;
     }
 
-    public boolean editSolution(Solution solution) {
-        return true;
-    }
-
     public boolean approveQuestion(boolean admin, Question question) {
         return true;
     }
@@ -42,6 +38,14 @@ public class Editor {
     }
 
     public boolean addTrustedRole(boolean admin, UUID accountID, QuestionTag questionTag) {
+        return true;
+    }
+
+    public boolean addAdmin(UUID accountID) {
+        return true;
+    }
+
+    public boolean removeAdmin(UUID accountID) {
         return true;
     }
 }
