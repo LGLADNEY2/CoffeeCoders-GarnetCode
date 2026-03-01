@@ -24,6 +24,7 @@ public abstract class Account {
         this.role = Role.STUDENT;
     }
     
+    public UUID getAccountID() {return accountID;}
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}
     public String getEmail() {return email;}
