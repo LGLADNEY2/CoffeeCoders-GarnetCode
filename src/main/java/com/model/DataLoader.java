@@ -10,7 +10,96 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
     public static ArrayList<Account> getUsers() {
+        ArrayList<Account> users = new ArrayList<>();
         
+        try {
+            FileReader reader = new FileReader(ACCOUNT_FILE_NAME);
+            JSONParser parser = new JSONParser();
+            JSONArray usersJSON = (JSONArray) parser.parse(reader);
+            
+            for (int i = 0; i < usersJSON.size(); i++) {
+                JSONObject userJSON = (JSONObject) usersJSON.get(i);
+                UUID accountID = UUID.fromString((String) userJSON.get(ACCOUNT_ID));
+                String firstName = (String) userJSON.get(ACCOUNT_FIRST_NAME);
+                String lastName = (String) userJSON.get(ACCOUNT_LAST_NAME);
+                String email = (String) userJSON.get(ACCOUNT_EMAIL);
+                String username = (String) userJSON.get(ACCOUNT_USER_NAME);
+                String password = (String) userJSON.get(ACCOUNT_PASSWORD);
+                String roleStr = (String) userJSON.get(ACCOUNT_ROLE);
+                
+                if (roleStr.equalsIgnoreCase("Student")) {
+                    int dailyStreak = ((Long) userJSON.get(STUDENT_DAILY_STREAK)).intValue();
+                    
+                    // Parse favorite questions UUIDs
+                    JSONArray favQuestionsJSON = (JSONArray) userJSON.get(STUDENT_FAVORITE_QUESTIONS);
+                    ArrayList<UUID> favoriteQuestionIDs = new ArrayList<>();
+                    for (Object qIDObj : favQuestionsJSON) {
+                        favoriteQuestionIDs.add(UUID.fromString((String) qIDObj));
+                    }
+                    
+                    // Parse completed questions UUIDs
+                    JSONArray compQuestionsJSON = (JSONArray) userJSON.get(STUDENT_COMPLETED_QUESTIONS);
+                    ArrayList<UUID> completedQuestionIDs = new ArrayList<>();
+                    for (Object qIDObj : compQuestionsJSON) {
+                        completedQuestionIDs.add(UUID.fromString((String) qIDObj));
+                    }
+                    
+                    // Parse user questions UUIDs
+                    JSONArray userQuestionsJSON = (JSONArray) userJSON.get(STUDENT_USER_QUESTIONS);
+                    ArrayList<UUID> userQuestionIDs = new ArrayList<>();
+                    for (Object qIDObj : userQuestionsJSON) {
+                        userQuestionIDs.add(UUID.fromString((String) qIDObj));
+                    }
+                    
+                    // Parse trusted roles
+                    JSONArray trustedRolesJSON = (JSONArray) userJSON.get(STUDENT_TRUSTED_ROLES);
+                    ArrayList<QuestionTag> trustedRoles = new ArrayList<>();
+                    for (Object roleObj : trustedRolesJSON) {
+                        JSONObject roleJSON = (JSONObject) roleObj;
+                        
+                        // Parse categories
+                        JSONArray categoriesJSON = (JSONArray) roleJSON.get(QUESTION_TAG_CATEGORY);
+                        ArrayList<Category> categories = new ArrayList<>();
+                        for (Object catObj : categoriesJSON) {
+                            categories.add(Category.valueOf((String) catObj));
+                        }
+                        
+                        // Parse languages
+                        JSONArray languagesJSON = (JSONArray) roleJSON.get(QUESTION_TAG_LANGUAGE);
+                        ArrayList<Language> languages = new ArrayList<>();
+                        for (Object langObj : languagesJSON) {
+                            languages.add(Language.valueOf((String) langObj));
+                        }
+                        
+                        // Parse courses
+                        JSONArray coursesJSON = (JSONArray) roleJSON.get("course");
+                        ArrayList<Course> courses = new ArrayList<>();
+                        for (Object courseObj : coursesJSON) {
+                            courses.add(Course.valueOf((String) courseObj));
+                        }
+                        
+                        trustedRoles.add(new QuestionTag(categories, languages, courses));
+                    }
+                    
+                    // Create student - Note: This may need adjustment based on Student constructor
+                    Student student = new Student(new ArrayList<>());
+                    // Set inherited Account fields using setters
+                    student.setFirstName(firstName);
+                    student.setLastName(lastName);
+                    student.setEmail(email);
+                    student.setUsername(username);
+                    student.setPassword(password);
+                    
+                    users.add(student);
+                }
+            }
+            
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return users;
     }
 
     public static ArrayList<Question> getQuestions() {
