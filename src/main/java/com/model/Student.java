@@ -10,14 +10,23 @@ public class Student extends Account {
     private ArrayList<QuestionTag> trustedRoles;
     private ArrayList<Question> userQuestions;
 
-    public Student(ArrayList<Question> favoriteQuestions) {
-        super("", "");
+    public Student(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
+        super(accountID, username, password, firstName, lastName, email, role);
         this.dailyStreak = 0;
         this.favoriteQuestions = favoriteQuestions;
-        this.completedQuestions = new ArrayList<>();
-        this.trustedRoles = new ArrayList<>();
-        this.userQuestions = new ArrayList<>();
+        this.completedQuestions = completedQuestions;
+        this.trustedRoles = trustedRoles;
+        this.userQuestions = userQuestions;
     }
+    public Student(String username, String password, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
+        super(username, password);
+        this.dailyStreak = 0;
+        this.favoriteQuestions = favoriteQuestions;
+        this.completedQuestions = completedQuestions;
+        this.trustedRoles = trustedRoles;
+        this.userQuestions = userQuestions;
+    }
+
 
     public boolean favoriteQuestion(UUID questionID) {
         return true;
@@ -27,7 +36,7 @@ public class Student extends Account {
         return true;
     }
 
-    public Hint viewHint() {
+    public Segment viewHint() {
         return null;
     }
 }

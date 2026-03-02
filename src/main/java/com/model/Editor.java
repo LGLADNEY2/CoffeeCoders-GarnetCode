@@ -1,11 +1,17 @@
 package com.model;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
-public class Editor {
+public class Editor extends Student{
     private boolean admin;
 
-    public Editor() {
+    public Editor(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions) {
+        super(accountID, firstName, lastName, email, username, password, role, dailyStreak, favoriteQuestions, completedQuestions, trustedRoles, userQuestions);
+        this.admin = false;
+    }
+    public Editor(String username, String password, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions) {
+        super(username, password, dailyStreak, favoriteQuestions, completedQuestions, trustedRoles, userQuestions);
         this.admin = false;
     }
 
