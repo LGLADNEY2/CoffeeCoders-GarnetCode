@@ -2,6 +2,7 @@ package com.model;
 
 public abstract class DataConstants {
     protected static final String ACCOUNT_FILE_NAME = "src/main/java/com/data/users.json";
+    protected static final String ACCOUNT_TEMP_FILE_NAME = "src/main/java/com/data/users_temp.json";
 	protected static final String ACCOUNT_ID = "accountID";
 	protected static final String ACCOUNT_USER_NAME = "username";
 	protected static final String ACCOUNT_FIRST_NAME = "firstName";
@@ -16,6 +17,7 @@ public abstract class DataConstants {
     protected static final String STUDENT_USER_QUESTIONS = "userQuestions";
     protected static final String EDITOR_ADMIN = "admin";
     protected static final String QUESTION_FILE_NAME = "src/main/java/com/data/questions.json";
+    protected static final String QUESTION_TEMP_FILE_NAME = "src/main/java/com/data/questions_temp.json";
     protected static final String QUESTION_ID = "questionID";
     protected static final String AUTHOR_ID = "authorID";
     protected static final String QUESTION_TITLE = "title";
