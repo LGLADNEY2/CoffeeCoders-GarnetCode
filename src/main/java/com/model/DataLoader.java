@@ -9,5 +9,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
-    
+    public static ArrayList<Account> getUsers() {
+        
+    }
+
+    public static ArrayList<Question> getQuestions() {
+        
+    }
 }
