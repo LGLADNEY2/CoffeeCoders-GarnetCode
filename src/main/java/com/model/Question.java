@@ -29,6 +29,7 @@ public class Question {
         this.hints = hints;
         this.solutions = solutions;
         this.comments = new ArrayList<>();
+        this.recommendedTime = -1;
         this.rating = -1;
     }
     public Question(UUID questionID, UUID authorID, String title, String datePosted, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
@@ -36,6 +37,7 @@ public class Question {
         this.authorID = authorID;
         this.title = title;
         this.datePosted = datePosted;
+        this.recommendedTime = recommendedTime;
         this.difficulty = difficulty;
         this.segments = segments;
         this.questionTag = questionTag;
