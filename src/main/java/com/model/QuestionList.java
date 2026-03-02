@@ -1,63 +1,42 @@
-// Copyright 2026 Christopher Tytone
+package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Question {
-    private UUID id;
-    private String title;
-    private Difficulty difficulty;
-    private QuestionTag tag;
-    private String desc;
-    private ArrayList<Hint> hints;
-    private int recMin;
-    private ArrayList<Solution> solutions;
+public class QuestionList{
+    private static QuestionList questionList;
+    private ArrayList<Question> questions;
 
-    public Question(UUID id, String title, Difficulty difficulty, QuestionTag tag, String desc,
-                    ArrayList<Hint> hints, int recMin, ArrayList<Solution> solutions) {
-        this.id = id;
-        this.title = title;
-        this.difficulty = difficulty;
-        this.tag = tag;
-        this.desc = desc;
-        this.hints = hints;
-        this.recMin = recMin;
-        this.solutions = solutions;
+    private QuestionList() {
+        questionList = DataLoader.getQuestions();
     }
 
-    public UUID getId() {
-        return id;
+    public static QuestionList getInstance() {
+        if(questionList == null)
+            questionList = new QuestionList();
+        return questionList;
     }
 
-    public String getTitle() {
-        return title;
+    public ArrayList<Question> getQuestions() {
+        return questions;
     }
 
-    public Difficulty getDifficulty() {
-        return difficulty;
+    public ArrayList<Question> getQuestions(QuestionTag questionTag) {
+        return null;
     }
 
-    public QuestionTag getTag() {
-        return tag;
+    public boolean addQuestion(UUID authorID, String title, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag tag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
+        return true;
     }
 
-    public String getDesc() {
-        return desc;
+    public boolean removeQuestion(UUID questionID) {
+        return true;
     }
 
-    public ArrayList<Hint> getHints() {
-        return hints;
+    public ArrayList<Question> viewCompleted(UUID accountID) {
+        return null;
     }
-
-    public int getRecMin() {
-        return recMin;
-    }
-
-    public ArrayList<Solution> getSolutions() {
-        return solutions;
-    }
-
-    public boolean isCompletedBy(String user) {
-        return false;
+    public boolean save() {
+        return true;
     }
 }

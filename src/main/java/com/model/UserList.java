@@ -11,7 +11,7 @@ public class UserList {
         userList = DataLoader.getAccounts();
     }
 
-    public static UserList getInstanct() {
+    public static UserList getInstance() {
         if(userList == null)
             userList = new UserList();
         return userList;
