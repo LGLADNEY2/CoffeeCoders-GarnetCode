@@ -1,3 +1,5 @@
+// Copyright 2026 Christopher Tytone
+
 import java.util.ArrayList;
 import java.util.UUID;
 
