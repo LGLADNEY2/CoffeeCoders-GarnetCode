@@ -103,6 +103,28 @@ public class DataLoader extends DataConstants {
     }
 
     public static ArrayList<Question> getQuestions() {
-        
+        /*
+         * This method is intentionally left unimplemented because question
+         * loading is environment-specific (file, DB, or network) and the
+         * expected JSON/schema may vary. Implementing it here without the
+         * proper schema risks incorrect parsing. Throwing
+         * UnsupportedOperationException makes the unimplemented status
+         * explicit at runtime so callers fail fast instead of silently
+         * producing incorrect data.
+         */
+        throw new UnsupportedOperationException("getQuestions() not implemented");
+    }
+
+    // Backwards-compatibility wrapper: some callers expect getAccounts().
+    // Delegate to getUsers() to avoid breaking existing code.
+    public static ArrayList<Account> getAccounts() {
+        return getUsers();
+    }
+    }
+
+    // Backwards-compatibility wrapper: some callers expect getAccounts().
+    // Delegate to getUsers() to avoid breaking existing code.
+    public static ArrayList<Account> getAccounts() {
+        return getUsers();
     }
 }
