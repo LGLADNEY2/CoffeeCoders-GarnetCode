@@ -28,15 +28,24 @@ public class DataWriter extends DataConstants{
         }
     }
 
-    public static JSONObject getUserJSON(Account account) {
+    public static JSONObject getUserJSON(Editor editor) {
         JSONObject userDetails = new JSONObject();
-        userDetails.put(ACCOUNT_ID, account.getAccountID().toString());
-        userDetails.put(ACCOUNT_USER_NAME, account.getUsername());
-        userDetails.put(ACCOUNT_PASSWORD, account.getPassword());
-        userDetails.put(ACCOUNT_FIRST_NAME, account.getFirstName());
-        userDetails.put(ACCOUNT_LAST_NAME, account.getLastName());
-        userDetails.put(ACCOUNT_EMAIL, account.getEmail());
-        userDetails.put(ACCOUNT_ROLE, account.getRole().toString());
+        userDetails.put(ACCOUNT_ID, editor.getAccountID().toString());
+        userDetails.put(ACCOUNT_USER_NAME, editor.getUsername());
+        userDetails.put(ACCOUNT_PASSWORD, editor.getPassword());
+        userDetails.put(ACCOUNT_FIRST_NAME, editor.getFirstName());
+        userDetails.put(ACCOUNT_LAST_NAME, editor.getLastName());
+        userDetails.put(ACCOUNT_EMAIL, editor.getEmail());
+        userDetails.put(ACCOUNT_ROLE, editor.getRole().toString());
+        if(editor.getRole().equals(Role.STUDENT)) {
+            userDetails.put(STUDENT_COMPLETED_QUESTIONS, editor.getCompletedQuestions());
+            userDetails.put(STUDENT_DAILY_STREAK, editor.getDailyStreak());
+            userDetails.put(STUDENT_FAVORITE_QUESTIONS, editor.getFavoriteQuestions());
+            userDetails.put(STUDENT_TRUSTED_ROLES, editor.getFavoriteQuestions());
+            userDetails.put(STUDENT_LAST_LOGIN, editor.getLastLogin());
+        } else {
+            userDetails.put(EDITOR_ADMIN, editor.getAdmin());
+        }
         return userDetails;
     }
 
