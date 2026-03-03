@@ -1,7 +1,41 @@
 package com.model;
 
 public class Driver {
-    public static void main(String[] args) {
-        System.out.println("Hello World");
+    private QuestionFacade qFacade;
+
+    Driver() {
+        qFacade = new QuestionFacade();
     }
+
+    public void run() {
+        scenario1();
+        scenario2();
+    }
+
+    public void scenario1() {
+        System.out.println();
+
+		if (!qFacade.login("asmith", "12345")) {
+			System.out.println("Sorry we couldn't login.");
+			return;
+		}
+
+		System.out.println("Amy Smith is now logged in");
+    }
+
+    public void scenario2() {
+        System.out.println();
+
+		if (!qFacade.login("bsmith", "12345")) {
+			System.out.println("Sorry we couldn't login.");
+			return;
+		}
+		System.out.println("Bobby Smith is now logged in");
+    }
+
+    public static void main(String[] args) {
+        Driver driver = new Driver();
+        driver.run();
+    }
+
 }
