@@ -15,6 +15,12 @@ public class Editor extends Student{
         this.admin = false;
     }
 
+    public boolean getAdmin() {return admin;}
+
+    public void setAdmin(boolean admin) {
+        
+    }
+
     public boolean createQuestion(Question question) {
         return true;
     }

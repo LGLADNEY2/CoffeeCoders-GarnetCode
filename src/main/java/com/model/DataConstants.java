@@ -11,6 +11,7 @@ public abstract class DataConstants {
     protected static final String ACCOUNT_PASSWORD = "password";
     protected static final String ACCOUNT_ROLE = "role";
     protected static final String STUDENT_DAILY_STREAK = "dailyStreak";
+    protected static final String STUDENT_LAST_LOGIN = "lastLogin";
     protected static final String STUDENT_FAVORITE_QUESTIONS = "favoriteQuestions";
     protected static final String STUDENT_COMPLETED_QUESTIONS = "completedQuestions";
     protected static final String STUDENT_TRUSTED_ROLES = "trustedRoles";
