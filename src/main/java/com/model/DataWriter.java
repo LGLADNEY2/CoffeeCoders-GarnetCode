@@ -9,17 +9,17 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants{
 
-    public static boolean saveUsers() {
-        UserList userList = UserList.getInstance();
-        ArrayList<Account> users = userList.getAccounts();
-        JSONArray jsonUsers = new JSONArray();
+    public static boolean saveAccounts() {
+        AccountList accountList = AccountList.getInstance();
+        ArrayList<Account> accounts = accountList.getAccounts();
+        JSONArray jsonAccounts = new JSONArray();
 
-        for(int i=0; i<users.size(); ++i) {
-            jsonUsers.add(getUserJSON(users.get(i)));
+        for(int i=0; i<accounts.size(); ++i) {
+            jsonAccounts.add(getAccountJSON(accounts.get(i)));
         }
 
         try (FileWriter file = new FileWriter(ACCOUNT_TEMP_FILE_NAME)) {
-            file.write(jsonUsers.toJSONString());
+            file.write(jsonAccounts.toJSONString());
             file.flush();
             return true;
         } catch (IOException e) {
@@ -28,25 +28,25 @@ public class DataWriter extends DataConstants{
         }
     }
 
-    public static JSONObject getUserJSON(Editor editor) {
-        JSONObject userDetails = new JSONObject();
-        userDetails.put(ACCOUNT_ID, editor.getAccountID().toString());
-        userDetails.put(ACCOUNT_USER_NAME, editor.getUsername());
-        userDetails.put(ACCOUNT_PASSWORD, editor.getPassword());
-        userDetails.put(ACCOUNT_FIRST_NAME, editor.getFirstName());
-        userDetails.put(ACCOUNT_LAST_NAME, editor.getLastName());
-        userDetails.put(ACCOUNT_EMAIL, editor.getEmail());
-        userDetails.put(ACCOUNT_ROLE, editor.getRole().toString());
+    public static JSONObject getAccountJSON(Editor editor) {
+        JSONObject accountDetails = new JSONObject();
+        accountDetails.put(ACCOUNT_ID, editor.getAccountID().toString());
+        accountDetails.put(ACCOUNT_USER_NAME, editor.getUsername());
+        accountDetails.put(ACCOUNT_PASSWORD, editor.getPassword());
+        accountDetails.put(ACCOUNT_FIRST_NAME, editor.getFirstName());
+        accountDetails.put(ACCOUNT_LAST_NAME, editor.getLastName());
+        accountDetails.put(ACCOUNT_EMAIL, editor.getEmail());
+        accountDetails.put(ACCOUNT_ROLE, editor.getRole().toString());
         if(editor.getRole().equals(Role.STUDENT)) {
-            userDetails.put(STUDENT_COMPLETED_QUESTIONS, editor.getCompletedQuestions());
-            userDetails.put(STUDENT_DAILY_STREAK, editor.getDailyStreak());
-            userDetails.put(STUDENT_FAVORITE_QUESTIONS, editor.getFavoriteQuestions());
-            userDetails.put(STUDENT_TRUSTED_ROLES, editor.getFavoriteQuestions());
-            userDetails.put(STUDENT_LAST_LOGIN, editor.getLastLogin());
+            accountDetails.put(STUDENT_COMPLETED_QUESTIONS, editor.getCompletedQuestions());
+            accountDetails.put(STUDENT_DAILY_STREAK, editor.getDailyStreak());
+            accountDetails.put(STUDENT_FAVORITE_QUESTIONS, editor.getFavoriteQuestions());
+            accountDetails.put(STUDENT_TRUSTED_ROLES, editor.getFavoriteQuestions());
+            accountDetails.put(STUDENT_LAST_LOGIN, editor.getLastLogin());
         } else {
-            userDetails.put(EDITOR_ADMIN, editor.getAdmin());
+            accountDetails.put(EDITOR_ADMIN, editor.getAdmin());
         }
-        return userDetails;
+        return accountDetails;
     }
 
     public static boolean saveQuestions() {

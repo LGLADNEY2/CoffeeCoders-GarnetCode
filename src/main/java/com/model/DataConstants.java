@@ -1,8 +1,8 @@
 package com.model;
 
 public abstract class DataConstants {
-    protected static final String ACCOUNT_FILE_NAME = "src/main/java/com/data/users.json";
-    protected static final String ACCOUNT_TEMP_FILE_NAME = "src/main/java/com/data/users_temp.json";
+    protected static final String ACCOUNT_FILE_NAME = "src/main/java/com/data/accounts.json";
+    protected static final String ACCOUNT_TEMP_FILE_NAME = "src/main/java/com/data/accounts_temp.json";
 	protected static final String ACCOUNT_ID = "accountID";
 	protected static final String ACCOUNT_USER_NAME = "username";
 	protected static final String ACCOUNT_FIRST_NAME = "firstName";
