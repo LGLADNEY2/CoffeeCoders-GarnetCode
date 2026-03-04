@@ -10,6 +10,7 @@ public class Driver {
     public void run() {
         scenario1();
         scenario2();
+        scenario3();
     }
 
     public void scenario1() {
@@ -31,6 +32,9 @@ public class Driver {
 			return;
 		}
 		System.out.println("Bobby Smith is now logged in");
+    }
+    public void scenario3() {
+        qFacade.logout();
     }
 
     public static void main(String[] args) {

@@ -8,7 +8,7 @@ public class QuestionList{
     private ArrayList<Question> questions;
 
     private QuestionList() {
-        questionList = DataLoader.getQuestions();
+        questions = DataLoader.getQuestions();
     }
 
     public static QuestionList getInstance() {

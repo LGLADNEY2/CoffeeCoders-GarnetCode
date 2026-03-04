@@ -82,7 +82,7 @@ public class DataLoader extends DataConstants {
                     }
                     
                     // Create student - Note: This may need adjustment based on Student constructor
-                    Student student = new Student(new ArrayList<>());
+                    Student student = new Student(username, password);
                     // Set inherited Account fields using setters
                     student.setFirstName(firstName);
                     student.setLastName(lastName);
@@ -112,7 +112,8 @@ public class DataLoader extends DataConstants {
          * explicit at runtime so callers fail fast instead of silently
          * producing incorrect data.
          */
-        throw new UnsupportedOperationException("getQuestions() not implemented");
+        return new ArrayList<Question>();
+        //throw new UnsupportedOperationException("getQuestions() not implemented");
     }
 
     // Backwards-compatibility wrapper: some callers expect getAccounts().

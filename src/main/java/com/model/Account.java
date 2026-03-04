@@ -11,18 +11,18 @@ public class Account {
     private String password;
     private Role role;
 
-    public Account(String user, String password) {
+    public Account(String username, String password) {
         this.accountID = UUID.randomUUID();
-        this.username = user;
+        this.username = username;
         this.password = password;
         this.role = Role.STUDENT;
     }
-    public Account(UUID accountID, String user, String password, String firstName, String lastName, String email, Role role) {
+    public Account(UUID accountID, String username, String password, String firstName, String lastName, String email, Role role) {
         this.accountID = accountID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.username = user;
+        this.username = username;
         this.password = password;
         this.role = role;
     }

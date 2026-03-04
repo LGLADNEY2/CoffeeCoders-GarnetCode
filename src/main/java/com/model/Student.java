@@ -12,6 +12,10 @@ public class Student extends Account {
     private ArrayList<QuestionTag> trustedRoles;
     private ArrayList<Question> userQuestions;
 
+    public Student(String username, String password) {
+        super(username, password);
+    }
+
     public Student(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(accountID, username, password, firstName, lastName, email, role);
         this.dailyStreak = 1;
@@ -29,11 +33,6 @@ public class Student extends Account {
         this.completedQuestions = completedQuestions;
         this.trustedRoles = trustedRoles;
         this.userQuestions = userQuestions;
-    }
-
-    //added temporarily, allows dataloader to work
-    public <E> Student(ArrayList<E> es) {
-        super();
     }
 
     public int getDailyStreak() {return dailyStreak;}

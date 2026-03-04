@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public class QuestionFacade {
     private QuestionList questionList;
-    private UserList userList;
+    private AccountList accountList;
     private Account currentAccount;
     private Question currentQuestion;
 
     public QuestionFacade() {
         this.questionList = QuestionList.getInstance();
-        this.userList = UserList.getInstance();
+        this.accountList = AccountList.getInstance();
         this.currentAccount = null;
         this.currentQuestion = null;
     }
@@ -92,9 +92,9 @@ public class QuestionFacade {
     public void removeUser() {
     }
 
-    public boolean login(String user, String password) {
-        if (userList.getAccount(user, password) != null) {
-            currentAccount = userList.getAccount(user, password);
+    public boolean login(String username, String password) {
+        if (accountList.getAccount(username, password) != null) {
+            currentAccount = accountList.getAccount(username, password);
             return true;
         } else {
             return false;
@@ -102,11 +102,11 @@ public class QuestionFacade {
     }
 
     public boolean login() {
-
+        
         return false;
     }
 
     public boolean logout() {
-        return false;
+        return accountList.saveUsers();
     }
 }

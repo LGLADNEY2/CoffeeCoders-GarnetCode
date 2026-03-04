@@ -2,19 +2,19 @@ package com.model;
 
 import java.util.ArrayList;
 
-public class UserList {
-    private static UserList userList;
+public class AccountList {
+    private static AccountList accountList;
     private ArrayList<Account> accounts;
 
 
-    private UserList() {
+    private AccountList() {
         accounts = DataLoader.getAccounts();
     }
 
-    public static UserList getInstance() {
-        if(userList == null)
-            userList = new UserList();
-        return userList;
+    public static AccountList getInstance() {
+        if(accountList == null)
+            accountList = new AccountList();
+        return accountList;
     }
 
     public boolean getHasUser(String userName) {
@@ -51,7 +51,8 @@ public class UserList {
         return true;
     }
 
-    public void saveUsers() {
+    public boolean saveUsers() {
         DataWriter.saveAccounts(accounts);
+        return true;
     }
 }
