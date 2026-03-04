@@ -8,7 +8,7 @@ public class UserList {
 
 
     private UserList() {
-        userList = DataLoader.getAccounts();
+        accounts = DataLoader.getAccounts();
     }
 
     public static UserList getInstance() {
@@ -26,9 +26,9 @@ public class UserList {
         return false;
     }
     
-    public Account getAccount(String userName) {
+    public Account getAccount(String userName, String password) {
         for (Account account : accounts) {
-            if (account.getUsername().equals(userName)) {
+            if (account.getUsername().equalsIgnoreCase(userName) && account.getPassword().equals(password)) {
                 return account;
             }
         }
@@ -43,7 +43,7 @@ public class UserList {
         if (getHasUser(username)) {
             return false;
         }
-        accounts.add(new Account(firstName, lastName, username, password));
+        accounts.add(new Account(username, password)); //firstname and lastname aren't a part of constructor, needs to be fixed
         return true;
     }
 

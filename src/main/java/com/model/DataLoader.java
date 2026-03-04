@@ -120,11 +120,4 @@ public class DataLoader extends DataConstants {
     public static ArrayList<Account> getAccounts() {
         return getUsers();
     }
-    }
-
-    // Backwards-compatibility wrapper: some callers expect getAccounts().
-    // Delegate to getUsers() to avoid breaking existing code.
-    public static ArrayList<Account> getAccounts() {
-        return getUsers();
-    }
 }

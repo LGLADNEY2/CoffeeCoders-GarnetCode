@@ -17,15 +17,15 @@ public class QuestionTag {
     public ArrayList<Language> getLanguage() {return language;}
     public ArrayList<Course> getCourse() {return course;}
     
-    public void setCateogry(ArrayList<Category> category) {
-
+    public void setCategory(ArrayList<Category> category) {
+        this.category = category;
     }
 
     public void setLanguage(ArrayList<Language> language) {
-
+        this.language = language;
     }
 
     public void setCourse(ArrayList<Course> course) {
-        
+        this.course = course;
     }
 }

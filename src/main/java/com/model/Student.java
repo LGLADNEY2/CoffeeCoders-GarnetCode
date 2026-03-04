@@ -31,6 +31,11 @@ public class Student extends Account {
         this.userQuestions = userQuestions;
     }
 
+    //added temporarily, allows dataloader to work
+    public <E> Student(ArrayList<E> es) {
+        super();
+    }
+
     public int getDailyStreak() {return dailyStreak;}
     public String getLastLogin() {return lastLogin;}
     public ArrayList<Question> getFavoriteQuestions() {return favoriteQuestions;}

@@ -8,13 +8,13 @@ import java.util.UUID;
 public class QuestionFacade {
     private QuestionList questionList;
     private UserList userList;
-    private User currentUser;
+    private Account currentAccount;
     private Question currentQuestion;
 
     public QuestionFacade() {
         this.questionList = QuestionList.getInstance();
         this.userList = UserList.getInstance();
-        this.currentUser = null;
+        this.currentAccount = null;
         this.currentQuestion = null;
     }
 
@@ -38,11 +38,11 @@ public class QuestionFacade {
         return false;
     }
 
-    public boolean addQuestion(ArrayList<QuestionSegment> segmentOrder, ArrayList<String> segments) {
+    public boolean addQuestion(ArrayList<Segment> segmentOrder, ArrayList<String> segments) {
         return false;
     }
 
-    public boolean editQuestion(ArrayList<QuestionSegment> segmentOrder, ArrayList<String> segments) {
+    public boolean editQuestion(ArrayList<Segment> segmentOrder, ArrayList<String> segments) {
         return false;
     }
 
@@ -75,7 +75,7 @@ public class QuestionFacade {
         return false;
     }
 
-    public boolean submitSolution(Language language, String title, ArrayList<SolutionSegment> segmentOrder, ArrayList<String> segments) {
+    public boolean submitSolution(Language language, String title, ArrayList<Segment> segmentOrder, ArrayList<String> segments) {
         return false;
     }
 
@@ -93,10 +93,16 @@ public class QuestionFacade {
     }
 
     public boolean login(String user, String password) {
-        return false;
+        if (userList.getAccount(user, password) != null) {
+            currentAccount = userList.getAccount(user, password);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean login() {
+
         return false;
     }
 
