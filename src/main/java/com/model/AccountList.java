@@ -18,7 +18,7 @@ public class AccountList {
         return accountList;
     }
 
-    public boolean getHasUser(String userName) {
+    public boolean getHasAccount(String userName) {
         for (Account account : accounts) {
             if (account.getUsername().equals(userName)) {
                 return true;
@@ -40,7 +40,7 @@ public class AccountList {
         return accounts;
     }
 
-    public boolean addUser(String firstName, String lastName, String username, String password) {
+    public boolean addAccount(String firstName, String lastName, String username, String password) {
         if (getHasUser(username)) {
             return false;
         }
@@ -63,8 +63,18 @@ public class AccountList {
         return true;
     }
 
-    public boolean saveUsers() {
+    public boolean saveAccount() {
         DataWriter.saveAccounts(accounts);
         return true;
+    }
+
+    public boolean deleteAccount(String userName) {
+        for (Account account : accounts) {
+            if (account.getUsername().equals(userName)) {
+                accounts.remove(account);
+                return true;
+            }
+        }
+        return false;
     }
 }
