@@ -5,4 +5,5 @@ module com.techprep {
 
     opens com.techprep to javafx.fxml;
     exports com.techprep;
+    exports com.model;
 }
