@@ -2,6 +2,8 @@ package com.model;
 
 import java.util.UUID;
 
+// Represents a user account in the system.
+// Each account has unique ID, login credentials, and a role (student or editor).
 public class Account {
     private UUID accountID;
     private String firstName;
@@ -11,12 +13,14 @@ public class Account {
     private String password;
     private Role role;
 
+    // Creates a new account with a unique ID and default role of STUDENT.
     public Account(String username, String password) {
         this.accountID = UUID.randomUUID();
         this.username = username;
         this.password = password;
         this.role = Role.STUDENT;
     }
+    
     public Account(UUID accountID, String username, String password, String firstName, String lastName, String email, Role role) {
         this.accountID = accountID;
         this.firstName = firstName;

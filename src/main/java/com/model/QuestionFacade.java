@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public class QuestionFacade {
     private QuestionList questionList;
-    private AccountList accountList;
-    private Account currentAccount;
+    private AccountList userList;
+    private Account currentUser;
     private Question currentQuestion;
 
     public QuestionFacade() {
         this.questionList = QuestionList.getInstance();
-        this.accountList = AccountList.getInstance();
-        this.currentAccount = null;
+        this.userList = AccountList.getInstance();
+        this.currentUser = null;
         this.currentQuestion = null;
     }
 
@@ -38,11 +38,11 @@ public class QuestionFacade {
         return false;
     }
 
-    public boolean addQuestion(ArrayList<Segment> segmentOrder, ArrayList<String> segments) {
+    public boolean addQuestion(ArrayList<QuestionSegment> segmentOrder, ArrayList<String> segments) {
         return false;
     }
 
-    public boolean editQuestion(ArrayList<Segment> segmentOrder, ArrayList<String> segments) {
+    public boolean editQuestion(ArrayList<QuestionSegment> segmentOrder, ArrayList<String> segments) {
         return false;
     }
 
@@ -75,7 +75,7 @@ public class QuestionFacade {
         return false;
     }
 
-    public boolean submitSolution(Language language, String title, ArrayList<Segment> segmentOrder, ArrayList<String> segments) {
+    public boolean submitSolution(Language language, String title, ArrayList<SolutionSegment> segmentOrder, ArrayList<String> segments) {
         return false;
     }
 
@@ -92,21 +92,15 @@ public class QuestionFacade {
     public void removeUser() {
     }
 
-    public boolean login(String username, String password) {
-        if (accountList.getAccount(username, password) != null) {
-            currentAccount = accountList.getAccount(username, password);
-            return true;
-        } else {
-            return false;
-        }
+    public boolean login(String user, String password) {
+        return false;
     }
 
     public boolean login() {
-        
         return false;
     }
 
     public boolean logout() {
-        return accountList.saveUsers();
+        return false;
     }
 }
