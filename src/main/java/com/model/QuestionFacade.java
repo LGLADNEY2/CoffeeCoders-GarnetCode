@@ -5,7 +5,7 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class QuestionFacade{
+public class QuestionFacade {
     private QuestionList questionList;
     private AccountList accountList;
     private Account currentAccount;
@@ -83,24 +83,40 @@ public class QuestionFacade{
         return false;
     }
 
-    public void addAccount() {
+    public void addAccount(String firstName, String lastName, String username, String password, String email) {
+        accountList.addAccount(firstName, lastName, username, password, email);
     }
 
-    public void editAccount() {
+    public void editAccount(String firstName, String lastName, String username, String password, String email) {
+        if (currentAccount != null) {
+            currentAccount.setFirstName(firstName);
+            currentAccount.setLastName(lastName);
+            currentAccount.setUsername(username);
+            currentAccount.setPassword(password);
+            currentAccount.setEmail(email);
+        }
+        
     }
 
-    public void removeAccount() {
+    public void removeAccount(String username) {
+        accountList.deleteAccount(username);
     }
 
     public boolean login(String user, String password) {
-        return false;
-    }
+        Account account = accountList.getAccount(user, password);
+        if (account != null) {
+            currentAccount = account;
+            return true;
+        } 
 
-    public boolean login() {
         return false;
     }
 
     public boolean logout() {
-        return questionList.save() && accountList.save();
+        if (currentAccount != null) {
+            currentAccount = null;
+            return true;
+        }
+        return false;
     }
 }
