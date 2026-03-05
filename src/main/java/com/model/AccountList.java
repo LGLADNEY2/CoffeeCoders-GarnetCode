@@ -1,7 +1,9 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
 
 // Manages the collection of user accounts from JSON
 public class AccountList {
@@ -22,7 +24,7 @@ public class AccountList {
     }
 
  // Checks if an account with the given username exists in the list.   
-    public boolean getHasAccount(String userName) {
+    public boolean hasAccount(String userName) {
         if (userName == null) return false;
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(userName)) {
@@ -44,16 +46,16 @@ public class AccountList {
     }
 
     // Returns the list of all accounts.
-    public ArrayList<Account> getAccounts() {
-        return accounts;
+    public List<Account> getAccounts() {
+        return new ArrayList<>(accounts);
     }
 
     // Adds a new account to the list if the username is not already taken, returns true if successful.
-    public boolean addAccount(String firstName, String lastName, String username, String password) {
-        if (getHasAccount(username)) {
+    public boolean addAccount(String firstName, String lastName, String username, String password, String email) {
+        if (hasAccount(username)) {
             return false;
         }
-        Account newAccount = new Account(username, password, firstName, lastName, Role.STUDENT);
+        Account newAccount = new Account(makeID(), username, password, firstName, lastName, email, Role.STUDENT);
         accounts.add(newAccount);
         return true;
     }
@@ -75,18 +77,16 @@ public class AccountList {
         }
     }
 
-    public boolean resetPassword(String userName, String password) {
-        return true;
-    }
-
+    // Saves the current list of accounts to the JSON file.
     public boolean saveAccount() {
         DataWriter.saveAccounts(accounts);
         return true;
     }
 
+    // Deletes the account with the specified username from the list.
     public boolean deleteAccount(String userName) {
         for (Account account : accounts) {
-            if (account.getUsername().equals(userName)) {
+            if (account.getUsername().equalsIgnoreCase(userName)) {
                 accounts.remove(account);
                 return true;
             }
