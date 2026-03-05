@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public class QuestionFacade {
     private QuestionList questionList;
-    private AccountList userList;
-    private Account currentUser;
+    private AccountList accountList;
+    private Account currentAccount;
     private Question currentQuestion;
 
     public QuestionFacade() {
         this.questionList = QuestionList.getInstance();
-        this.userList = AccountList.getInstance();
-        this.currentUser = null;
+        this.accountList = AccountList.getInstance();
+        this.currentAccount = null;
         this.currentQuestion = null;
     }
 
@@ -34,15 +34,15 @@ public class QuestionFacade {
         return null;
     }
 
-    public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, String desc, int recTime) {
+    public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, int recTime) {
         return false;
     }
 
-    public boolean addQuestion(ArrayList<QuestionSegment> segmentOrder, ArrayList<String> segments) {
+    public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
         return false;
     }
 
-    public boolean editQuestion(ArrayList<QuestionSegment> segmentOrder, ArrayList<String> segments) {
+    public boolean editQuestion(Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
         return false;
     }
 
@@ -75,7 +75,7 @@ public class QuestionFacade {
         return false;
     }
 
-    public boolean submitSolution(Language language, String title, ArrayList<SolutionSegment> segmentOrder, ArrayList<String> segments) {
+    public boolean submitSolution(Language language, String title, ArrayList<Segment> segments) {
         return false;
     }
 
@@ -83,13 +83,13 @@ public class QuestionFacade {
         return false;
     }
 
-    public void addUser() {
+    public void addAccount() {
     }
 
-    public void editUser() {
+    public void editAccount() {
     }
 
-    public void removeUser() {
+    public void removeAccount() {
     }
 
     public boolean login(String user, String password) {
