@@ -55,9 +55,6 @@ public class Account {
     this.password = password; 
    }
 
-    public boolean login() {
-        return true;
-    }
     public boolean logout() {
         return true;
     }    

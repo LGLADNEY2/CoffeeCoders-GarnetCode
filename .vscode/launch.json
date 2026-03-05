@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Driver",
+            "request": "launch",
+            "mainClass": "com.techprep/com.model.Driver",
+            "projectName": "coffeecoders-garnetcode"
+        },
+        {
+            "type": "java",
+            "name": "Run Driver",
+            "request": "launch",
+            "mainClass": "com.model.Driver",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

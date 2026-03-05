@@ -102,8 +102,8 @@ public class QuestionFacade {
         accountList.deleteAccount(username);
     }
 
-    public boolean login(String user, String password) {
-        Account account = accountList.getAccount(user, password);
+    public boolean login(String username, String password) {
+        Account account = accountList.getAccount(username, password);
         if (account != null) {
             currentAccount = account;
             return true;

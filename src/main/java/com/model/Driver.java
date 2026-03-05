@@ -16,7 +16,7 @@ public class Driver {
     public void scenario1() {
         System.out.println();
 
-		if (!qFacade.login("asmith", "12345")) {
+		if (!qFacade.login("EJohnson", "Lightn@52ing")) {
 			System.out.println("Sorry we couldn't login.");
 			return;
 		}
@@ -27,7 +27,7 @@ public class Driver {
     public void scenario2() {
         System.out.println();
 
-		if (!qFacade.login("bsmith", "12345")) {
+		if (!qFacade.login("OSmith", "HaMMer@STing223")) {
 			System.out.println("Sorry we couldn't login.");
 			return;
 		}
