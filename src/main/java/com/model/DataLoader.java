@@ -102,18 +102,4 @@ public class DataLoader extends DataConstants {
         return accounts;
     }
 
-    public static ArrayList<Question> getQuestions() {
-        /*
-         * This method is intentionally left unimplemented because question
-         * loading is environment-specific (file, DB, or network) and the
-         * expected JSON/schema may vary. Implementing it here without the
-         * proper schema risks incorrect parsing. Throwing
-         * UnsupportedOperationException makes the unimplemented status
-         * explicit at runtime so callers fail fast instead of silently
-         * producing incorrect data.
-         */
-        return new ArrayList<Question>();
-        //throw new UnsupportedOperationException("getQuestions() not implemented");
-    }
-
 }
