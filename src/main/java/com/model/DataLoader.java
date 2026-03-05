@@ -9,50 +9,50 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
-    public static ArrayList<Account> getUsers() {
-        ArrayList<Account> users = new ArrayList<>();
+    public static ArrayList<Account> getAccounts() {
+        ArrayList<Account> accounts = new ArrayList<>();
         
         try {
             FileReader reader = new FileReader(ACCOUNT_FILE_NAME);
             JSONParser parser = new JSONParser();
-            JSONArray usersJSON = (JSONArray) parser.parse(reader);
+            JSONArray accountsJSON = (JSONArray) parser.parse(reader);
             
-            for (int i = 0; i < usersJSON.size(); i++) {
-                JSONObject userJSON = (JSONObject) usersJSON.get(i);
-                UUID accountID = UUID.fromString((String) userJSON.get(ACCOUNT_ID));
-                String firstName = (String) userJSON.get(ACCOUNT_FIRST_NAME);
-                String lastName = (String) userJSON.get(ACCOUNT_LAST_NAME);
-                String email = (String) userJSON.get(ACCOUNT_EMAIL);
-                String username = (String) userJSON.get(ACCOUNT_USER_NAME);
-                String password = (String) userJSON.get(ACCOUNT_PASSWORD);
-                String roleStr = (String) userJSON.get(ACCOUNT_ROLE);
+            for (int i = 0; i < accountsJSON.size(); i++) {
+                JSONObject accountsJSON = (JSONObject) accountsJSON.get(i);
+                UUID accountID = UUID.fromString((String) accountsJSON.get(ACCOUNT_ID));
+                String firstName = (String) accountsJSON.get(ACCOUNT_FIRST_NAME);
+                String lastName = (String) accountsJSON.get(ACCOUNT_LAST_NAME);
+                String email = (String) accountsJSON.get(ACCOUNT_EMAIL);
+                String username = (String) accountsJSON.get(ACCOUNT_USER_NAME);
+                String password = (String) accountsJSON.get(ACCOUNT_PASSWORD);
+                String roleStr = (String) accountsJSON.get(ACCOUNT_ROLE);
                 
                 if (roleStr.equalsIgnoreCase("Student")) {
-                    int dailyStreak = ((Long) userJSON.get(STUDENT_DAILY_STREAK)).intValue();
+                    int dailyStreak = ((Long) accountsJSON.get(STUDENT_DAILY_STREAK)).intValue();
                     
                     // Parse favorite questions UUIDs
-                    JSONArray favQuestionsJSON = (JSONArray) userJSON.get(STUDENT_FAVORITE_QUESTIONS);
+                    JSONArray favQuestionsJSON = (JSONArray) accountsJSON.get(STUDENT_FAVORITE_QUESTIONS);
                     ArrayList<UUID> favoriteQuestionIDs = new ArrayList<>();
                     for (Object qIDObj : favQuestionsJSON) {
                         favoriteQuestionIDs.add(UUID.fromString((String) qIDObj));
                     }
                     
                     // Parse completed questions UUIDs
-                    JSONArray compQuestionsJSON = (JSONArray) userJSON.get(STUDENT_COMPLETED_QUESTIONS);
+                    JSONArray compQuestionsJSON = (JSONArray) accountsJSON.get(STUDENT_COMPLETED_QUESTIONS);
                     ArrayList<UUID> completedQuestionIDs = new ArrayList<>();
                     for (Object qIDObj : compQuestionsJSON) {
                         completedQuestionIDs.add(UUID.fromString((String) qIDObj));
                     }
                     
                     // Parse user questions UUIDs
-                    JSONArray userQuestionsJSON = (JSONArray) userJSON.get(STUDENT_USER_QUESTIONS);
+                    JSONArray userQuestionsJSON = (JSONArray) accountsJSON.get(STUDENT_USER_QUESTIONS);
                     ArrayList<UUID> userQuestionIDs = new ArrayList<>();
                     for (Object qIDObj : userQuestionsJSON) {
                         userQuestionIDs.add(UUID.fromString((String) qIDObj));
                     }
                     
                     // Parse trusted roles
-                    JSONArray trustedRolesJSON = (JSONArray) userJSON.get(STUDENT_TRUSTED_ROLES);
+                    JSONArray trustedRolesJSON = (JSONArray) accountsJSON.get(STUDENT_TRUSTED_ROLES);
                     ArrayList<QuestionTag> trustedRoles = new ArrayList<>();
                     for (Object roleObj : trustedRolesJSON) {
                         JSONObject roleJSON = (JSONObject) roleObj;
@@ -90,7 +90,7 @@ public class DataLoader extends DataConstants {
                     student.setUsername(username);
                     student.setPassword(password);
                     
-                    users.add(student);
+                    accounts.add(student);
                 }
             }
             
@@ -99,7 +99,7 @@ public class DataLoader extends DataConstants {
             e.printStackTrace();
         }
         
-        return users;
+        return accounts;
     }
 
     public static ArrayList<Question> getQuestions() {
@@ -117,8 +117,8 @@ public class DataLoader extends DataConstants {
     }
 
     // Backwards-compatibility wrapper: some callers expect getAccounts().
-    // Delegate to getUsers() to avoid breaking existing code.
+    // Delegate to getAccounts() to avoid breaking existing code.
     public static ArrayList<Account> getAccounts() {
-        return getUsers();
+        return getAccounts();
     }
 }
