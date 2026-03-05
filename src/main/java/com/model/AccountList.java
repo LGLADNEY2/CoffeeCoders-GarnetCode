@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class AccountList {
     private static AccountList accountList;
@@ -45,6 +46,17 @@ public class AccountList {
         }
         accounts.add(new Account(username, password)); //firstname and lastname aren't a part of constructor, needs to be fixed
         return true;
+    }
+
+    // generates a unique id for a new user
+    public UUID makeID() {
+        UUID id = UUID.randomUUID();
+        for (Account account : accounts) {
+            if (account.getAccountID().equals(id)) {
+                return makeID();
+            }
+        }
+        return id;
     }
 
     public boolean resetPassword(String userName, String password) {

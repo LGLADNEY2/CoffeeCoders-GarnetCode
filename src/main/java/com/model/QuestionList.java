@@ -111,6 +111,15 @@ public class QuestionList {
         return null;
     }
 
+    // generates a unique id for a new question
+    public UUID makeID() {
+        UUID id = UUID.randomUUID();
+        while (getQuestion(id) != null) {
+            id = UUID.randomUUID();
+        }
+        return id;
+    }
+
     // saves all questions to file
     public boolean save() {
         return DataWriter.saveQuestions();
