@@ -77,9 +77,8 @@ public class AccountList {
     }
 
     // Saves the current list of accounts to the JSON file.
-    public boolean saveAccount() {
-        DataWriter.saveAccounts(accounts);
-        return true;
+    public boolean save() {
+        return DataWriter.saveAccounts();
     }
 
     // Deletes the account with the specified username from the list.

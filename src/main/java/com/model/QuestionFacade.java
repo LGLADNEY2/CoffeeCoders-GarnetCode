@@ -5,7 +5,7 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class QuestionFacade {
+public class QuestionFacade{
     private QuestionList questionList;
     private AccountList accountList;
     private Account currentAccount;
@@ -101,6 +101,6 @@ public class QuestionFacade {
     }
 
     public boolean logout() {
-        return false;
+        return questionList.save() && accountList.save();
     }
 }
