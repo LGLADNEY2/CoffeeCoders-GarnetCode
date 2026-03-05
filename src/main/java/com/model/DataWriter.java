@@ -38,13 +38,45 @@ public class DataWriter extends DataConstants{
         accountDetails.put(ACCOUNT_EMAIL, account.getEmail());
         accountDetails.put(ACCOUNT_ROLE, account.getRole().toString());
         if(account.getRole().equals(Role.STUDENT)) {
-            accountDetails.put(STUDENT_COMPLETED_QUESTIONS, ((Student)account).getCompletedQuestions());
+            JSONObject completedQuestions = new JSONObject();
+            for(int i = 0; i < ((Student)account).getCompletedQuestions().size(); ++i) {
+                completedQuestions.put(QUESTION_ID, ((Student)account).getCompletedQuestions().get(i).getQuestionID().toString());
+            }
+            accountDetails.put(STUDENT_COMPLETED_QUESTIONS, completedQuestions);
             accountDetails.put(STUDENT_DAILY_STREAK, ((Student)account).getDailyStreak());
-            accountDetails.put(STUDENT_FAVORITE_QUESTIONS, ((Student)account).getFavoriteQuestions());
-            accountDetails.put(STUDENT_TRUSTED_ROLES, ((Student)account).getFavoriteQuestions());
+            JSONObject favoriteQuestions = new JSONObject();
+            for(int i = 0; i < ((Student)account).getFavoriteQuestions().size(); ++i) {
+                favoriteQuestions.put(QUESTION_ID, ((Student)account).getFavoriteQuestions().get(i).getQuestionID().toString());
+            }
+            accountDetails.put(STUDENT_FAVORITE_QUESTIONS, favoriteQuestions);
+            JSONObject trustedRoles = new JSONObject();
+            for(int i = 0; i < ((Student)account).getFavoriteQuestions().size(); ++i) {
+                JSONObject category = new JSONObject();
+                JSONObject language = new JSONObject();
+                JSONObject course = new JSONObject();
+                category.put(QUESTION_TAG_CATEGORY, ((Student)account).getTrustedRoles().get(i).getCategory().get(1));
+                language.put(QUESTION_TAG_LANGUAGE, ((Student)account).getTrustedRoles().get(i).getLanguage().get(1));
+                course.put(QUESTION_TAG_COURSE, ((Student)account).getTrustedRoles().get(i).getCourse().get(1));
+                trustedRoles.put(QUESTION_TAG_CATEGORY, category);
+                trustedRoles.put(QUESTION_TAG_LANGUAGE, language);
+                trustedRoles.put(QUESTION_TAG_COURSE, course);
+            }
+            accountDetails.put(STUDENT_TRUSTED_ROLES, trustedRoles);
             accountDetails.put(STUDENT_LAST_LOGIN, ((Student)account).getLastLogin());
         } else if(account.getRole().equals(Role.EDITOR)) {
             accountDetails.put(EDITOR_ADMIN, ((Editor)account).getAdmin());
+            JSONObject completedQuestions = new JSONObject();
+            for(int i = 0; i < ((Student)account).getCompletedQuestions().size(); ++i) {
+                completedQuestions.put(QUESTION_ID, ((Student)account).getCompletedQuestions().get(i).getQuestionID().toString());
+            }
+            accountDetails.put(STUDENT_COMPLETED_QUESTIONS, completedQuestions);
+            accountDetails.put(STUDENT_DAILY_STREAK, ((Student)account).getDailyStreak());
+            JSONObject favoriteQuestions = new JSONObject();
+            for(int i = 0; i < ((Student)account).getFavoriteQuestions().size(); ++i) {
+                favoriteQuestions.put(QUESTION_ID, ((Student)account).getFavoriteQuestions().get(i).getQuestionID().toString());
+            }
+            accountDetails.put(STUDENT_FAVORITE_QUESTIONS, favoriteQuestions);
+            accountDetails.put(STUDENT_LAST_LOGIN, ((Student)account).getLastLogin());
         }
         return accountDetails;
     }
@@ -77,10 +109,39 @@ public class DataWriter extends DataConstants{
         questionDetails.put(QUESTION_DATE_POSTED, question.getDatePosted());
         questionDetails.put(QUESTION_RECOMENDED_TIME, question.getRecommendedTime());
         questionDetails.put(QUESTION_DIFFICULTY, question.getDifficulty().toString());
-        questionDetails.put(QUESTION_SEGMENTS, question.getSegments());
-        questionDetails.put(QUESTION_QUESTION_TAG, question.getQuestionTag());
-        questionDetails.put(QUESTION_HINTS, question.getHints());
-        questionDetails.put(QUESTION_COMMENTS, question.getComments());
+        JSONObject segments = new JSONObject();
+        for(int i = 0; i < question.getSegments().size(); ++i) {
+            segments.put(SEGMENT_TITLE, question.getSegments().get(i).getTitle());
+            segments.put(SEGMENT_DESC, question.getSegments().get(i).getDesc());
+            segments.put(SEGMENT_DATA_TYPE, question.getSegments().get(i).getDataType());
+            segments.put(SEGMENT_DATA, question.getSegments().get(i).getData());
+        }
+        questionDetails.put(QUESTION_SEGMENTS, segments);
+        JSONObject hints = new JSONObject();
+        questionDetails.put(QUESTION_HINTS, hints);
+        for(int i = 0; i < question.getHints().size(); ++i) {
+            segments.put(SEGMENT_TITLE, question.getHints().get(i).getTitle());
+            segments.put(SEGMENT_DESC, question.getHints().get(i).getDesc());
+            segments.put(SEGMENT_DATA_TYPE, question.getHints().get(i).getDataType());
+            segments.put(SEGMENT_DATA, question.getHints().get(i).getData());
+        }
+        questionDetails.put(QUESTION_HINTS, hints);
+        JSONObject comments = new JSONObject();
+        for(int i = 0; i < question.getComments().size(); ++i) {
+            JSONObject replies = new JSONObject();
+            for(int j = 0; j < question.getComments().get(i).getReplies().size(); ++i) {
+                replies.put(COMMENT_ACCOUNT_ID, question.getComments().get(i).getReplies().get(j).getAccountID());
+                replies.put(COMMENT_DATE_POSTED, question.getComments().get(i).getReplies().get(j).getDatePosted());
+                replies.put(COMMENT_LIKES, question.getComments().get(i).getReplies().get(j).getLikes());
+                replies.put(COMMENT_TEXT, question.getComments().get(i).getReplies().get(j).getText());
+            }
+            comments.put(COMMENT_REPLIES, replies);
+            comments.put(COMMENT_ACCOUNT_ID, question.getComments().get(i).getAccountID());
+            comments.put(COMMENT_DATE_POSTED, question.getComments().get(i).getDatePosted());
+            comments.put(COMMENT_LIKES, question.getComments().get(i).getLikes());
+            comments.put(COMMENT_TEXT, question.getComments().get(i).getText());
+        }
+        questionDetails.put(QUESTION_COMMENTS, comments);
 
         return questionDetails;
     }

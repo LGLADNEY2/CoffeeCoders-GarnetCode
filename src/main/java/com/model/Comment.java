@@ -21,7 +21,7 @@ public class Comment {
 
     public String getText() {return text;}
     public UUID getAccountID() {return accountID;}
-    public String datePosted() {return datePosted;}
+    public String getDatePosted() {return datePosted;}
     public ArrayList<Comment> getReplies() {return replies;}
     public int getLikes() {return likes;}
 
