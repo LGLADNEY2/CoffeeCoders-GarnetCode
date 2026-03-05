@@ -106,7 +106,10 @@ public class Question {
         return true;
     }
     public int calculateRating(int rating) {
-        return -1;
+        if (this.rating == -1) {
+            return rating;
+        }
+        return (this.rating + rating) / 2;
     }
     public boolean addCommnet(String text, UUID authorID) {
         return true;
