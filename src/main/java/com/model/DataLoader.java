@@ -18,41 +18,41 @@ public class DataLoader extends DataConstants {
             JSONArray accountsJSON = (JSONArray) parser.parse(reader);
             
             for (int i = 0; i < accountsJSON.size(); i++) {
-                JSONObject accountsJSON = (JSONObject) accountsJSON.get(i);
-                UUID accountID = UUID.fromString((String) accountsJSON.get(ACCOUNT_ID));
-                String firstName = (String) accountsJSON.get(ACCOUNT_FIRST_NAME);
-                String lastName = (String) accountsJSON.get(ACCOUNT_LAST_NAME);
-                String email = (String) accountsJSON.get(ACCOUNT_EMAIL);
-                String username = (String) accountsJSON.get(ACCOUNT_USER_NAME);
-                String password = (String) accountsJSON.get(ACCOUNT_PASSWORD);
-                String roleStr = (String) accountsJSON.get(ACCOUNT_ROLE);
+                JSONObject accountJSON = (JSONObject) accountsJSON.get(i);
+                UUID accountID = UUID.fromString((String) accountJSON.get(ACCOUNT_ID));
+                String firstName = (String) accountJSON.get(ACCOUNT_FIRST_NAME);
+                String lastName = (String) accountJSON.get(ACCOUNT_LAST_NAME);
+                String email = (String) accountJSON.get(ACCOUNT_EMAIL);
+                String username = (String) accountJSON.get(ACCOUNT_USER_NAME);
+                String password = (String) accountJSON.get(ACCOUNT_PASSWORD);
+                String roleStr = (String) accountJSON.get(ACCOUNT_ROLE);
                 
                 if (roleStr.equalsIgnoreCase("Student")) {
-                    int dailyStreak = ((Long) accountsJSON.get(STUDENT_DAILY_STREAK)).intValue();
+                    int dailyStreak = ((Long) accountJSON.get(STUDENT_DAILY_STREAK)).intValue();
                     
                     // Parse favorite questions UUIDs
-                    JSONArray favQuestionsJSON = (JSONArray) accountsJSON.get(STUDENT_FAVORITE_QUESTIONS);
+                    JSONArray favQuestionsJSON = (JSONArray) accountJSON.get(STUDENT_FAVORITE_QUESTIONS);
                     ArrayList<UUID> favoriteQuestionIDs = new ArrayList<>();
                     for (Object qIDObj : favQuestionsJSON) {
                         favoriteQuestionIDs.add(UUID.fromString((String) qIDObj));
                     }
                     
                     // Parse completed questions UUIDs
-                    JSONArray compQuestionsJSON = (JSONArray) accountsJSON.get(STUDENT_COMPLETED_QUESTIONS);
+                    JSONArray compQuestionsJSON = (JSONArray) accountJSON.get(STUDENT_COMPLETED_QUESTIONS);
                     ArrayList<UUID> completedQuestionIDs = new ArrayList<>();
                     for (Object qIDObj : compQuestionsJSON) {
                         completedQuestionIDs.add(UUID.fromString((String) qIDObj));
                     }
                     
                     // Parse user questions UUIDs
-                    JSONArray userQuestionsJSON = (JSONArray) accountsJSON.get(STUDENT_USER_QUESTIONS);
+                    JSONArray userQuestionsJSON = (JSONArray) accountJSON.get(STUDENT_USER_QUESTIONS);
                     ArrayList<UUID> userQuestionIDs = new ArrayList<>();
                     for (Object qIDObj : userQuestionsJSON) {
                         userQuestionIDs.add(UUID.fromString((String) qIDObj));
                     }
                     
                     // Parse trusted roles
-                    JSONArray trustedRolesJSON = (JSONArray) accountsJSON.get(STUDENT_TRUSTED_ROLES);
+                    JSONArray trustedRolesJSON = (JSONArray) accountJSON.get(STUDENT_TRUSTED_ROLES);
                     ArrayList<QuestionTag> trustedRoles = new ArrayList<>();
                     for (Object roleObj : trustedRolesJSON) {
                         JSONObject roleJSON = (JSONObject) roleObj;
@@ -116,9 +116,4 @@ public class DataLoader extends DataConstants {
         //throw new UnsupportedOperationException("getQuestions() not implemented");
     }
 
-    // Backwards-compatibility wrapper: some callers expect getAccounts().
-    // Delegate to getAccounts() to avoid breaking existing code.
-    public static ArrayList<Account> getAccounts() {
-        return getAccounts();
-    }
 }
