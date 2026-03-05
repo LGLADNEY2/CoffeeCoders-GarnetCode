@@ -87,8 +87,6 @@ public class DataLoader extends DataConstants {
                     student.setFirstName(firstName);
                     student.setLastName(lastName);
                     student.setEmail(email);
-                    student.setUsername(username);
-                    student.setPassword(password);
                     
                     accounts.add(student);
                 }
