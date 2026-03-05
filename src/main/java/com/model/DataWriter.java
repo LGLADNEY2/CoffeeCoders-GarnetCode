@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants{
 
-    public static boolean saveAccounts(ArrayList<Account> accounts2) {
+    public static boolean saveAccounts() {
         AccountList accountList = AccountList.getInstance();
         ArrayList<Account> accounts = accountList.getAccounts();
         JSONArray jsonAccounts = new JSONArray();

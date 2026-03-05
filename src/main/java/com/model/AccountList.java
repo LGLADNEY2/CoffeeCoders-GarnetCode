@@ -1,7 +1,6 @@
 package com.model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -46,8 +45,8 @@ public class AccountList {
     }
 
     // Returns the list of all accounts.
-    public List<Account> getAccounts() {
-        return new ArrayList<>(accounts);
+    public ArrayList<Account> getAccounts() {
+        return new ArrayList<>();
     }
 
     // Adds a new account to the list if the username is not already taken, returns true if successful.
