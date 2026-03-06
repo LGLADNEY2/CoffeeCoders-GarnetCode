@@ -1,7 +1,6 @@
 package com.model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -46,7 +45,7 @@ public class AccountList {
     }
 
     // Returns the list of all accounts.
-    public List<Account> getAccounts() {
+    public ArrayList<Account> getAccounts() {
         return new ArrayList<>(accounts);
     }
 
@@ -79,8 +78,7 @@ public class AccountList {
 
     // Saves the current list of accounts to the JSON file.
     public boolean saveAccount() {
-        DataWriter.saveAccounts(accounts);
-        return true;
+        return DataWriter.saveAccounts();
     }
 
     // Deletes the account with the specified username from the list.
