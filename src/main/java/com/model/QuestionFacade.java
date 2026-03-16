@@ -120,4 +120,8 @@ public class QuestionFacade {
         }
         return false;
     }
+
+    public boolean save() {
+        return DataWriter.saveAccounts() && DataWriter.saveQuestions();
+    }
 }

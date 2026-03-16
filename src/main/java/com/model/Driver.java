@@ -34,6 +34,9 @@ public class Driver {
 		System.out.println("Bobby Smith is now logged in");
     }
     public void scenario3() {
+        if(!qFacade.save()) {
+            System.out.println("Sorry, we couldn't save.");
+        }
         qFacade.logout();
     }
 
