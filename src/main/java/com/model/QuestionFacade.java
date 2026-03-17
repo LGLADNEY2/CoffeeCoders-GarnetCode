@@ -114,7 +114,6 @@ public class QuestionFacade {
     
     public boolean logout() {
         if (currentAccount != null) {
-
             currentAccount = null;
             return true;
         }

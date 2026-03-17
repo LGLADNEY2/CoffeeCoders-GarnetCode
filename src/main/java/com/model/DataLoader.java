@@ -8,6 +8,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import static com.model.DataType.HINT;
+
 public class DataLoader extends DataConstants {
     public static ArrayList<Account> getAccounts() {
         ArrayList<Account> accounts = new ArrayList<>();
@@ -146,7 +148,7 @@ public class DataLoader extends DataConstants {
                     segments.add(new Segment(
                         (String) segJSON.get(SEGMENT_TITLE),
                         (String) segJSON.get(SEGMENT_DESC),
-                        (String) segJSON.get(SEGMENT_DATA_TYPE),
+                        (DataType) segJSON.get(SEGMENT_DATA_TYPE),
                         (String) segJSON.get(SEGMENT_DATA)
                     ));
                 }
@@ -171,7 +173,7 @@ public class DataLoader extends DataConstants {
                 JSONArray hintsJSON = (JSONArray) questionJSON.get(QUESTION_HINTS);
                 ArrayList<Segment> hints = new ArrayList<>();
                 for (Object hintObj : hintsJSON) {
-                    hints.add(new Segment("Hint", (String) hintObj, "None", ""));
+                    hints.add(new Segment("Hint", (String) hintObj, HINT, ""));
                 }
 
                 // Parse solutions
@@ -192,7 +194,7 @@ public class DataLoader extends DataConstants {
                             solSegments.add(new Segment(
                                 (String) ssJSON.get(SEGMENT_TITLE),
                                 (String) ssJSON.get(SEGMENT_DESC),
-                                (String) ssJSON.get(SEGMENT_DATA_TYPE),
+                                (DataType) ssJSON.get(SEGMENT_DATA_TYPE),
                                 (String) ssJSON.get(SEGMENT_DATA)
                             ));
                         }
