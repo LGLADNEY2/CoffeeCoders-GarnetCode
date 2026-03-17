@@ -57,34 +57,50 @@ public class Student extends Account {
 
     public void addFavoriteQuestion(UUID questionID) {
         if (questionID == null) return;
-        // Check if already favorited
         for (Question q : favoriteQuestions) {
             if (q.getQuestionID().equals(questionID)) return;
         }
-        // Look up the question from the master list
         Question question = QuestionList.getInstance().getQuestion(questionID);
         if (question == null) return;
         favoriteQuestions.add(question);
     }
 
-    public boolean addCompletedQuestion(UUID Question) {
-        return true;
+    public void addCompletedQuestion(UUID questionID) {
+        if (questionID == null) return;
+        for (Question q : completedQuestions) {
+            if (q.getQuestionID().equals(questionID)) return;
+        }
+        Question question = QuestionList.getInstance().getQuestion(questionID);
+        if (question == null) return;
+        completedQuestions.add(question);
     }
 
-    public boolean addTrustedRole(QuestionTag questionTag) {
-        return true;
+    public void addTrustedRole(QuestionTag questionTag) {
+        return;
     }
 
     public boolean addUserQuestion(Question question, ArrayList<QuestionTag> trustedRoles) {
         return true;
     }
 
-    public boolean removeFavoriteQuestion(UUID Question) {
-        return true;
+    public void removeFavoriteQuestion(UUID questionID) {
+        if (questionID == null) return;
+        for (int i = 0; i < favoriteQuestions.size(); i++) {
+            if (favoriteQuestions.get(i).getQuestionID().equals(questionID)) {
+                favoriteQuestions.remove(i);
+                return;
+            }
+        }
     }
 
-    public boolean removeCompletedQuestion(UUID Question) {
-        return true;
+    public void removeCompletedQuestion(UUID questionID) {
+        if (questionID == null) return;
+        for (int i = 0; i < completedQuestions.size(); i++) {
+            if (completedQuestions.get(i).getQuestionID().equals(questionID)) {
+                completedQuestions.remove(i);
+                return;
+            }
+        }
     }
 
 
