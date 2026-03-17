@@ -127,22 +127,21 @@ public class DataWriter extends DataConstants{
         }
         questionDetails.put(QUESTION_HINTS, hints);
         JSONObject comments = new JSONObject();
-        for(int i = 0; i < question.getComments().size(); ++i) {
-            JSONObject replies = new JSONObject();
-            for(int j = 0; j < question.getComments().get(i).getReplies().size(); ++i) {
-                replies.put(COMMENT_ACCOUNT_ID, question.getComments().get(i).getReplies().get(j).getAccountID());
-                replies.put(COMMENT_DATE_POSTED, question.getComments().get(i).getReplies().get(j).getDatePosted());
-                replies.put(COMMENT_LIKES, question.getComments().get(i).getReplies().get(j).getLikes());
-                replies.put(COMMENT_TEXT, question.getComments().get(i).getReplies().get(j).getText());
-            }
-            comments.put(COMMENT_REPLIES, replies);
-            comments.put(COMMENT_ACCOUNT_ID, question.getComments().get(i).getAccountID());
-            comments.put(COMMENT_DATE_POSTED, question.getComments().get(i).getDatePosted());
-            comments.put(COMMENT_LIKES, question.getComments().get(i).getLikes());
-            comments.put(COMMENT_TEXT, question.getComments().get(i).getText());
-        }
-        questionDetails.put(QUESTION_COMMENTS, comments);
-
+        ArrayList<Comment> start = question.getComments();
+        questionDetails.put(QUESTION_COMMENTS, commentR(start, comments));
         return questionDetails;
+    }
+    public static JSONObject commentR(ArrayList<Comment> comments, JSONObject object) {
+        if(comments.get(0) == null)
+            return null;
+        for(int i=0; i < comments.size(); ++i) {
+            object.put(COMMENT_ACCOUNT_ID, comments.get(i).getAccountID());
+            object.put(COMMENT_DATE_POSTED, comments.get(i).getDatePosted());
+            object.put(COMMENT_LIKES, comments.get(i).getLikes());
+            object.put(COMMENT_TEXT, comments.get(i).getText());
+            JSONObject objectR = new JSONObject();
+            object.put(COMMENT_REPLIES, commentR(comments.get(i).getReplies(), objectR));
+        }
+        return object;
     }
 }

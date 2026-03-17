@@ -63,31 +63,31 @@
                     {
                         "title":"Intuition",
                         "desc":"First I remebered that any even integer is divisible by two, but odd integers are one greater than an even integer.",
-                        "dataType":"",
+                        "dataType":"STRING",
                         "data":""
                     },
                     {
                         "title":"Implementation",
                         "desc":"For this problem I used the modulos operator, Math.abs, and an if statement.",
-                        "dataType":"None",
+                        "dataType":"STRING",
                         "data":""
                     },
                     {
                         "title":"Implementation",
                         "desc":"",
-                        "dataType":"Code",
+                        "dataType":"CODE",
                         "data":"class EvenOrOdd { \n   public String isEvenOrOdd(int x) { \n       if(Math.abs(x%2) == 0) \n           return \"Even\"; \n       return \"Odd\"; \n    } \n}"
                     },
                     {
                         "title":"Analysis",
                         "desc":"If the integer 10 is inputted, 10 modulos 2 will return 0, the Math.abs does nothing, but 0 is equal to 0 so the method will return even. If the integer is -9, -9 modulos 2 will return -1, the Math.abs makes this integer a positive 1, since 1 is not equal to 0, the if statement is ignored and the method returns Odd.",
-                        "dataType":"None",
+                        "dataType":"STRING",
                         "data":""
                     },
                     {
                         "title":"Complexity",
                         "desc":"This approach has a time complexity of O(1) since the method takes the same amount of operations for any integer.",
-                        "dataType":"None",
+                        "dataType":"STRING",
                         "data":""
                     }
                 ],
