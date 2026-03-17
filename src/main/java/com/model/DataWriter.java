@@ -107,7 +107,7 @@ public class DataWriter extends DataConstants{
         questionDetails.put(QUESTION_TITLE, question.getTitle());
         questionDetails.put(QUESTION_RATING, question.getRating());
         questionDetails.put(QUESTION_DATE_POSTED, question.getDatePosted());
-        questionDetails.put(QUESTION_RECOMENDED_TIME, question.getRecommendedTime());
+        questionDetails.put(QUESTION_RECOMMENDED_TIME, question.getRecommendedTime());
         questionDetails.put(QUESTION_DIFFICULTY, question.getDifficulty().toString());
         JSONObject segments = new JSONObject();
         for(int i = 0; i < question.getSegments().size(); ++i) {

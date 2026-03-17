@@ -135,7 +135,7 @@ public class DataLoader extends DataConstants {
                 UUID authorID = UUID.fromString((String) questionJSON.get(AUTHOR_ID));
                 String title = (String) questionJSON.get(QUESTION_TITLE);
                 String datePosted = (String) questionJSON.get(QUESTION_DATE_POSTED);
-                int recommendedTime = ((Long) questionJSON.get(QUESTION_RECOMENDED_TIME)).intValue();
+                int recommendedTime = ((Long) questionJSON.get(QUESTION_RECOMMENDED_TIME)).intValue();
                 Difficulty difficulty = Difficulty.valueOf((String) questionJSON.get(QUESTION_DIFFICULTY));
 
                 // Parse segments
