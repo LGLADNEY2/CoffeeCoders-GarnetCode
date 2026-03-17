@@ -42,29 +42,49 @@ public class Solution {
 
     }
     public void setTitle(String title) {
-
+        this.title = title;
     }
     public void setLanguage(Language language) {
 
     }
     public void setSegments(ArrayList<Segment> segments) {
-
+        this.segments = segments;
     }
     public void setApproved(boolean approved) {
 
     }
 
     public boolean submit() {
+        if (title == null || title.isEmpty() || language == null || segments == null || segments.isEmpty()) {
+            return false;
+        }
+        this.approved = false;
         return true;
     }
 
     public void like() {
-
+        this.likes++;
     }
     public boolean addCommnet(String text, UUID authorID) {
         return true;
     }
     public boolean removeComment(UUID accountID, String datePosted) {
+        return true;
+    }
+
+    public boolean editTitle(String title) {
+        if (title == null || title.isEmpty()) {
+            return false;
+        }
+        this.title = title;
+        return true;
+    }
+
+    public boolean editSolution(ArrayList<Segment> segments) {
+        if (segments == null || segments.isEmpty()) {
+            return false;
+        }
+        this.segments = segments;
         return true;
     }
 

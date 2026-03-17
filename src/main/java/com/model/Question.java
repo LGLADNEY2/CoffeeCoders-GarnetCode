@@ -78,19 +78,19 @@ public class Question {
 
     }
     public void setTitle(String title) {
-
+        this.title = title;
     }
     public void setRating(int rating) {
 
     }
     public void setRecommendedTime(int recommendedTime) {
-
+        this.recommendedTime = recommendedTime;
     }
     public void setDifficulty(Difficulty difficulty) {
 
     }
     public void setSegments(ArrayList<Segment> segments) {
-
+        this.segments = segments;
     }
     public void setQuestionTag(QuestionTag questionTag) {
 
@@ -118,9 +118,29 @@ public class Question {
         return true;
     }
     public boolean addHint(Segment segment) {
+        if (segment == null) {
+            return false;
+        }
+        hints.add(segment);
         return true;
     }
     public boolean addSolution(UUID authorID, String title, Language language, ArrayList<Segment> segments, boolean approved) {
+        return true;
+    }
+
+    public boolean editTitle(String title) {
+        if (title == null || title.isEmpty()) {
+            return false;
+        }
+        this.title = title;
+        return true;
+    }
+
+    public boolean editQuestion(ArrayList<Segment> segments) {
+        if (segments == null || segments.isEmpty()) {
+            return false;
+        }
+        this.segments = segments;
         return true;
     }
 
