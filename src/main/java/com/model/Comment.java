@@ -36,13 +36,18 @@ public class Comment {
     }
 
     public boolean addReply(UUID accountID, String text, String datePosted) {
+        if (accountID == null || text == null || text.isEmpty()) {
+            return false;
+        }
+        Comment reply = new Comment(text, accountID, datePosted);
+        replies.add(reply);
         return true;
     }
     public boolean removeReply(UUID accountID, String datePosted) {
         return true;
     }
     public void like() {
-        
+        this.likes++;
     }
 
     
