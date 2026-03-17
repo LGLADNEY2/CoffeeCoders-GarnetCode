@@ -50,11 +50,11 @@ public class AccountList {
     }
 
     // Adds a new account to the list if the username is not already taken, returns true if successful.
-    public boolean addAccount(String firstName, String lastName, String username, String password, String email) {
+    public boolean addAccount(String firstName, String lastName, String email, String username, String password) {
         if (hasAccount(username)) {
             return false;
         }
-        Account newAccount = new Account(makeID(), username, password, firstName, lastName, email, Role.STUDENT);
+        Account newAccount = new Account(makeID(), firstName, lastName, email, username, password, Role.STUDENT);
         accounts.add(newAccount);
         return true;
     }
@@ -83,10 +83,9 @@ public class AccountList {
 
     // Deletes the account with the specified username from the list.
     public boolean deleteAccount(String userName) {
-        for (Account account : accounts) {
-            if (account.getUsername().equalsIgnoreCase(userName)) {
-                accounts.remove(account);
-                return true;
+        for (int i = 0; i < accounts.size(); i++) {
+        if (accounts.get(i).getUsername().equalsIgnoreCase(userName)) {
+            accounts.remove(i);
             }
         }
         return false;

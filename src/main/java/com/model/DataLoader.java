@@ -136,6 +136,8 @@ public class DataLoader extends DataConstants {
                 UUID questionID = UUID.fromString(questionIDStr);
                 UUID authorID = UUID.fromString((String) questionJSON.get(AUTHOR_ID));
                 String title = (String) questionJSON.get(QUESTION_TITLE);
+                int rating = ((Long) questionJSON.get(QUESTION_RATING)).intValue();
+                ArrayList<Comment> comments = new ArrayList<>();
                 String datePosted = (String) questionJSON.get(QUESTION_DATE_POSTED);
                 int recommendedTime = ((Long) questionJSON.get(QUESTION_RECOMMENDED_TIME)).intValue();
                 Difficulty difficulty = Difficulty.valueOf((String) questionJSON.get(QUESTION_DIFFICULTY));
@@ -204,8 +206,8 @@ public class DataLoader extends DataConstants {
                     }
                 }
 
-                questions.add(new Question(questionID, authorID, title, datePosted,
-                        recommendedTime, difficulty, segments, questionTag, hints, solutions));
+                questions.add(new Question(questionID, authorID, title, rating, datePosted,
+                recommendedTime, difficulty, segments, questionTag, hints, solutions, comments));
             }
 
             reader.close();

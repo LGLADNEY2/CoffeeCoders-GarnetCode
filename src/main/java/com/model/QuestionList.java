@@ -68,11 +68,12 @@ public class QuestionList {
     }
 
     // creates a new question and adds it to the list
-    public boolean addQuestion(UUID authorID, String title, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag tag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
+    public boolean addQuestion(UUID questionID, UUID authorID, String title, int rating, String datePosted, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag tag, ArrayList<Segment> hints, ArrayList<Solution> solutions, ArrayList<Comment> comments) {
         if (title == null || title.isEmpty() || authorID == null) {
             return false;
         }
-        Question question = new Question(authorID, title, difficulty, segments, tag, hints, solutions);
+        Question question = new Question(questionID, authorID, title, rating, datePosted,
+                recommendedTime, difficulty, segments, tag, hints, solutions, comments);
         questions.add(question);
         return true;
     }

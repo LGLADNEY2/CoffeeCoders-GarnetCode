@@ -18,10 +18,11 @@ public class Question {
     private ArrayList<Solution> solutions;
     private ArrayList<Comment> comments;
 
-    public Question(UUID authorID, String title, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
+    public Question(UUID authorID, String title, int rating,Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
         this.questionID = UUID.randomUUID();
         this.authorID = authorID;
         this.title = title;
+        this.rating = rating;
         this.datePosted = new Date().toString();
         this.difficulty = difficulty;
         this.segments = segments;
@@ -30,12 +31,16 @@ public class Question {
         this.solutions = solutions;
         this.comments = new ArrayList<>();
         this.recommendedTime = -1;
-        this.rating = -1;
+        ;
     }
-    public Question(UUID questionID, UUID authorID, String title, String datePosted, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
+    public Question(UUID questionID, UUID authorID, String title, int rating, String datePosted,
+        int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments,
+        QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions,
+        ArrayList<Comment> comments) {
         this.questionID = questionID;
         this.authorID = authorID;
         this.title = title;
+        this.rating = rating;
         this.datePosted = datePosted;
         this.recommendedTime = recommendedTime;
         this.difficulty = difficulty;
@@ -43,8 +48,8 @@ public class Question {
         this.questionTag = questionTag;
         this.hints = hints;
         this.solutions = solutions;
-        this.comments = new ArrayList<>();
-        this.rating = -1;
+        this.comments = comments;
+        
     }
     public Question(UUID questionID, UUID authorID, String title, String datePosted, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
         this.questionID = questionID;
@@ -75,48 +80,64 @@ public class Question {
 
 
     public void setAuthorID(UUID authorID) {
-
+        this.authorID = authorID;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
-    public void setRating(int rating) {
 
+    public void setRating(int rating) {
+        this.rating = rating;
     }
+
     public void setRecommendedTime(int recommendedTime) {
         this.recommendedTime = recommendedTime;
     }
-    public void setDifficulty(Difficulty difficulty) {
 
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
+
     public void setSegments(ArrayList<Segment> segments) {
         this.segments = segments;
     }
+
     public void setQuestionTag(QuestionTag questionTag) {
-
+        this.questionTag = questionTag;
     }
+
     public void setHints(ArrayList<Segment> hints) {
-
+        this.hints = hints;
     }
-    public void setSolutions(ArrayList<Solution> solutions) {
 
+    public void setSolutions(ArrayList<Solution> solutions) {
+        this.solutions = solutions;
     }
 
     public boolean addRating(int rating) {
+        if( rating < 1 || rating > 5) {
+            return false;
+        }
+        this.rating = calculateRating(rating);
         return true;
     }
+
     public int calculateRating(int rating) {
         if (this.rating == -1) {
             return rating;
         }
         return (this.rating + rating) / 2;
     }
-    public boolean addCommnet(String text, UUID authorID) {
+
+    public boolean addComment(String text, UUID authorID) {
         return true;
     }
+
     public boolean removeComment(UUID accountID, String datePosted) {
         return true;
     }
+
     public boolean addHint(Segment segment) {
         if (segment == null) {
             return false;
@@ -124,7 +145,13 @@ public class Question {
         hints.add(segment);
         return true;
     }
+
     public boolean addSolution(UUID authorID, String title, Language language, ArrayList<Segment> segments, boolean approved) {
+        if( authorID == null ||title == null || title.isEmpty() || language == null || segments == null || segments.isEmpty()) {
+            return false;
+        } 
+        Solution solution = new Solution(authorID, title, language, segments, approved);
+        solutions.add(solution);
         return true;
     }
 
