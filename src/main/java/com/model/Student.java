@@ -48,12 +48,6 @@ public class Student extends Account {
     public void setLastLogin(String lastLogin) {
 
     }
-    public void setFavoriteQuestions(ArrayList<Question> FavoriteQuestions) {
-
-    }
-    public void setCompletedQuestions(ArrayList<Question> completedQuestions) {
-
-    }
     public void setTrustedRoles(ArrayList<QuestionTag> questionTags) {
 
     }
@@ -61,9 +55,16 @@ public class Student extends Account {
 
     }
 
-
-    public boolean addFavoriteQuestion(UUID questionID) {
-        return true;
+    public void addFavoriteQuestion(UUID questionID) {
+        if (questionID == null) return;
+        // Check if already favorited
+        for (Question q : favoriteQuestions) {
+            if (q.getQuestionID().equals(questionID)) return;
+        }
+        // Look up the question from the master list
+        Question question = QuestionList.getInstance().getQuestion(questionID);
+        if (question == null) return;
+        favoriteQuestions.add(question);
     }
 
     public boolean addCompletedQuestion(UUID Question) {
