@@ -7,7 +7,7 @@
         "datePosted":"01102026",
         "difficulty": "BEGINNER",
         "recommendedTime": 4,
-        "segementOrder": [
+        "segmentOrder": [
             "PROBLEMDESC",
             "CONSTRAINTS",
             "CODE",
@@ -134,6 +134,7 @@
             }
         ]
     },
+
     {
         "questionID": "",
         "authorID": "",
@@ -156,7 +157,7 @@
             "course": []
         },
         "hints": [],
-        "solution": [
+        "solutions": [
             {
                 "authorID":"",
                 "language":"",
@@ -178,3 +179,4 @@
         ]
     }
 ]
+    
