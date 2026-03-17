@@ -46,7 +46,7 @@ public class Driver {
     public void scenario3() {
         if (!qFacade.login("EJohnson", "WrongPassword")) {
             System.out.println("Invalid Username or Password.");
-            return;
+        return;
         }
     }
 
