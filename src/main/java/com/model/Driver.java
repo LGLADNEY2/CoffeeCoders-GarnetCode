@@ -3,7 +3,7 @@ package com.model;
 public class Driver {
     private QuestionFacade qFacade;
 
-    Driver() {
+    public Driver() {
         qFacade = new QuestionFacade();
     }
 
@@ -21,7 +21,10 @@ public class Driver {
 			return;
 		}
 
-		System.out.println("Amy Smith is now logged in");
+		System.out.println("Emma Johnson is now logged in");
+        qFacade.logout()
+        System.out.println("Emma Johnson is now logged out");
+        System.out.println();
     }
 
     public void scenario2() {
@@ -31,14 +34,17 @@ public class Driver {
 			System.out.println("Sorry we couldn't login.");
 			return;
 		}
-		System.out.println("Bobby Smith is now logged in");
+		System.out.println("Oliver Smith is now logged in");
+        qFacade.logout()
+        System.out.println("Oliver Smith is now logged out");  
+        System.out.println();
     }
+
+    //Invalid Login Attempt
     public void scenario3() {
-        if(!qFacade.save()) {
-            System.out.println("Sorry, we couldn't save.");
-        }
-        qFacade.logout();
-    }
+        if (!qFacade.login("EJohnson", "WrongPassword")) {
+            System.out.println("Sorry we couldn't login.");
+            return;
 
     public static void main(String[] args) {
         Driver driver = new Driver();
@@ -46,3 +52,4 @@ public class Driver {
     }
 
 }
+
