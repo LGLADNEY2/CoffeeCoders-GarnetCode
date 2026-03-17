@@ -55,10 +55,6 @@ public class Account {
     this.password = password; 
    }
 
-    public boolean logout() {
-        return true;
-    }
-
     public static Account login(String username, String password) {
         if (username == null || password == null) {
             return null;
