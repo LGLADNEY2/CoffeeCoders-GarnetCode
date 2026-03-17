@@ -57,5 +57,24 @@ public class Account {
 
     public boolean logout() {
         return true;
-    }    
+    }
+
+    public static Account login(String username, String password) {
+        if (username == null || password == null) {
+            return null;
+        }
+        return AccountList.getInstance().getAccount(username, password);
+    }
+
+    public boolean editUser(String firstName, String lastName, String email, String username, String password) {
+        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
+            return false;
+        }
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        return true;
+    }
 }
