@@ -92,8 +92,8 @@
                     }
                 ],
                 "comments":[],
-                "likes":"0",
-                "approved":""
+                "likes": 0,
+                "approved": false
             }
         ],
         "comments": [
@@ -116,14 +116,14 @@
                 "text": "I don't like this question.",
                 "accountID": "5075dde5-9721-4dc3-8ee9-dc36dd85186f",
                 "datePosted": "11222026",
-                "likes": "-1",
+                "likes": -1,
                 "replies":[]
             }
         ]
     },
 
     {
-        "questionID": "",
+        "questionID": "ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9",
         "authorID": "",
         "title": "",
         "rating":"",
