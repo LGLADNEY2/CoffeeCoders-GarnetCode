@@ -22,6 +22,7 @@ public class Driver {
 		}
 
 		System.out.println("Emma Johnson is now logged in");
+        qFacade.save();
         qFacade.logout();
         System.out.println("Emma Johnson is now logged out");
         System.out.println();
@@ -35,6 +36,7 @@ public class Driver {
 			return;
 		}
 		System.out.println("Oliver Smith is now logged in");
+        qFacade.save();
         qFacade.logout();
         System.out.println("Oliver Smith is now logged out");  
         System.out.println();

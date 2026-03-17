@@ -7,12 +7,6 @@
         "datePosted":"01102026",
         "difficulty": "BEGINNER",
         "recommendedTime": 4,
-        "segmentOrder": [
-            "PROBLEMDESC",
-            "CONSTRAINTS",
-            "CODE",
-            "EXAMPLES"
-        ],
         "segments": [
             {
                 "title":"Problem",
@@ -65,13 +59,6 @@
                 "authorID": "4460fe58-54de-4eba-b277-72724d408588",
                 "language":"JAVA",
                 "title":"Java Even or Odd Solution",
-                "segementOrder":[
-                    "INTUITION",
-                    "IMPLEMENTATION",
-                    "CODE",
-                    "ANALYSIS",
-                    "COMPLEXITY"
-                ],
                 "segments":[
                     {
                         "title":"Intuition",
