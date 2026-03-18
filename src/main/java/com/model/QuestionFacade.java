@@ -19,6 +19,7 @@ public class QuestionFacade {
     }
 
     public ArrayList<Question> findQuestion() {
+        //what's the express purpose of here?
         return new ArrayList<>();
     }
 
@@ -27,15 +28,17 @@ public class QuestionFacade {
     }
 
     public ArrayList<Question> findQuestions(QuestionTag tag) {
-        return new ArrayList<>();
+        return QuestionList.getInstance().getQuestions(tag);
     }
 
     public Question getQuestion(UUID id) {
-        return null;
+        currentQuestion = questionList.getQuestion(id);
+        return questionList.getQuestion(id);
     }
 
     public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, int recTime) {
-        return false;
+        QuestionList.getInstance().addQuestion(currentAccount.getAccountID(), title, recTime, difficulty, segments, tag, new ArrayList<>(), new ArrayList<>());
+        //check hint stuffs
     }
 
     public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
@@ -43,10 +46,12 @@ public class QuestionFacade {
     }
 
     public boolean editQuestion(Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
+
         return false;
     }
 
-    public void removeQuestion() {
+    public void removeQuestion(UUID questionID) {
+        QuestionList.getInstance().removeQuestion(questionID);
     }
 
     public boolean Comment(String text) {
