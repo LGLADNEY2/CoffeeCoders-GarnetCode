@@ -11,17 +11,29 @@ import org.json.simple.parser.JSONParser;
 import static com.model.DataType.HINT;
 
 public class DataLoader extends DataConstants {
+    // get accounts method that returns an array list of loaded accounts, made by the json file of accounts
     public static ArrayList<Account> getAccounts() {
+        // new empty array list for the accounts
         ArrayList<Account> accounts = new ArrayList<>();
+        // new empty array list for all of the questions into one array list, loaded by getquestions method
+        // the getquestions returns just all of the questions,
+        // the getaccounts method splits it up by tag later on
         ArrayList<Question> allQuestions = getQuestions();
         
+        // try block, catches errors and returns it after instead of just stopping program
         try {
+            // filereader object that takes account file name from data constants
             FileReader reader = new FileReader(ACCOUNT_FILE_NAME);
+            // new json parser object
             JSONParser parser = new JSONParser();
+            // making a json array that is the file reader passed inside the json parser, then cast to an array
             JSONArray accountsJSON = (JSONArray) parser.parse(reader);
             
+            // for every account json object in the json array accountsJSON,
             for (int i = 0; i < accountsJSON.size(); i++) {
+                // make and assign a json object of this index from the array list
                 JSONObject accountJSON = (JSONObject) accountsJSON.get(i);
+                // now get all of the parameters of this single account
                 UUID accountID = UUID.fromString((String) accountJSON.get(ACCOUNT_ID));
                 String firstName = (String) accountJSON.get(ACCOUNT_FIRST_NAME);
                 String lastName = (String) accountJSON.get(ACCOUNT_LAST_NAME);
@@ -36,8 +48,8 @@ public class DataLoader extends DataConstants {
                     // Build favorite questions from stored UUIDs
                     JSONArray favQuestionsJSON = (JSONArray) accountJSON.get(STUDENT_FAVORITE_QUESTIONS);
                     ArrayList<Question> favoriteQuestions = new ArrayList<>();
-                    for (Object qIDObj : favQuestionsJSON) {
-                        UUID questionID = UUID.fromString((String) qIDObj);
+                    for (Object quesID : favQuestionsJSON) {
+                        UUID questionID = UUID.fromString((String) quesID);
                         for (Question question : allQuestions) {
                             if (question.getQuestionID().equals(questionID)) {
                                 favoriteQuestions.add(question);
@@ -118,21 +130,26 @@ public class DataLoader extends DataConstants {
         return accounts;
     }
 
+    // return an arraylist of all questions from the json file 
+    // TODO parse comments
     public static ArrayList<Question> getQuestions() {
         ArrayList<Question> questions = new ArrayList<>();
 
         try {
+            // Reader FileReader object to read the file of all questions
             FileReader reader = new FileReader(QUESTION_FILE_NAME);
+            // Parser JSONParser to allow reading the JSON file of all questions
             JSONParser parser = new JSONParser();
+            // Putting the reader through the parser to allow reading of a JSON file properly
             JSONArray questionsJSON = (JSONArray) parser.parse(reader);
 
+            // for every question in the json file,
             for (int i = 0; i < questionsJSON.size(); i++) {
+                // make a json object for each question in the json file
                 JSONObject questionJSON = (JSONObject) questionsJSON.get(i);
 
-                // Skip blank placeholder entries
+                
                 String questionIDStr = (String) questionJSON.get(QUESTION_ID);
-                if (questionIDStr == null || questionIDStr.isEmpty()) continue;
-
                 UUID questionID = UUID.fromString(questionIDStr);
                 UUID authorID = UUID.fromString((String) questionJSON.get(AUTHOR_ID));
                 String title = (String) questionJSON.get(QUESTION_TITLE);
@@ -142,11 +159,17 @@ public class DataLoader extends DataConstants {
                 int recommendedTime = ((Long) questionJSON.get(QUESTION_RECOMMENDED_TIME)).intValue();
                 Difficulty difficulty = Difficulty.valueOf((String) questionJSON.get(QUESTION_DIFFICULTY));
 
-                // Parse segments
+                // make a json array of the segments of each question, which is title, desc, data type, and data
+                // each "segments" instance is an array of these 4
                 JSONArray segmentsJSON = (JSONArray) questionJSON.get(QUESTION_SEGMENTS);
+                // make arraylist of Segment
                 ArrayList<Segment> segments = new ArrayList<>();
+                // for each segment in the segment json array,
                 for (Object segObj : segmentsJSON) {
+
+                    // make a json object of that segment
                     JSONObject segJSON = (JSONObject) segObj;
+                    // both add to the segments arraylist of Segments, and make a new Segment object with the data
                     segments.add(new Segment(
                         (String) segJSON.get(SEGMENT_TITLE),
                         (String) segJSON.get(SEGMENT_DESC),
@@ -155,16 +178,19 @@ public class DataLoader extends DataConstants {
                     ));
                 }
 
-                // Parse questionTag
+                // make new tag json object
                 JSONObject tagJSON = (JSONObject) questionJSON.get(QUESTION_QUESTION_TAG);
+                // make array list of categories
                 ArrayList<Category> categories = new ArrayList<>();
                 for (Object catObj : (JSONArray) tagJSON.get(QUESTION_TAG_CATEGORY)) {
                     categories.add(Category.valueOf((String) catObj));
                 }
+                // make array list of languages
                 ArrayList<Language> languages = new ArrayList<>();
                 for (Object langObj : (JSONArray) tagJSON.get(QUESTION_TAG_LANGUAGE)) {
                     languages.add(Language.valueOf((String) langObj));
                 }
+                // make array list of courses
                 ArrayList<Course> courses = new ArrayList<>();
                 for (Object courseObj : (JSONArray) tagJSON.get(QUESTION_TAG_COURSE)) {
                     courses.add(Course.valueOf((String) courseObj));
@@ -185,7 +211,6 @@ public class DataLoader extends DataConstants {
                     for (Object solObj : solutionsJSON) {
                         JSONObject solJSON = (JSONObject) solObj;
                         String solAuthorIDStr = (String) solJSON.get(SOLUTION_AUTHOR_ID);
-                        if (solAuthorIDStr == null || solAuthorIDStr.isEmpty()) continue;
                         UUID solAuthorID = UUID.fromString(solAuthorIDStr);
                         String solTitle = (String) solJSON.get(SOLUTION_TITLE);
                         Language solLanguage = Language.valueOf((String) solJSON.get(SOLUTION_LANGUAGE));
