@@ -140,7 +140,14 @@ public class Question {
     }
 
     public boolean removeComment(UUID accountID, String datePosted) {
-        return true;
+        for (int i = 0; i < comments.size(); i++) {
+            Comment comment = comments.get(i);
+            if (comment.getAccountID().equals(accountID) && comment.getDatePosted().equals(datePosted)) {
+                comments.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean addHint(Segment segment) {
