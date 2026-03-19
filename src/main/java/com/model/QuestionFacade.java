@@ -10,12 +10,14 @@ public class QuestionFacade {
     private AccountList accountList;
     private Account currentAccount;
     private Question currentQuestion;
+    private Solution currentSolution;
 
     public QuestionFacade() {
         this.questionList = QuestionList.getInstance();
         this.accountList = AccountList.getInstance();
         this.currentAccount = null;
         this.currentQuestion = null;
+        this.currentSolution = null;
     }
 
     public ArrayList<Question> findQuestion() {
@@ -36,6 +38,7 @@ public class QuestionFacade {
         return questionList.getQuestion(id);
     }
 
+    //make return question instead of boolean, make new question currentQuestion
     public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, int recTime) {
         QuestionList.getInstance().addQuestion(currentAccount.getAccountID(), title, recTime, difficulty, segments, tag, new ArrayList<>(), new ArrayList<>());
         //check hint stuffs
@@ -50,8 +53,12 @@ public class QuestionFacade {
         return false;
     }
 
-    public void removeQuestion(UUID questionID) {
-        QuestionList.getInstance().removeQuestion(questionID);
+    public boolean removeQuestion() {
+        if (currentQuestion != null) {
+            QuestionList.getInstance().removeQuestion(currentQuestion.getQuestionID());
+            return true;
+        }
+        return false;
     }
 
     public boolean Comment(String text) {
@@ -68,6 +75,7 @@ public class QuestionFacade {
     public void giveFeedback(int rating) {
     }
 
+    //remove, keep submit solution
     public boolean answerQuestion(String code) {
         return false;
     }
@@ -80,6 +88,7 @@ public class QuestionFacade {
         return false;
     }
 
+    //use this for answers, make currentSolution?
     public boolean submitSolution(Language language, String title, ArrayList<Segment> segments) {
         return false;
     }

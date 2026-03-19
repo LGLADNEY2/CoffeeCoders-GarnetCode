@@ -21,6 +21,7 @@ public class QuestionList {
         return questions;
     }
 
+    // turn into helper methods or make one method if possible?
     // returns questions that match the given tag
     public ArrayList<Question> getQuestions(QuestionTag questionTag) {
         ArrayList<Question> filtered = new ArrayList<>();
@@ -90,6 +91,7 @@ public class QuestionList {
         return false;
     }
 
+    //move to account class
     // returns the completed questions for a given account
     public ArrayList<Question> viewCompleted(UUID accountID) {
         AccountList accountList = AccountList.getInstance();

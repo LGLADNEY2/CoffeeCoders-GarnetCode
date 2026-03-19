@@ -8,7 +8,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import static com.model.DataType.HINT;
 
 public class DataLoader extends DataConstants {
     // get accounts method that returns an array list of loaded accounts, made by the json file of accounts
@@ -173,7 +172,7 @@ public class DataLoader extends DataConstants {
                     segments.add(new Segment(
                         (String) segJSON.get(SEGMENT_TITLE),
                         (String) segJSON.get(SEGMENT_DESC),
-                        (DataType) segJSON.get(SEGMENT_DATA_TYPE),
+                        (String) segJSON.get(SEGMENT_DATA_TYPE),
                         (String) segJSON.get(SEGMENT_DATA)
                     ));
                 }
@@ -221,7 +220,7 @@ public class DataLoader extends DataConstants {
                             solSegments.add(new Segment(
                                 (String) ssJSON.get(SEGMENT_TITLE),
                                 (String) ssJSON.get(SEGMENT_DESC),
-                                (DataType) ssJSON.get(SEGMENT_DATA_TYPE),
+                                (String) ssJSON.get(SEGMENT_DATA_TYPE),
                                 (String) ssJSON.get(SEGMENT_DATA)
                             ));
                         }

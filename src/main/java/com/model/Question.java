@@ -138,6 +138,8 @@ public class Question {
         return true;
     }
 
+    // needs a way to make hints. would it benefit to make it into its own class,
+    // either in here or in a seperate java file? or would we just need to make a method?
     public boolean addHint(Segment segment) {
         if (segment == null) {
             return false;
