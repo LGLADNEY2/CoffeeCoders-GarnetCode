@@ -51,8 +51,18 @@
             ]
         },
         "hints": [
-            "Use the modulus operator (%) to determine if the number is even or odd.",
-            "If the number % 2 equals 0, it is even; otherwise, it is odd."
+            {
+                "title":"Hint 1",
+                "desc":"Use the modulus operator (%) to determine if the number is even or odd.",
+                "dataType":"STRING",
+                "data":""
+            },
+            {
+                "title":"Hint 2",
+                "desc":"If the number % 2 equals 0, it is even; otherwise, it is odd.",
+                "dataType":"STRING",
+                "data":""
+            }
         ],
         "solutions": [
             {
@@ -143,7 +153,14 @@
             "language": [],
             "course": []
         },
-        "hints": [],
+        "hints": [
+            {
+                "title":"",
+                "desc":"",
+                "dataType":"",
+                "data":""
+            }
+        ],
         "solutions": [
             {
                 "authorID":"",

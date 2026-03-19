@@ -131,11 +131,23 @@ public class Question {
     }
 
     public boolean addComment(String text, UUID authorID) {
+        if (text == null || text.isEmpty() || authorID == null) {
+            return false;
+        }
+        Comment comment = new Comment(text, authorID, new Date().toString());
+        comments.add(comment);
         return true;
     }
 
     public boolean removeComment(UUID accountID, String datePosted) {
-        return true;
+        for (int i = 0; i < comments.size(); i++) {
+            Comment comment = comments.get(i);
+            if (comment.getAccountID().equals(accountID) && comment.getDatePosted().equals(datePosted)) {
+                comments.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     // needs a way to make hints. would it benefit to make it into its own class,
