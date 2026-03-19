@@ -11,31 +11,31 @@
             {
                 "title":"Problem",
                 "desc":"Write a function that takes an integer as input and returns 'Even' if the number is even, and 'Odd' if the number is odd.",
-                "dataType":"None",
+                "dataType":"STRING",
                 "data":""
             },
             {
                 "title":"Constraint",
                 "desc":"The input will be a valid integer.",
-                "dataType":"None",
+                "dataType":"STRING",
                 "data":""
             },
             {
                 "title":"Code",
                 "desc":"",
-                "dataType":"Code",
+                "dataType":"CODE",
                 "data":"class EvenOrOdd { \n   public String isEvenOrOdd(int x) {\n\n    }\n}"
             },
             {
                 "title":"Example 1",
                 "desc":"Input: 4 \nOutput: Even",
-                "dataType":"None",
+                "dataType":"STRING",
                 "data":""
             },
             {
                 "title":"Example 2",
                 "desc":"Input: 7\nOutput: Odd",
-                "dataType":"None",
+                "dataType":"STRING",
                 "data":""
             }
         ],

@@ -128,20 +128,22 @@ public class DataWriter extends DataConstants{
         questionDetails.put(QUESTION_HINTS, hints);
         JSONObject comments = new JSONObject();
         ArrayList<Comment> start = question.getComments();
-        questionDetails.put(QUESTION_COMMENTS, commentR(start, comments));
+        questionDetails.put(QUESTION_COMMENTS, getComments(start));
         return questionDetails;
     }
-    public static JSONObject commentR(ArrayList<Comment> comments, JSONObject object) {
-        if(comments.get(0) == null)
-            return null;
+    public static JSONArray getComments(ArrayList<Comment> comments) {
+        JSONArray jsonComments = new JSONArray();
+        if(comments == null || comments.size() == 0 || comments.get(0) == null)
+            return jsonComments;
         for(int i=0; i < comments.size(); ++i) {
-            object.put(COMMENT_ACCOUNT_ID, comments.get(i).getAccountID());
-            object.put(COMMENT_DATE_POSTED, comments.get(i).getDatePosted());
-            object.put(COMMENT_LIKES, comments.get(i).getLikes());
-            object.put(COMMENT_TEXT, comments.get(i).getText());
-            JSONObject objectR = new JSONObject();
-            object.put(COMMENT_REPLIES, commentR(comments.get(i).getReplies(), objectR));
+            JSONObject comment = new JSONObject();
+            comment.put(COMMENT_ACCOUNT_ID, comments.get(i).getAccountID());
+            comment.put(COMMENT_DATE_POSTED, comments.get(i).getDatePosted());
+            comment.put(COMMENT_LIKES, comments.get(i).getLikes());
+            comment.put(COMMENT_TEXT, comments.get(i).getText());
+            comment.put(COMMENT_REPLIES, getComments(comments.get(i).getReplies()));
+            jsonComments.add(comment);
         }
-        return object;
+        return jsonComments;
     }
 }
