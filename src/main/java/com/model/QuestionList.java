@@ -69,14 +69,14 @@ public class QuestionList {
     }
 
     // creates a new question and adds it to the list
-    public boolean addQuestion(UUID questionID, UUID authorID, String title, int rating, String datePosted, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag tag, ArrayList<Segment> hints, ArrayList<Solution> solutions, ArrayList<Comment> comments) {
+    public UUID addQuestion(UUID authorID, String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, ArrayList<Solution> solutions, int recommendedTime) {
         if (title == null || title.isEmpty() || authorID == null) {
-            return false;
+            return null;
         }
-        Question question = new Question(questionID, authorID, title, rating, datePosted,
-                recommendedTime, difficulty, segments, tag, hints, solutions, comments);
+        Question question = new Question(authorID, title,
+                difficulty, tag, segments, hints, solutions, recommendedTime);
         questions.add(question);
-        return true;
+        return true; //make return new question uuid
     }
 
     // removes a question by its id

@@ -39,9 +39,9 @@ public class QuestionFacade {
     }
 
     //make return question instead of boolean, make new question currentQuestion
-    public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, int recTime) {
-        QuestionList.getInstance().addQuestion(currentAccount.getAccountID(), title, recTime, difficulty, segments, tag, new ArrayList<>(), new ArrayList<>());
-        //check hint stuffs
+    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, int recTime) {
+        QuestionList.getInstance().addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, new ArrayList<>(), new ArrayList<>(), recTime);
+        this.currentQuestion = null; //update
     }
 
     public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {

@@ -18,11 +18,11 @@ public class Question {
     private ArrayList<Solution> solutions;
     private ArrayList<Comment> comments;
 
-    public Question(UUID authorID, String title, int rating,Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
+    public Question(UUID authorID, String title, Difficulty difficulty, QuestionTag questionTag, ArrayList<Segment> segments, ArrayList<Segment> hints, ArrayList<Solution> solutions, int recTime) {
         this.questionID = UUID.randomUUID();
         this.authorID = authorID;
         this.title = title;
-        this.rating = rating;
+        this.rating = -1;
         this.datePosted = new Date().toString();
         this.difficulty = difficulty;
         this.segments = segments;
@@ -30,7 +30,7 @@ public class Question {
         this.hints = hints;
         this.solutions = solutions;
         this.comments = new ArrayList<>();
-        this.recommendedTime = -1;
+        this.recommendedTime = recTime;
         ;
     }
     public Question(UUID questionID, UUID authorID, String title, int rating, String datePosted,
