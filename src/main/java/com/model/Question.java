@@ -131,6 +131,11 @@ public class Question {
     }
 
     public boolean addComment(String text, UUID authorID) {
+        if (text == null || text.isEmpty() || authorID == null) {
+            return false;
+        }
+        Comment comment = new Comment(text, authorID, new Date().toString());
+        comments.add(comment);
         return true;
     }
 
