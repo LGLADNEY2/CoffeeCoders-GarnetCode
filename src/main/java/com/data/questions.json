@@ -51,18 +51,8 @@
             ]
         },
         "hints": [
-            {
-                "title":"Hint 1",
-                "desc":"Use the modulus operator (%) to determine if the number is even or odd.",
-                "dataType":"STRING",
-                "data":""
-            },
-            {
-                "title":"Hint 2",
-                "desc":"If the number % 2 equals 0, it is even; otherwise, it is odd.",
-                "dataType":"STRING",
-                "data":""
-            }
+            "Use the modulus operator (%) to determine if the number is even or odd.",
+            "If the number % 2 equals 0, it is even; otherwise, it is odd."
         ],
         "solutions": [
             {
@@ -134,6 +124,269 @@
 
     {
         "questionID": "ae4dfcc6-a3a4-45ee-a343-5ad68729e0a9",
+        "authorID": "4460fe58-54de-4eba-b277-72724d408588",
+        "title": "Two Sum",
+        "rating":"0",
+        "datePosted":"03182026",
+        "difficulty": "INTERMEDIATE",
+        "recommendedTime": "15",
+        "segments": [
+            {
+                "title":"Problem",
+                "desc":"Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+                "dataType":"STRING",
+                "data":""
+            },
+            {
+                "title":"Constraint",
+                "desc":"2 <= nums.length <= 10000. Each input has exactly one solution. You may not use the same element twice.",
+                "dataType":"STRING",
+                "data":""
+            },
+            {
+                "title":"Code",
+                "desc":"",
+                "dataType":"CODE",
+                "data":"class TwoSum { \n public int[] twoSum(int[] nums, int target) {\n\n    }\n}"
+            },
+            {
+                "title": "Example 1",
+                "desc": "Input: nums = [2,7,11,15], target = 9\nOutput: [0,1]\nExplanation: Because nums[0] + nums[1] == 9, we return [0, 1].",
+                "dataType": "STRING",
+                "data": ""
+            },
+            {
+                "title": "Example 2",
+                "desc": "Input: nums = [3,2,4], target = 6\nOutput: [1,2]",
+                "dataType": "STRING",
+                "data": ""
+            }
+        ],
+        "questionTag": {
+            "category": ["ARRAY"],
+            "language": ["JAVA"],
+            "course": ["CSCE_145"]
+        },
+        "hints": [
+            "Try checking every pair first",
+            "Think about using a HashMap to store numnbers you've already seen."
+        ],
+        "solutions": [
+            {
+                "authorID":"4460fe58-54de-4eba-b277-72724d408588",
+                "language":"JAVA",
+                "title":"Java Two Sum Solution",
+                "segments":[
+                    {
+                    "title": "Intuition",
+                    "desc": "We want two numbers that add to target. Instead of checking every pair, we can store numbers we’ve already seen.",
+                    "dataType": "STRING",
+                    "data": ""
+                    },
+                    {
+                    "title": "Code",
+                    "desc": "",
+                    "dataType": "CODE",
+                    "data": "import java.util.HashMap;\n\nclass TwoSum {\n    public int[] twoSum(int[] nums, int target) {\n        HashMap<Integer, Integer> map = new HashMap<>();\n\n        for (int i = 0; i < nums.length; i++) {\n            int complement = target - nums[i];\n            if (map.containsKey(complement)) {\n                return new int[]{map.get(complement), i};\n            }\n            map.put(nums[i], i);\n        }\n        return new int[0];\n    }\n}"
+                    },
+                    {
+                    "title": "Complexity",
+                    "desc": "Time: O(n), Space: O(n)",
+                    "dataType": "STRING",
+                    "data": ""
+                    }
+                ],
+                "comments":[],
+                "likes": 0,
+                "approved": false
+            }
+        ],
+        "comments": [
+            {
+                "text": "I first tried brute force but it was too slow. The HashMap solution is way better.",
+                "accountID": "f3e36d59-5d01-4632-812a-3358a6c7bc27",
+                "datePosted": "03202026",
+                "likes": 2,
+                "replies": [
+                     {
+                         "text": "Yeah same, once I understood complements it made sense.",
+                         "accountID": "5075dde5-9721-4dc3-8ee9-dc36dd85186f",
+                         "datePosted": "03212026",
+                         "likes": 1,
+                         "replies": []
+                     }
+                ]
+            }
+        ]
+    },
+
+    {
+        "questionID": "04ef4d27-6c05-489e-8809-5e5e58aea438",
+        "authorID": "4460fe58-54de-4eba-b277-72724d408588",
+        "title": "Valid Palindrome",
+        "rating":"0",
+        "datePosted":"03152026",
+        "difficulty": "BEGINNER",
+        "recommendedTime": "10",
+        "segments": [
+            {
+                "title": "Problem",
+                "desc": "Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.",
+                "dataType": "STRING",
+                "data": ""
+            },
+            {
+                "title": "Constraint",
+                "desc": "The string may include spaces and punctuation.",
+                "dataType": "STRING",
+                "data": ""
+            },
+            {
+                "title": "Code",
+                "desc": "",
+                "dataType": "CODE",
+                "data": "class Palindrome {\n    public boolean isPalindrome(String s) {\n\n    }\n}"
+            },
+            {
+                "title": "Example 1",
+                "desc": "Input: \"A man, a plan, a canal: Panama\" \nOutput: true",
+                "dataType": "STRING",
+                "data": ""
+            },
+            {  
+                "title": "Example 2",
+                "desc": "Input: \"race a car\" \nOutput: false",
+                "dataType": "STRING",
+                "data": ""
+            }
+        ],
+        "questionTag": {
+            "category": ["STRING"],
+            "language": ["JAVA"],
+            "course": ["CSCE_145"]
+        },
+        "hints": [
+            "Ignore non-alphanumeric characters.",
+            "Compare characters from both ends."
+        ],
+        "solutions": [
+            {
+                "authorID": "4460fe58-54de-4eba-b277-72724d408588",
+                "language": "JAVA",
+                "title": "Java Palindrome Solution",
+                "segments": [
+                    {
+                        "title": "Code",
+                        "desc": "",
+                        "dataType": "CODE",
+                        "data": "class Palindrome {\n    public boolean isPalindrome(String s) {\n        s = s.replaceAll(\"[^a-zA-Z0-9]\", \"\").toLowerCase();\n        int left = 0, right = s.length() - 1;\n\n        while (left < right) {\n            if (s.charAt(left) != s.charAt(right)) {\n                return false;\n            }\n            left++;\n            right--;\n        }\n        return true;\n    }\n}"
+                    }
+                ],
+                "comments": [],
+                "likes": 0,
+                "approved": false
+            }
+        ],
+        "comments": [
+            {
+                 "text": "I forgot to ignore punctuation at first and got it wrong.",
+                "accountID": "5075dde5-9721-4dc3-8ee9-dc36dd85186f",
+                "datePosted": "03212026",
+                "likes": 0,
+                "replies": []
+            }
+        ]
+    },
+
+    {
+        "questionID": "c9c26f4d-72d5-4711-b764-7104e3040cda",
+        "authorID": "4460fe58-54de-4eba-b277-72724d408588",
+        "title": "Reverse String",
+        "rating":"0",
+        "datePosted":"03022026",
+        "difficulty": "BEGINNER",
+        "recommendedTime": "5",
+        "segments": [
+            {
+                "title":"Problem",
+                "desc":"Write a function that reverses a string. The input string is given as a character array.",
+                "dataType":"STRING",
+                "data":""
+            },
+            {
+                "title": "Constraint",
+                "desc": "You must do this in-place with O(1) extra memory.",
+                "dataType": "STRING",
+                "data": ""
+            },
+            {
+                "title": "Code",
+                "desc": "",
+                "dataType": "CODE",
+                "data": "class ReverseString {\n    public void reverseString(char[] s) {\n\n    }\n}"
+            },
+            {
+                "title": "Example 1",
+                "desc": "Input: ['h','e','l','l','o'] \nOutput: ['o','l','l','e','h']",
+                "dataType": "STRING",
+                "data": ""
+            }
+        ],
+        "questionTag": {
+            "category": ["STRING"],
+            "language": ["JAVA"],
+            "course": ["CSCE_146"]
+        },
+        "hints": [
+            "Use two pointers.",
+            "Swap elements from the ends moving inward."
+        ],
+        "solutions": [
+            {
+                "authorID": "4460fe58-54de-4eba-b277-72724d408588",
+                "language": "JAVA",
+                "title": "Two Pointer Solution",
+                "segments": [
+                    {
+                        "title": "Code",
+                        "desc": "",
+                        "dataType": "CODE",
+                        "data": "class ReverseString {\n    public void reverseString(char[] s) {\n        int left = 0;\n        int right = s.length - 1;\n\n        while (left < right) {\n            char temp = s[left];\n            s[left] = s[right];\n            s[right] = temp;\n            left++;\n            right--;\n        }\n    }\n}"
+                    }
+                ],
+                "comments": [],
+                "likes": 0,
+                "approved": false
+            }
+        ],
+        "comments": [
+            {
+                "text": "Super straightforward once you think about swapping.",
+                "accountID": "m13131313-1313-1313-1313-131313131313",
+                "datePosted": "03202026",
+                "likes": 2,
+                "replies": []
+            },
+            {
+                "text": "Two pointers show up everywhere lol.",
+                "accountID": "n14141414-1414-1414-1414-141414141414",
+                "datePosted": "03212026",
+                "likes": 1,
+                "replies": [
+                {
+                    "text": "Fr once you learn it you start seeing it in everything.",
+                    "accountID": "o15151515-1515-1515-1515-151515151515",
+                    "datePosted": "03212026",
+                    "likes": 1,
+                    "replies": []
+                }
+            ]
+        }
+    ]
+    },
+
+    {
+        "questionID": "",
         "authorID": "",
         "title": "",
         "rating":"",
@@ -153,14 +406,7 @@
             "language": [],
             "course": []
         },
-        "hints": [
-            {
-                "title":"",
-                "desc":"",
-                "dataType":"",
-                "data":""
-            }
-        ],
+        "hints": [],
         "solutions": [
             {
                 "authorID":"",
@@ -182,5 +428,6 @@
             }
         ]
     }
+
 ]
     
