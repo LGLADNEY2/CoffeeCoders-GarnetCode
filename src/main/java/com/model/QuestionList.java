@@ -68,6 +68,15 @@ public class QuestionList {
         return filtered;
     }
 
+    public ArrayList<Question> getQuestions(String keyWord) {
+        ArrayList<Question> filtered = new ArrayList<>();
+        for (Question question : questions) {
+            if(question.getTitle().equalsIgnoreCase(keyWord))
+                filtered.add(question);
+        }
+        return filtered;
+    }
+
     // creates a new question and adds it to the list
     public UUID addQuestion(UUID authorID, String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, ArrayList<Solution> solutions, int recommendedTime) {
         if (title == null || title.isEmpty() || authorID == null) {
