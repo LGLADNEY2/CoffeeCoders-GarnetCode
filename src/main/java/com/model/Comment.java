@@ -11,7 +11,7 @@ public class Comment {
     private int likes;
     private String datePosted;
 
-    public Comment(String text, UUID accountID, String datePosted) {
+    public Comment(String text, UUID accountID) {
         this.text = text;
         this.accountID = accountID;
         this.datePosted = new Date().toString();
@@ -25,26 +25,31 @@ public class Comment {
     public ArrayList<Comment> getReplies() {return replies;}
     public int getLikes() {return likes;}
 
-    public void setText() {
-
+    public void setText(String text) {
+        this.text = text;
     }
-    public void setAccountID() {
-
+    public void setAccountID(UUID accountID) {
+        this.accountID = accountID;
     }
-    public void setDatePosted() {
-
+    public void setDatePosted(String datePosted) {
+        this.datePosted = datePosted;
     }
 
     public boolean addReply(UUID accountID, String text, String datePosted) {
         if (accountID == null || text == null || text.isEmpty()) {
             return false;
         }
-        Comment reply = new Comment(text, accountID, datePosted);
+        Comment reply = new Comment(text, accountID);
         replies.add(reply);
         return true;
     }
-    public boolean removeReply(UUID accountID, String datePosted) {
-        return true;
+    public boolean removeComment(UUID accountID, String datePosted) {
+        for(Comment reply: replies) {
+            if(reply.getAccountID().equals(accountID) && reply.getDatePosted().equals(datePosted))
+                replies.remove(reply);
+            return true;
+        }
+        return false;
     }
     public void like() {
         this.likes++;
