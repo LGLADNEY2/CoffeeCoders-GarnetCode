@@ -26,11 +26,11 @@ public class QuestionFacade {
     }
 
     public ArrayList<Question> findQuestions(String keyword) {
-        return new ArrayList<>();
+        return questionList.getQuestions(keyword);
     }
 
     public ArrayList<Question> findQuestions(QuestionTag tag) {
-        return QuestionList.getInstance().getQuestions(tag);
+        return questionList.getQuestions(tag);
     }
 
     public Question getQuestion(UUID id) {
@@ -40,29 +40,35 @@ public class QuestionFacade {
 
     //make return question instead of boolean, make new question currentQuestion
     public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, int recTime) {
-        QuestionList.getInstance().addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, new ArrayList<>(), new ArrayList<>(), recTime);
-        this.currentQuestion = null; //update
+        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, new ArrayList<>(), new ArrayList<>(), recTime));
+        return currentQuestion;
     }
 
-    public boolean addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
-        return false;
+    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
+        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, new ArrayList<>(), new ArrayList<>(), -1));
+        return currentQuestion;
     }
 
     public boolean editQuestion(Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
-
+        if(currentQuestion != null) {
+            currentQuestion.setDifficulty(difficulty);
+            currentQuestion.setQuestionTag(tag);
+            currentQuestion.setSegments(segments);
+            return true;
+        }
         return false;
     }
 
     public boolean removeQuestion() {
         if (currentQuestion != null) {
-            QuestionList.getInstance().removeQuestion(currentQuestion.getQuestionID());
+            questionList.removeQuestion(currentQuestion.getQuestionID());
             return true;
         }
         return false;
     }
 
     public boolean Comment(String text) {
-        return false;
+        return currentQuestion.addComment(text, currentAccount.getAccountID());
     }
 
     public ArrayList<Question> getFavoriteQuestions() {
@@ -73,15 +79,6 @@ public class QuestionFacade {
     }
 
     public void giveFeedback(int rating) {
-    }
-
-    //remove, keep submit solution
-    public boolean answerQuestion(String code) {
-        return false;
-    }
-
-    public boolean answerQuestion(String code, int time) {
-        return false;
     }
 
     public boolean submitQuestion(ArrayList<QuestionTag> roles, Question question) {
@@ -109,7 +106,6 @@ public class QuestionFacade {
             currentAccount.setPassword(password);
             currentAccount.setEmail(email);
         }
-        
     }
 
     public void removeAccount(String username) {
