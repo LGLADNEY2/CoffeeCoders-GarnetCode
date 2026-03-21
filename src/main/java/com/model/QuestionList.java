@@ -76,7 +76,7 @@ public class QuestionList {
         Question question = new Question(authorID, title,
                 difficulty, tag, segments, hints, solutions, recommendedTime);
         questions.add(question);
-        return true; //make return new question uuid
+        return question.getQuestionID(); //make return new question uuid
     }
 
     // removes a question by its id
