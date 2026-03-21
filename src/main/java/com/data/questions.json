@@ -51,8 +51,18 @@
             ]
         },
         "hints": [
-            "Use the modulus operator (%) to determine if the number is even or odd.",
-            "If the number % 2 equals 0, it is even; otherwise, it is odd."
+            {
+                "title":"Hint 1",
+                "desc":"Use the modulus operator (%) to determine if the number is even or odd.",
+                "dataType":"STRING",
+                "data":""
+            },
+            {
+                "title":"Hint 2",
+                "desc":"If the number % 2 equals 0, it is even; otherwise, it is odd.",
+                "dataType":"STRING",
+                "data":""
+            }
         ],
         "solutions": [
             {
@@ -168,8 +178,18 @@
             "course": ["CSCE_145"]
         },
         "hints": [
-            "Try checking every pair first",
-            "Think about using a HashMap to store numnbers you've already seen."
+            {
+                "title":"Hint 1",
+                "desc":"Try checking every pair first",
+                "dataType":"STRING",
+                "data":""
+            },
+            {
+                "title":"Hint 2",
+                "desc":"Think about using a HashMap to store numnbers you've already seen.",
+                "dataType":"STRING",
+                "data":""
+            }
         ],
         "solutions": [
             {
@@ -266,8 +286,18 @@
             "course": ["CSCE_145"]
         },
         "hints": [
-            "Ignore non-alphanumeric characters.",
-            "Compare characters from both ends."
+            {
+                "title":"Hint 1",
+                "desc":"Ignore non-alphanumeric characters.",
+                "dataType":"STRING",
+                "data":""
+            },
+            {
+                "title":"Hint 2",
+                "desc":"Compare characters from both ends.",
+                "dataType":"STRING",
+                "data":""
+            }
         ],
         "solutions": [
             {
@@ -338,8 +368,18 @@
             "course": ["CSCE_146"]
         },
         "hints": [
-            "Use two pointers.",
-            "Swap elements from the ends moving inward."
+            {
+                "title":"Hint 1",
+                "desc":"Use two pointers.",
+                "dataType":"STRING",
+                "data":""
+            },
+            {
+                "title":"Hint 2",
+                "desc":"Swap elements from the ends moving inward.",
+                "dataType":"STRING",
+                "data":""
+            }
         ],
         "solutions": [
             {
@@ -406,7 +446,14 @@
             "language": [],
             "course": []
         },
-        "hints": [],
+        "hints": [
+            {
+                "title":"",
+                "desc":"",
+                "dataType":"",
+                "data":""
+            }
+        ],
         "solutions": [
             {
                 "authorID":"",
