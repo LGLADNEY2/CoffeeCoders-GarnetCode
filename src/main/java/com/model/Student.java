@@ -1,13 +1,14 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
 // Student extends Account with student-specific data like streaks, favorites, and completed questions
 public class Student extends Account {
     private int dailyStreak;
-    private String lastLogin;
+    private Date lastLogin;
     private ArrayList<Question> favoriteQuestions;
     private ArrayList<Question> completedQuestions;
     private ArrayList<QuestionTag> trustedRoles;
@@ -22,7 +23,7 @@ public class Student extends Account {
     public Student(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(accountID, username, password, firstName, lastName, email, role);
         this.dailyStreak = 1;
-        this.lastLogin = new Date().toString();
+        this.lastLogin = new Date();
         this.favoriteQuestions = favoriteQuestions;
         this.completedQuestions = completedQuestions;
         this.trustedRoles = trustedRoles;
@@ -33,7 +34,7 @@ public class Student extends Account {
     public Student(String username, String password, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(username, password);
         this.dailyStreak = 1;
-        this.lastLogin = new Date().toString();
+        this.lastLogin = new Date();
         this.favoriteQuestions = favoriteQuestions;
         this.completedQuestions = completedQuestions;
         this.trustedRoles = trustedRoles;
@@ -42,7 +43,7 @@ public class Student extends Account {
 
     // getters
     public int getDailyStreak() {return dailyStreak;}
-    public String getLastLogin() {return lastLogin;}
+    public Date getLastLogin() {return lastLogin;}
     public ArrayList<Question> getFavoriteQuestions() {return favoriteQuestions;}
     public ArrayList<Question> getCompletedQuestions() {return completedQuestions;}
     public ArrayList<QuestionTag> getTrustedRoles() {return trustedRoles;}
@@ -50,16 +51,16 @@ public class Student extends Account {
 
     // setters (stubs)
     public void setDailyStreak(int dailyStreak) {
-
+        this.dailyStreak = dailyStreak;
     }
-    public void setLastLogin(String lastLogin) {
-
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
     }
     public void setTrustedRoles(ArrayList<QuestionTag> questionTags) {
-
+        this.trustedRoles = questionTags;
     }
     public void setUserQuestions(ArrayList<Question> userQuestions) {
-
+        this.userQuestions = userQuestions;
     }
 
     // looks up question by UUID from master list and adds to favorites (skips duplicates)
@@ -86,12 +87,19 @@ public class Student extends Account {
 
     // adds a trusted role tag to the student (stub)
     public void addTrustedRole(QuestionTag questionTag) {
-        return;
+        trustedRoles.add(questionTag);
     }
 
     // adds a user-created question if the student has the right trusted roles (stub)
     public boolean addUserQuestion(Question question, ArrayList<QuestionTag> trustedRoles) {
-        return true;
+        for(QuestionTag tag: trustedRoles) {
+            if(question.getQuestionTag().getCategory().contains(tag.getCategory().get(0)) &&
+                question.getQuestionTag().getCourse().contains(tag.getCourse().get(0)) &&
+                question.getQuestionTag().getLanguage().contains(tag.getLanguage().get(0))) {
+                return userQuestions.add(question);
+            }
+        }
+        return false;
     }
 
     // finds and removes a question from favorites by UUID
@@ -119,17 +127,35 @@ public class Student extends Account {
 
     // removes a trusted role from the student (stub)
     public boolean removeTrustedRole(QuestionTag questionTag) {
-        return true;
+        for(QuestionTag tag: trustedRoles) {
+            if(tag.equals(questionTag))
+                return trustedRoles.remove(tag);
+        }
+        return false;
     }
 
     // removes a user-created question by UUID (stub)
     public boolean removeUserQuestion(UUID Question) {
-        return true;
+        for(Question question: userQuestions) {
+            if(question.getQuestionID().equals(Question))
+               return userQuestions.remove(question); 
+        }
+        return false;
     }
 
-    // updates daily streak based on last login date (stub)
-    public boolean updateDailyStreak(String lastLogin) {
-        return true;
+    // updates daily streak based on new login date (stub)
+    public void updateDailyStreak(Date newLogin) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(lastLogin);
+        c.add(Calendar.DATE, 1);
+        Date dayAfter = c.getTime();
+        if(newLogin.after(dayAfter)) {
+            this.dailyStreak = 1;
+            setLastLogin(newLogin);
+        }
+        this.dailyStreak++;
+        setLastLogin(newLogin);
+        
     }
 
     // returns a hint segment for the current question (stub)
