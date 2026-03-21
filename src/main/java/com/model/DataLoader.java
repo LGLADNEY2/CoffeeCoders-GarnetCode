@@ -206,7 +206,7 @@ public class DataLoader extends DataConstants {
                     }
                 }
 
-                questions.add(new Question(questionID, authorID, title, rating, datePosted,
+                questions.add(new Question(questionID, authorID, title, datePosted,
                 recommendedTime, difficulty, segments, questionTag, hints, solutions, comments));
             }
 

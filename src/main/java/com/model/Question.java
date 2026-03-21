@@ -9,6 +9,7 @@ public class Question {
     private UUID authorID;
     private String title;
     private int rating;
+    private int totalRatings;
     private String datePosted;
     private int recommendedTime;
     private Difficulty difficulty;
@@ -23,6 +24,7 @@ public class Question {
         this.authorID = authorID;
         this.title = title;
         this.rating = -1;
+        this.totalRatings = 0;
         this.datePosted = new Date().toString();
         this.difficulty = difficulty;
         this.segments = segments;
@@ -33,14 +35,13 @@ public class Question {
         this.recommendedTime = recTime;
         ;
     }
-    public Question(UUID questionID, UUID authorID, String title, int rating, String datePosted,
+    public Question(UUID questionID, UUID authorID, String title, String datePosted,
         int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments,
         QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions,
         ArrayList<Comment> comments) {
         this.questionID = questionID;
         this.authorID = authorID;
         this.title = title;
-        this.rating = rating;
         this.datePosted = datePosted;
         this.recommendedTime = recommendedTime;
         this.difficulty = difficulty;
@@ -49,6 +50,8 @@ public class Question {
         this.hints = hints;
         this.solutions = solutions;
         this.comments = comments;
+        this.rating = -1;
+        this.totalRatings = 0;
         
     }
     public Question(UUID questionID, UUID authorID, String title, String datePosted, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
@@ -63,6 +66,7 @@ public class Question {
         this.solutions = solutions;
         this.comments = new ArrayList<>();
         this.rating = -1;
+        this.totalRatings = 0;
     }
 
     public UUID getQuestionID() {return questionID;}
@@ -70,6 +74,7 @@ public class Question {
     public String getTitle() {return title;}
     public String getDatePosted() {return datePosted;}
     public int getRating() {return rating;}
+    public int getTotalRatings() {return totalRatings;}
     public int getRecommendedTime() {return recommendedTime;}
     public Difficulty getDifficulty() {return difficulty;}
     public ArrayList<Segment> getSegments() {return segments;}
@@ -89,6 +94,10 @@ public class Question {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public void setTotalRating(int totalRatings) {
+        this.totalRatings = totalRatings;
     }
 
     public void setRecommendedTime(int recommendedTime) {
@@ -120,21 +129,23 @@ public class Question {
             return false;
         }
         this.rating = calculateRating(rating);
+        this.totalRatings++;
         return true;
     }
 
     public int calculateRating(int rating) {
         if (this.rating == -1) {
+            this.totalRatings = 1;
             return rating;
         }
-        return (this.rating + rating) / 2;
+        return (this.rating + this.rating*this.totalRatings) / this.totalRatings++;
     }
 
     public boolean addComment(String text, UUID authorID) {
         if (text == null || text.isEmpty() || authorID == null) {
             return false;
         }
-        Comment comment = new Comment(text, authorID, new Date().toString());
+        Comment comment = new Comment(text, authorID);
         comments.add(comment);
         return true;
     }
