@@ -70,6 +70,10 @@ public class Solution {
         this.likes++;
     }
     public boolean addComment(String text, UUID authorID) {
+        if (text == null || text.isEmpty() || authorID == null) {
+        return false;
+    }
+        comments.add(new Comment(text, authorID));
         return true;
     }
     public boolean removeComment(UUID accountID, String datePosted) {

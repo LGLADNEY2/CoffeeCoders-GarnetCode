@@ -22,7 +22,7 @@ public class Student extends Account {
     // full constructor used by DataLoader to rebuild a student from JSON
     public Student(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(accountID, username, password, firstName, lastName, email, role);
-        this.dailyStreak = 1;
+        this.dailyStreak = dailyStreak;
         this.lastLogin = new Date();
         this.favoriteQuestions = favoriteQuestions;
         this.completedQuestions = completedQuestions;
