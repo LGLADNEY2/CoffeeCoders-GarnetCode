@@ -264,15 +264,23 @@ public class DataLoader extends DataConstants {
         }
 
         for (Object commentObj : commentsJSON) {
-            JSONObject commentJSON = (JSONObject) commentObj;
-            String text = (String) commentJSON.get(COMMENT_TEXT);
-            String accountIDStr = (String) commentJSON.get(COMMENT_ACCOUNT_ID);
+            try {
+                JSONObject commentJSON = (JSONObject) commentObj;
+                String text = (String) commentJSON.get(COMMENT_TEXT);
+                String accountIDStr = (String) commentJSON.get(COMMENT_ACCOUNT_ID);
 
-            UUID accountID = UUID.fromString(accountIDStr);
-            String datePosted = (String) commentJSON.get(COMMENT_DATE_POSTED);
-            int likes = toInt(commentJSON.get(COMMENT_LIKES));
-            ArrayList<Comment> replies = parseComments((JSONArray) commentJSON.get(COMMENT_REPLIES));
-            comments.add(new Comment(text, accountID, replies, likes, datePosted));
+                if (accountIDStr == null || accountIDStr.isEmpty()) {
+                    continue;
+                }
+
+                UUID accountID = UUID.fromString(accountIDStr);
+                String datePosted = (String) commentJSON.get(COMMENT_DATE_POSTED);
+                int likes = toInt(commentJSON.get(COMMENT_LIKES));
+                ArrayList<Comment> replies = parseComments((JSONArray) commentJSON.get(COMMENT_REPLIES));
+                comments.add(new Comment(text, accountID, replies, likes, datePosted));
+            } catch (Exception ex) {
+                // Skip malformed comments so one bad record does not break first-run loading.
+            }
         }
 
         return comments;
