@@ -477,9 +477,102 @@
                 "datePosted":"",
                 "likes":"",
                 "replies":[]
+                    }
+                ]
+            },
+            {
+                "questionID": "b6e2e7c2-1b2a-4e7a-9b2e-1e2a3b4c5d6f",
+                "authorID": "4460fe58-54de-4eba-b277-72724d408588",
+                "title": "Unique Binary Search Trees",
+                "image": "src/main/resources/images/uniquebstn3.jpg",
+                "rating": 0,
+                "totalRatings": 0,
+                "datePosted": "03222026",
+                "difficulty": "INTERMEDIATE",
+                "recommendedTime": 20,
+                "segments": [
+                    {
+                        "title": "Problem",
+                        "desc": "Given an integer n, return the number of structurally unique BST's (binary search trees) which has exactly n nodes of unique values from 1 to n.",
+                        "dataType": "STRING",
+                        "data": ""
+                    },
+                    {
+                        "title": "Constraint",
+                        "desc": "1 <= n <= 19",
+                        "dataType": "STRING",
+                        "data": ""
+                    },
+                    {
+                        "title": "Code",
+                        "desc": "",
+                        "dataType": "CODE",
+                        "data": "class UniqueBST {\n    public int numTrees(int n) {\n        // TODO: Implement\n    }\n}"
+                    },
+                    {
+                        "title": "Example 1",
+                        "desc": "Input: n = 3\nOutput: 5",
+                        "dataType": "STRING",
+                        "data": ""
+                    },
+                    {
+                        "title": "Example 2",
+                        "desc": "Input: n = 1\nOutput: 1",
+                        "dataType": "STRING",
+                        "data": ""
+                    }
+                ],
+                "questionTag": {
+                    "category": ["CLASS"],
+                    "language": ["JAVA"],
+                    "course": ["CSCE_247"]
+                },
+                "hints": [
+                    {
+                        "title": "Hint 1",
+                        "desc": "Try using dynamic programming to count the number of unique BSTs for each number of nodes.",
+                        "dataType": "STRING",
+                        "data": ""
+                    },
+                    {
+                        "title": "Hint 2",
+                        "desc": "The number of unique BSTs for n nodes is the sum over all possible roots: left * right, where left and right are the number of unique BSTs in the left and right subtrees.",
+                        "dataType": "STRING",
+                        "data": ""
+                    }
+                ],
+                "solutions": [
+                    {
+                        "authorID": "4460fe58-54de-4eba-b277-72724d408588",
+                        "language": "JAVA",
+                        "title": "Java DP Solution",
+                        "segments": [
+                            {
+                                "title": "Intuition",
+                                "desc": "This is a classic dynamic programming problem. The number of unique BSTs for n nodes is the sum of the number of unique BSTs for all possible left and right subtree combinations.",
+                                "dataType": "STRING",
+                                "data": ""
+                            },
+                            {
+                                "title": "Code",
+                                "desc": "",
+                                "dataType": "CODE",
+                                "data": "class UniqueBST {\n    public int numTrees(int n) {\n        int[] dp = new int[n + 1];\n        dp[0] = 1;\n        for (int nodes = 1; nodes <= n; nodes++) {\n            for (int root = 1; root <= nodes; root++) {\n                dp[nodes] += dp[root - 1] * dp[nodes - root];\n            }\n        }\n        return dp[n];\n    }\n}"
+                            },
+                            {
+                                "title": "Complexity",
+                                "desc": "Time: O(n^2), Space: O(n)",
+                                "dataType": "STRING",
+                                "data": ""
+                            }
+                        ],
+                        "comments": [],
+                        "likes": 0,
+                        "approved": false
+                    }
+                ],
+                "comments": []
             }
-        ]
-    }
 
 ]
     
