@@ -18,7 +18,7 @@ public class DataWriter extends DataConstants{
             jsonAccounts.add(getAccountJSON(accounts.get(i)));
         }
 
-        try (FileWriter file = new FileWriter(ACCOUNT_TEMP_FILE_NAME)) {
+        try (FileWriter file = new FileWriter(ACCOUNT_FILE_NAME)) {
             file.write(jsonAccounts.toJSONString());
             file.flush();
             return true;
@@ -149,7 +149,7 @@ public class DataWriter extends DataConstants{
             jsonQuestions.add(getQuestionJSON(questions.get(i)));
         }
 
-        try (FileWriter file = new FileWriter(QUESTION_TEMP_FILE_NAME)) {
+        try (FileWriter file = new FileWriter(QUESTION_FILE_NAME)) {
             file.write(jsonQuestions.toJSONString());
             file.flush();
             return true;
@@ -191,7 +191,29 @@ public class DataWriter extends DataConstants{
             hints.add(hint);
         }
         questionDetails.put(QUESTION_HINTS, hints);
-        
+        JSONArray solutions = new JSONArray();
+        for(int i = 0; i < question.getSolutions().size(); ++i) {
+            JSONObject solution = new JSONObject();
+            solution.put(SOLUTION_AUTHOR_ID, question.getSolutions().get(i).getAuthorID());
+            solution.put(SOLUTION_LANGUAGE, question.getSolutions().get(i).getLanguage());
+            solution.put(SOLUTION_TITLE, question.getSolutions().get(i).getTitle());
+            JSONArray solutionSegments = new JSONArray();
+            for(int j = 0; j < question.getSolutions().get(i).getSegments().size(); ++j) {
+                JSONObject segment = new JSONObject();
+                segment.put(SEGMENT_TITLE, question.getSolutions().get(i).getSegments().get(j).getTitle());
+                segment.put(SEGMENT_DESC, question.getSolutions().get(i).getSegments().get(j).getDesc());
+                segment.put(SEGMENT_DATA_TYPE, question.getSolutions().get(i).getSegments().get(j).getDataType().toString());
+                segment.put(SEGMENT_DATA, question.getSolutions().get(i).getSegments().get(j).getData());
+                solutionSegments.add(segment);
+            }
+            solution.put(SOLUTION_SEGMENTS, solutionSegments);
+            ArrayList<Comment> start = question.getSolutions().get(i).getComments();
+            solution.put(SOLUTION_COMMENTS, getComments(start));
+            solution.put(SOLUTION_LIKES, question.getSolutions().get(i).getLikes());
+            solutions.add(solution);
+        }
+        questionDetails.put(QUESTION_SOLUTIONS, solutions);
+
         ArrayList<Comment> start = question.getComments();
         questionDetails.put(QUESTION_COMMENTS, getComments(start));
         return questionDetails;
