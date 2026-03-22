@@ -10,14 +10,12 @@ public class QuestionFacade {
     private AccountList accountList;
     private Account currentAccount;
     private Question currentQuestion;
-    private Solution currentSolution;
 
     public QuestionFacade() {
         this.questionList = QuestionList.getInstance();
         this.accountList = AccountList.getInstance();
         this.currentAccount = null;
         this.currentQuestion = null;
-        this.currentSolution = null;
     }
 
     public ArrayList<Question> findQuestion() {
