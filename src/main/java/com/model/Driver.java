@@ -124,8 +124,11 @@ public class Driver {
 			System.out.println("Sorry we couldn't login.");
 			return;
 		}
-
+        
+        Student jimmy = (Student) AccountList.getInstance().getAccount("JBauer", "L!obster67");
+        jimmy.updateDailyStreak(new java.util.Date());
         System.out.println("Jimmy Bauer is now logged in");
+        System.out.println("Jimmy Bauer's current daily streak: " + jimmy.getDailyStreak());
 
         qFacade.save();
         qFacade.logout();
