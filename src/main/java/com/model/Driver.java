@@ -132,11 +132,11 @@ public class Driver {
         System.out.println("Jimmy Bauer's current daily streak: " + jimmy.getDailyStreak());
 
         // Finds the question with the title "Binary Search Tree" and sets it as the daily challenge for Jimmy to complete
-        ArrayList<Question> questions = QuestionList.getInstance().getQuestions();
+        ArrayList<Question> allquestions = QuestionList.getInstance().getQuestions();
         Question dailyChallenge = null;
 
-        for (Question question : questions) {
-            if (question.getTitle().equalsIgnoreCase("Binary Search Tree")) {
+        for (Question question : allquestions) {
+            if (question.getTitle().toLowerCase().contains("binary search tree")) {
                 dailyChallenge = question;
                 break;
             }
