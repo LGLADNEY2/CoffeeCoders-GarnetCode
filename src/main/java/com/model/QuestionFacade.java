@@ -142,4 +142,55 @@ public class QuestionFacade {
     public boolean save() {
         return DataWriter.saveAccounts() && DataWriter.saveQuestions();
     }
+
+    // Updates the daily streak for the current student (using today's date)
+    public void updateDailyStreak() {
+        if (currentAccount != null && currentAccount.getRole() == Role.STUDENT) {
+            Student student = (Student) currentAccount;
+            student.updateDailyStreak(new java.util.Date());
+        }
+    }
+
+    // Gets the daily streak for the current student
+    public int getDailyStreak() {
+        if (currentAccount != null && currentAccount.getRole() == Role.STUDENT) {
+            Student student = (Student) currentAccount;
+            return student.getDailyStreak();
+        }
+        return 0;
+    }
+
+    // Exports the current question to a formatted text file
+    public boolean exportCurrentQuestionToFile(String filePath) {
+        if (currentQuestion == null) return false;
+        try (java.io.PrintWriter writer = new java.io.PrintWriter(filePath)) {
+            writer.println("Question: " + currentQuestion.getTitle());
+            writer.println("Difficulty: " + currentQuestion.getDifficulty());
+            writer.println("Recommended Time: " + currentQuestion.getRecommendedTime() + " min");
+            writer.println("Segments:");
+            for (Segment seg : currentQuestion.getSegments()) {
+                writer.println("  - " + seg.getTitle() + ": " + seg.getDesc());
+            }
+            writer.println("Hints:");
+            for (Segment hint : currentQuestion.getHints()) {
+                writer.println("  - " + hint.getTitle() + ": " + hint.getDesc());
+            }
+            writer.println("Solutions:");
+            for (Solution sol : currentQuestion.getSolutions()) {
+                writer.println("  - Title: " + sol.getTitle());
+                writer.println("    Language: " + sol.getLanguage());
+                for (Segment seg : sol.getSegments()) {
+                    writer.println("    Segment: " + seg.getTitle() + " - " + seg.getDesc());
+                }
+            }
+            writer.println("Comments:");
+            for (Comment comment : currentQuestion.getComments()) {
+                writer.println("  - [" + comment.getDatePosted() + "] " + comment.getAccountID() + ": " + comment.getText());
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
