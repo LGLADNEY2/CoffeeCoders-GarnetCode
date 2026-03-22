@@ -39,13 +39,13 @@ public class QuestionFacade {
     }
 
     //make return question instead of boolean, make new question currentQuestion
-    public Question addQuestion(UUID authorID, String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, int recTime) {
-        currentQuestion = getQuestion(questionList.addQuestion(authorID, title, difficulty, tag, hints, segments, recTime));
+    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, int recTime) {
+        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, hints, recTime));
         return currentQuestion;
     }
 
-    public Question addQuestion(UUID authorID, String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints) {
-        currentQuestion = getQuestion(questionList.addQuestion(authorID, title, difficulty, tag, hints, segments, -1));
+    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments,  ArrayList<Segment> hints) {
+        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, hints, -1));
         return currentQuestion;
     }
 
@@ -81,9 +81,9 @@ public class QuestionFacade {
     }
 
     //figure out where this goes
-    public void giveFeedback(String text, int rating) {
-    }
+
     public void giveFeedback(int rating) {
+            currentQuestion.addRating(rating);
     }
 
 
