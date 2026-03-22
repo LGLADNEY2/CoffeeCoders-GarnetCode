@@ -40,7 +40,6 @@ public abstract class DataConstants {
     protected static final String SOLUTION_SEGMENTS = "segments";
     protected static final String SOLUTION_COMMENTS = "comments";
     protected static final String SOLUTION_LIKES = "likes";
-    protected static final String SOLUTION_APPROVED = "approved";
     protected static final String SEGMENT_TITLE = "title";
     protected static final String SEGMENT_DESC = "desc";
     protected static final String SEGMENT_DATA_TYPE = "dataType";
