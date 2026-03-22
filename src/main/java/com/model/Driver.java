@@ -220,11 +220,12 @@ public class Driver {
         Question dailyChallenge = null;
 
         for (Question question : allQuestions) {
-        if (question.getTitle() != null && question.getTitle().toLowerCase().contains("binary search tree")) {
+            if (question.getTitle() != null && question.getTitle().toLowerCase().contains("binary search tree")) {
             dailyChallenge = question;
             break;
         }
     }
+
 
         // If the question is not found, prints an error message  
         if (dailyChallenge == null) {
