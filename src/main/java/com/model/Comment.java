@@ -19,6 +19,14 @@ public class Comment {
         this.likes = 0;
     }
 
+    public Comment(String text, UUID accountID, ArrayList<Comment> replies, int likes, String datePosted) {
+        this.text = text;
+        this.accountID = accountID;
+        this.datePosted = datePosted;
+        this.replies = replies;
+        this.likes = likes;
+    }
+
     public String getText() {return text;}
     public UUID getAccountID() {return accountID;}
     public String getDatePosted() {return datePosted;}
