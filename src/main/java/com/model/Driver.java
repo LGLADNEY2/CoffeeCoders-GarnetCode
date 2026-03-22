@@ -118,7 +118,86 @@ public class Driver {
 
 // Create a New Question with Two Solutions
     public void scenario5() {
+        System.out.println();
+        System.out.println("Sally Sparrow Creates a New Question and Two Solutions");
+        // Login as Sally Sparrow
+        if (!qFacade.login("SallySparrow", "TimeL00p@42")) {
+            System.out.println("Sally Sparrow could not log in.");
+            return;
+        }
 
+        // Prepare question details
+        String title = "Longest Subarray with Given Sum";
+        Difficulty difficulty = Difficulty.INTERMEDIATE;
+        ArrayList<Category> categories = new ArrayList<>();
+        categories.add(Category.CLASS); // Use CLASS as a generic category
+        ArrayList<Language> languages = new ArrayList<>();
+        languages.add(Language.JAVA);
+        ArrayList<Course> courses = new ArrayList<>();
+        courses.add(Course.CSCE_247);
+        QuestionTag tag = new QuestionTag(categories, languages, courses);
+
+        ArrayList<Segment> segments = new ArrayList<>();
+        segments.add(new Segment(
+            "Problem Statement",
+            "Given an integer array nums and an integer sum k, return the length of the longest contiguous subarray whose total equals k. The array can contain negative numbers.\nExample 1: nums = [1, -1, 5, -2, 3], k = 3 → Output: 4. Example 2: nums = [-2, -1, 2, 1], k = 3 → Output: 2.",
+            DataType.STRING,
+            ""
+        ));
+        segments.add(new Segment(
+            "Follow-up Questions",
+            "- What is the time complexity of your algorithm?\n- Can you find a way to make your algorithm faster?",
+            DataType.STRING,
+            ""
+        ));
+
+        ArrayList<Segment> hints = new ArrayList<>();
+        hints.add(new Segment("Hint 1", "Try every possible subarray and compute its sum.", DataType.HINT, ""));
+        hints.add(new Segment("Hint 2", "Can you use a HashMap to optimize?", DataType.HINT, ""));
+
+        int recommendedTime = 20;
+        Question question = qFacade.addQuestion(title, difficulty, tag, segments, hints, recommendedTime);
+        if (question == null) {
+            System.out.println("Failed to create the question.");
+            return;
+        }
+
+        // Add Solution 1: Brute Force
+        ArrayList<Segment> sol1Segments = new ArrayList<>();
+        sol1Segments.add(new Segment(
+            "Brute Force Approach",
+            "Try every possible subarray and compute its sum. Time Complexity: O(n^2). See code in docs/LongestSubarrayBruteForce.java.",
+            DataType.FILE,
+            "docs/LongestSubarrayBruteForce.java"
+        ));
+        sol1Segments.add(new Segment(
+            "Brute Force Image",
+            "See brute force code image.",
+            DataType.IMAGE,
+            "longestsubarray-bruteforce.png"
+        ));
+        qFacade.submitSolution(Language.JAVA, "Brute Force Solution", sol1Segments);
+
+        // Add Solution 2: HashMap
+        ArrayList<Segment> sol2Segments = new ArrayList<>();
+        sol2Segments.add(new Segment(
+            "HashMap Approach",
+            "Use prefix sums and a HashMap to track sums. Time Complexity: O(n). See code in docs/LongestSubarrayHashMap.java.",
+            DataType.FILE,
+            "docs/LongestSubarrayHashMap.java"
+        ));
+        sol2Segments.add(new Segment(
+            "HashMap Image",
+            "See HashMap code image.",
+            DataType.IMAGE,
+            "longestsubarray-hashmap.png"
+        ));
+        qFacade.submitSolution(Language.JAVA, "HashMap Solution", sol2Segments);
+
+        System.out.println("Question and solutions created by Sally Sparrow.");
+        qFacade.logout();
+        System.out.println("Sally Sparrow is now logged out");
+        System.out.println();
     }
 
 // Completes Daily Tasks and Maintains a Streak
