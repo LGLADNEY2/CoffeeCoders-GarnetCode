@@ -132,16 +132,15 @@ public class Driver {
         System.out.println("Jimmy Bauer's current daily streak: " + jimmy.getDailyStreak());
 
         // Finds the question with the title "Binary Search Tree" and sets it as the daily challenge for Jimmy to complete
-        ArrayList<Question> allquestions = QuestionList.getInstance().getQuestions();
+        ArrayList<Question> allQuestions = QuestionList.getInstance().getQuestions();
         Question dailyChallenge = null;
 
-        for (Question question : allquestions) {
-            System.out.println("Loaded question: " + question.getTitle());
-    if (question.getTitle().toLowerCase().contains("binary search tree")) {
-                    dailyChallenge = question;
-                    break;
-                }
-            }
+        for (Question question : allQuestions) {
+        if (question.getTitle() != null && question.getTitle().toLowerCase().contains("binary search tree")) {
+            dailyChallenge = question;
+            break;
+        }
+    }
 
         // If the question is not found, prints an error message  
         if (dailyChallenge == null) {
@@ -179,6 +178,16 @@ public class Driver {
         System.out.println(jimmyComment);
 }
 
+    // Jimmy searches for Binary Search Tree questions
+    ArrayList<Question> results = qFacade.findQuestions("Binary Search Tree");
+    System.out.println("Binary Search Tree results: " + results.size());
+
+    for (Question question : results) {
+        System.out.println(question.getTitle() + " - " + question.getDifficulty());
+    }
+
+    jimmy.setDailyStreak(jimmy.getDailyStreak() + 1);
+    System.out.println("Jimmy Bauer's daily streak is now: " + jimmy.getDailyStreak());
 
         qFacade.save();
         qFacade.logout();
