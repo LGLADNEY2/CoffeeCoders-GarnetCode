@@ -51,5 +51,21 @@
         "trustedRoles":[],
         "userQuestions":["a7658164-21a9-4f5e-a253-c331a9a783e7"],
         "admin": false
+    },
+    {
+        "accountID": "6f813011-bd32-4f43-bd87-c09406815f17 ",
+        "firstName": "Jimmy",
+        "lastName": "Bauer",
+        "email": "JBauer@yahoo.com",
+        "username": "JBauer",
+        "password": "L!obster67",
+        "dailyStreak":8,
+        "lastLogin": "Tue Jan 10 10:35:32 EST 2026",
+        "role" : "Student",
+        "favoriteQuestions": [],
+        "completedQuestions": [],
+        "trustedRoles":[],
+        "userQuestions":[],
+        "admin": false
     }
 ]

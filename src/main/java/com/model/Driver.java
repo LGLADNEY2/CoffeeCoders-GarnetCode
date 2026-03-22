@@ -1,4 +1,7 @@
 package com.model;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Driver {
     private QuestionFacade qFacade;
@@ -12,6 +15,8 @@ public class Driver {
         scenario2();
         scenario3();
         scenario4();
+        scenario5();
+        scenario6();
     }
 
     public void scenario1() {
@@ -51,6 +56,7 @@ public class Driver {
         }
     }
 
+    // Create Account - Duplicate User
     public void scenario4() {
     System.out.println();
     System.out.println("Create Account - Duplicate User");
@@ -104,6 +110,30 @@ public class Driver {
     System.out.println();
 }
 
+// Create a New Question with Two Solutions
+    public void scenario5() {
+
+    }
+
+// Completes Daily Tasks and Maintains a Streak
+    public void scenario6() {
+        System.out.println();
+        System.out.println("Jimmy Bauer Completes Daily Tasks and Maintains a Streak");
+
+        if (!qFacade.login("JBauer", "L!obster67")) {
+			System.out.println("Sorry we couldn't login.");
+			return;
+		}
+
+        System.out.println("Jimmy Bauer is now logged in");
+
+        qFacade.save();
+        qFacade.logout();
+        System.out.println("Jimmy Bauer is now logged out");
+        System.out.println();
+
+
+    }
     public static void main(String[] args) {
         Driver driver = new Driver();
         driver.run();
