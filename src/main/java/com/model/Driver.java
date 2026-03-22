@@ -136,11 +136,13 @@ public class Driver {
         Question dailyChallenge = null;
 
         for (Question question : allquestions) {
-            if (question.getTitle().toLowerCase().contains("binary search tree")) {
-                dailyChallenge = question;
-                break;
+            System.out.println("Loaded question: " + question.getTitle());
+    if (question.getTitle().toLowerCase().contains("binary search tree")) {
+                    dailyChallenge = question;
+                    break;
+                }
             }
-        }
+
         // If the question is not found, prints an error message  
         if (dailyChallenge == null) {
         System.out.println("No daily challenge question was found.");
