@@ -62,9 +62,14 @@ public class Driver {
     System.out.println();
     System.out.println("Create Account - Duplicate User");
 
-    qFacade.removeAccount("SSparrow");
-    qFacade.removeAccount("SallySparrow");
-
+    Account sullivan = AccountList.getInstance().getAccount("SSparrow", "Birds@123");
+    if (sullivan != null) {
+        qFacade.removeAccount(sullivan.getAccountID());
+}
+    Account sally = AccountList.getInstance().getAccount("SallySparrow", "TimeL00p@42");
+    if (sally != null) {
+        qFacade.removeAccount(sally.getAccountID());
+    }
     qFacade.addAccount("Sullivan", "Sparrow", "SSparrow", "Birds@123", "sullivan.sparrow@example.com");
 
     boolean duplicateRejected = !qFacade.addAccount(
