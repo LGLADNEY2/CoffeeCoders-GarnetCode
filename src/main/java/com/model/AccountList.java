@@ -50,8 +50,8 @@ public class AccountList {
     }
 
     // Adds a new account to the list if the username is not already taken, returns true if successful.
-    public boolean addAccount(String firstName, String lastName, String email, String password) {
-        return addAccount(firstName, lastName, email, password, Role.STUDENT);
+    public boolean addAccount(String firstName, String lastName, String email, String username, String password) {
+        return addAccount(firstName, lastName, email, username, password, Role.STUDENT);
     }   
     public boolean addAccount(String firstName, String lastName, String email, String username, String password, Role role) {
         if (hasAccount(username)) {

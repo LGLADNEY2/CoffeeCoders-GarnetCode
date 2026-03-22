@@ -8,7 +8,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import static com.model.DataType.HINT;
 
 public class DataLoader extends DataConstants {
     public static ArrayList<Account> getAccounts() {
@@ -140,8 +139,15 @@ public class DataLoader extends DataConstants {
                 int totalRatings = ((Long) questionJSON.get(QUESTION_TOTAL_RATINGS)).intValue();
                 ArrayList<Comment> comments = new ArrayList<>();
                 String datePosted = (String) questionJSON.get(QUESTION_DATE_POSTED);
-                int recommendedTime = ((Long) questionJSON.get(QUESTION_RECOMMENDED_TIME)).intValue();
                 Difficulty difficulty = Difficulty.valueOf((String) questionJSON.get(QUESTION_DIFFICULTY));
+                
+                Object recTimeObj = questionJSON.get(QUESTION_RECOMMENDED_TIME);
+                int recommendedTime;
+                if (recTimeObj instanceof Long) {
+                    recommendedTime = ((Long) recTimeObj).intValue();
+                } else {
+                    recommendedTime = Integer.parseInt((String) recTimeObj);
+                }
 
                 // Parse segments
                 JSONArray segmentsJSON = (JSONArray) questionJSON.get(QUESTION_SEGMENTS);
@@ -151,7 +157,7 @@ public class DataLoader extends DataConstants {
                     segments.add(new Segment(
                         (String) segJSON.get(SEGMENT_TITLE),
                         (String) segJSON.get(SEGMENT_DESC),
-                        (DataType) segJSON.get(SEGMENT_DATA_TYPE),
+                        DataType.valueOf((String) segJSON.get(SEGMENT_DATA_TYPE)),
                         (String) segJSON.get(SEGMENT_DATA)
                     ));
                 }
@@ -175,9 +181,18 @@ public class DataLoader extends DataConstants {
                 // Parse hints (JSON stores them as plain strings, wrap each as a Segment)
                 JSONArray hintsJSON = (JSONArray) questionJSON.get(QUESTION_HINTS);
                 ArrayList<Segment> hints = new ArrayList<>();
-                for (Object hintObj : hintsJSON) {
-                    hints.add(new Segment("Hint", (String) hintObj, HINT, ""));
+                if (hintsJSON != null) {
+                    for (Object hintObj : hintsJSON) {
+                        JSONObject hintJSON = (JSONObject) hintObj;
+                        hints.add(new Segment(
+                            (String) hintJSON.get(SEGMENT_TITLE),
+                            (String) hintJSON.get(SEGMENT_DESC),
+                            DataType.valueOf((String) hintJSON.get(SEGMENT_DATA_TYPE)),
+                            (String) hintJSON.get(SEGMENT_DATA)
+                        ));
+                    }
                 }
+            
 
                 // Parse solutions
                 JSONArray solutionsJSON = (JSONArray) questionJSON.get(QUESTION_SOLUTIONS);
@@ -197,10 +212,19 @@ public class DataLoader extends DataConstants {
                             solSegments.add(new Segment(
                                 (String) ssJSON.get(SEGMENT_TITLE),
                                 (String) ssJSON.get(SEGMENT_DESC),
-                                (DataType) ssJSON.get(SEGMENT_DATA_TYPE),
+                                DataType.valueOf((String) ssJSON.get(SEGMENT_DATA_TYPE)),
                                 (String) ssJSON.get(SEGMENT_DATA)
                             ));
                         }
+                        ArrayList<Comment> solComments = new ArrayList<>();
+
+                        Object likesObj = solJSON.get(SOLUTION_LIKES);
+                        int likes = 0;
+                        if (likesObj instanceof Long) {
+                            likes = ((Long) likesObj).intValue();
+                        }
+
+
                         Object approvedObj = solJSON.get(SOLUTION_APPROVED);
                         boolean approved = (approvedObj instanceof Boolean) && (Boolean) approvedObj;
                         //do we need approved boolean?
@@ -209,7 +233,7 @@ public class DataLoader extends DataConstants {
                     }
                 }
 
-                questions.add(new Question(questionID, authorID, title, datePosted, rating, totalRatings, difficulty, segments, questionTag, hints, solutions, comments));
+                questions.add(new Question(questionID, authorID, title, datePosted, rating, totalRatings, recommendedTime, difficulty, segments, questionTag, hints, solutions, comments));
             }
 
             reader.close();

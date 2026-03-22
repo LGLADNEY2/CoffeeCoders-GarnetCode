@@ -38,46 +38,105 @@ public class DataWriter extends DataConstants{
         accountDetails.put(ACCOUNT_EMAIL, account.getEmail());
         accountDetails.put(ACCOUNT_ROLE, account.getRole().toString());
         if(account.getRole().equals(Role.STUDENT)) {
-            JSONObject completedQuestions = new JSONObject();
+            JSONArray completedQuestions = new JSONArray();
             for(int i = 0; i < ((Student)account).getCompletedQuestions().size(); ++i) {
-                completedQuestions.put(QUESTION_ID, ((Student)account).getCompletedQuestions().get(i).getQuestionID().toString());
-            }
-            accountDetails.put(STUDENT_COMPLETED_QUESTIONS, completedQuestions);
-            accountDetails.put(STUDENT_DAILY_STREAK, ((Student)account).getDailyStreak());
-            JSONObject favoriteQuestions = new JSONObject();
-            for(int i = 0; i < ((Student)account).getFavoriteQuestions().size(); ++i) {
-                favoriteQuestions.put(QUESTION_ID, ((Student)account).getFavoriteQuestions().get(i).getQuestionID().toString());
-            }
-            accountDetails.put(STUDENT_FAVORITE_QUESTIONS, favoriteQuestions);
-            JSONObject trustedRoles = new JSONObject();
-            for(int i = 0; i < ((Student)account).getFavoriteQuestions().size(); ++i) {
-                JSONObject category = new JSONObject();
-                JSONObject language = new JSONObject();
-                JSONObject course = new JSONObject();
-                category.put(QUESTION_TAG_CATEGORY, ((Student)account).getTrustedRoles().get(i).getCategory().get(1));
-                language.put(QUESTION_TAG_LANGUAGE, ((Student)account).getTrustedRoles().get(i).getLanguage().get(1));
-                course.put(QUESTION_TAG_COURSE, ((Student)account).getTrustedRoles().get(i).getCourse().get(1));
-                trustedRoles.put(QUESTION_TAG_CATEGORY, category);
-                trustedRoles.put(QUESTION_TAG_LANGUAGE, language);
-                trustedRoles.put(QUESTION_TAG_COURSE, course);
-            }
-            accountDetails.put(STUDENT_TRUSTED_ROLES, trustedRoles);
-            accountDetails.put(STUDENT_LAST_LOGIN, ((Student)account).getLastLogin());
-        } else if(account.getRole().equals(Role.EDITOR)) {
-            accountDetails.put(EDITOR_ADMIN, ((Editor)account).getAdmin());
-            JSONObject completedQuestions = new JSONObject();
-            for(int i = 0; i < ((Student)account).getCompletedQuestions().size(); ++i) {
-                completedQuestions.put(QUESTION_ID, ((Student)account).getCompletedQuestions().get(i).getQuestionID().toString());
-            }
-            accountDetails.put(STUDENT_COMPLETED_QUESTIONS, completedQuestions);
-            accountDetails.put(STUDENT_DAILY_STREAK, ((Student)account).getDailyStreak());
-            JSONObject favoriteQuestions = new JSONObject();
-            for(int i = 0; i < ((Student)account).getFavoriteQuestions().size(); ++i) {
-                favoriteQuestions.put(QUESTION_ID, ((Student)account).getFavoriteQuestions().get(i).getQuestionID().toString());
-            }
-            accountDetails.put(STUDENT_FAVORITE_QUESTIONS, favoriteQuestions);
-            accountDetails.put(STUDENT_LAST_LOGIN, ((Student)account).getLastLogin());
+            completedQuestions.add(((Student)account).getCompletedQuestions().get(i).getQuestionID().toString());
         }
+        accountDetails.put(STUDENT_COMPLETED_QUESTIONS, completedQuestions);
+
+        accountDetails.put(STUDENT_DAILY_STREAK, ((Student)account).getDailyStreak());
+
+        JSONArray favoriteQuestions = new JSONArray();
+        for(int i = 0; i < ((Student)account).getFavoriteQuestions().size(); ++i) {
+            favoriteQuestions.add(((Student)account).getFavoriteQuestions().get(i).getQuestionID().toString());
+        }
+        accountDetails.put(STUDENT_FAVORITE_QUESTIONS, favoriteQuestions);
+
+        JSONArray trustedRoles = new JSONArray();
+        for(int i = 0; i < ((Student)account).getTrustedRoles().size(); ++i) {
+            JSONObject trustedRole = new JSONObject();
+
+            JSONArray categories = new JSONArray();
+            for (Category category : ((Student)account).getTrustedRoles().get(i).getCategory()) {
+                categories.add(category.toString());
+            }
+
+            JSONArray languages = new JSONArray();
+            for (Language language : ((Student)account).getTrustedRoles().get(i).getLanguage()) {
+                languages.add(language.toString());
+            }
+
+            JSONArray courses = new JSONArray();
+            for (Course course : ((Student)account).getTrustedRoles().get(i).getCourse()) {
+                courses.add(course.toString());
+            }
+
+            trustedRole.put(QUESTION_TAG_CATEGORY, categories);
+            trustedRole.put(QUESTION_TAG_LANGUAGE, languages);
+            trustedRole.put(QUESTION_TAG_COURSE, courses);
+            trustedRoles.add(trustedRole);
+        }
+        accountDetails.put(STUDENT_TRUSTED_ROLES, trustedRoles);
+
+        JSONArray userQuestions = new JSONArray();
+        for(int i = 0; i < ((Student)account).getUserQuestions().size(); ++i) {
+            userQuestions.add(((Student)account).getUserQuestions().get(i).getQuestionID().toString());
+        }
+        accountDetails.put(STUDENT_USER_QUESTIONS, userQuestions);
+
+        accountDetails.put(STUDENT_LAST_LOGIN, ((Student)account).getLastLogin().toString());
+    } else if(account.getRole().equals(Role.EDITOR)) {
+        accountDetails.put(EDITOR_ADMIN, ((Editor)account).getAdmin());
+
+        JSONArray completedQuestions = new JSONArray();
+        for(int i = 0; i < ((Student)account).getCompletedQuestions().size(); ++i) {
+            completedQuestions.add(((Student)account).getCompletedQuestions().get(i).getQuestionID().toString());
+        }
+        accountDetails.put(STUDENT_COMPLETED_QUESTIONS, completedQuestions);
+
+        accountDetails.put(STUDENT_DAILY_STREAK, ((Student)account).getDailyStreak());
+
+        JSONArray favoriteQuestions = new JSONArray();
+        for(int i = 0; i < ((Student)account).getFavoriteQuestions().size(); ++i) {
+            favoriteQuestions.add(((Student)account).getFavoriteQuestions().get(i).getQuestionID().toString());
+        }
+        accountDetails.put(STUDENT_FAVORITE_QUESTIONS, favoriteQuestions);
+
+        JSONArray trustedRoles = new JSONArray();
+        for(int i = 0; i < ((Student)account).getTrustedRoles().size(); ++i) {
+            JSONObject trustedRole = new JSONObject();
+
+        JSONArray categories = new JSONArray();
+        for (Category category : ((Student)account).getTrustedRoles().get(i).getCategory()) {
+            categories.add(category.toString());
+        }
+
+        JSONArray languages = new JSONArray();
+        for (Language language : ((Student)account).getTrustedRoles().get(i).getLanguage()) {
+            languages.add(language.toString());
+        }
+
+        JSONArray courses = new JSONArray();
+        for (Course course : ((Student)account).getTrustedRoles().get(i).getCourse()) {
+            courses.add(course.toString());
+        }
+
+        trustedRole.put(QUESTION_TAG_CATEGORY, categories);
+        trustedRole.put(QUESTION_TAG_LANGUAGE, languages);
+        trustedRole.put(QUESTION_TAG_COURSE, courses);
+        trustedRoles.add(trustedRole);
+    }
+    accountDetails.put(STUDENT_TRUSTED_ROLES, trustedRoles);
+
+        JSONArray userQuestions = new JSONArray();
+        for(int i = 0; i < ((Student)account).getUserQuestions().size(); ++i) {
+            userQuestions.add(((Student)account).getUserQuestions().get(i).getQuestionID().toString());
+    }
+        accountDetails.put(STUDENT_USER_QUESTIONS, userQuestions);
+
+        accountDetails.put(STUDENT_LAST_LOGIN, ((Student)account).getLastLogin().toString());
+}
+
         return accountDetails;
     }
 
@@ -110,24 +169,29 @@ public class DataWriter extends DataConstants{
         questionDetails.put(QUESTION_DATE_POSTED, question.getDatePosted());
         questionDetails.put(QUESTION_RECOMMENDED_TIME, question.getRecommendedTime());
         questionDetails.put(QUESTION_DIFFICULTY, question.getDifficulty().toString());
-        JSONObject segments = new JSONObject();
+        JSONArray segments = new JSONArray();
         for(int i = 0; i < question.getSegments().size(); ++i) {
-            segments.put(SEGMENT_TITLE, question.getSegments().get(i).getTitle());
-            segments.put(SEGMENT_DESC, question.getSegments().get(i).getDesc());
-            segments.put(SEGMENT_DATA_TYPE, question.getSegments().get(i).getDataType());
-            segments.put(SEGMENT_DATA, question.getSegments().get(i).getData());
+            JSONObject segment = new JSONObject();
+            segment.put(SEGMENT_TITLE, question.getSegments().get(i).getTitle());
+            segment.put(SEGMENT_DESC, question.getSegments().get(i).getDesc());
+            segment.put(SEGMENT_DATA_TYPE, question.getSegments().get(i).getDataType().toString());
+            segment.put(SEGMENT_DATA, question.getSegments().get(i).getData());
+            segments.add(segment);
         }
         questionDetails.put(QUESTION_SEGMENTS, segments);
-        JSONObject hints = new JSONObject();
+        JSONArray hints = new JSONArray();
+        
         questionDetails.put(QUESTION_HINTS, hints);
         for(int i = 0; i < question.getHints().size(); ++i) {
-            segments.put(SEGMENT_TITLE, question.getHints().get(i).getTitle());
-            segments.put(SEGMENT_DESC, question.getHints().get(i).getDesc());
-            segments.put(SEGMENT_DATA_TYPE, question.getHints().get(i).getDataType());
-            segments.put(SEGMENT_DATA, question.getHints().get(i).getData());
+            JSONObject hint = new JSONObject();
+            hint.put(SEGMENT_TITLE, question.getHints().get(i).getTitle());
+            hint.put(SEGMENT_DESC, question.getHints().get(i).getDesc());
+            hint.put(SEGMENT_DATA_TYPE, question.getHints().get(i).getDataType().toString());
+            hint.put(SEGMENT_DATA, question.getHints().get(i).getData());
+            hints.add(hint);
         }
         questionDetails.put(QUESTION_HINTS, hints);
-        JSONObject comments = new JSONObject();
+        
         ArrayList<Comment> start = question.getComments();
         questionDetails.put(QUESTION_COMMENTS, getComments(start));
         return questionDetails;

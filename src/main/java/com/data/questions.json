@@ -175,7 +175,7 @@
             }
         ],
         "questionTag": {
-            "category": ["ARRAY"],
+            "category": ["SOURCE"],
             "language": ["JAVA"],
             "course": ["CSCE_145"]
         },
@@ -284,7 +284,7 @@
             }
         ],
         "questionTag": {
-            "category": ["STRING"],
+            "category": ["CLASS"],
             "language": ["JAVA"],
             "course": ["CSCE_145"]
         },
@@ -367,7 +367,7 @@
             }
         ],
         "questionTag": {
-            "category": ["STRING"],
+            "category": ["CLASS"],
             "language": ["JAVA"],
             "course": ["CSCE_146"]
         },
