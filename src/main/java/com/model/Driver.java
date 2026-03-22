@@ -120,7 +120,7 @@ public class Driver {
     public void scenario5() {
 
     }
-
+     
 // Completes Daily Tasks and Maintains a Streak
     public void scenario6() {
         System.out.println();
