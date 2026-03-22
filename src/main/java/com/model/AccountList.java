@@ -50,12 +50,23 @@ public class AccountList {
     }
 
     // Adds a new account to the list if the username is not already taken, returns true if successful.
-    public boolean addAccount(String firstName, String lastName, String email, String username, String password) {
+    public boolean addAccount(String firstName, String lastName, String email, String password) {
+        return addAccount(firstName, lastName, email, password, Role.STUDENT);
+    }   
+    public boolean addAccount(String firstName, String lastName, String email, String username, String password, Role role) {
         if (hasAccount(username)) {
             return false;
         }
-        Account newAccount = new Account(makeID(), firstName, lastName, email, username, password, Role.STUDENT);
-        accounts.add(newAccount);
+
+        UUID accountID = makeID();
+        
+        if (role == Role.EDITOR) {
+            accounts.add(new Editor (accountID, firstName, lastName, email, username, password, Role.EDITOR,
+                1, new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>()));
+        } else {
+            accounts.add(new Student(accountID, firstName, lastName, email, username, password, Role.STUDENT,
+                1, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),  new ArrayList<>()));
+        }
         return true;
     }
 

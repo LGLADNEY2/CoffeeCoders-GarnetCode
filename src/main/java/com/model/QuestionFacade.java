@@ -98,8 +98,12 @@ public class QuestionFacade {
         return currentQuestion.addSolution(currentAccount.getAccountID(), title, language, segments);
     }
 
-    public void addAccount(String firstName, String lastName, String username, String password, String email) {
-        accountList.addAccount(firstName, lastName, username, password, email);
+    public boolean addAccount(String firstName, String lastName, String username, String password, String email) {
+        return accountList.addAccount(firstName, lastName, email, username, password);
+    }
+
+    public boolean addAccount(String firstName, String lastName, String username, String password, String email, Role role) {
+        return accountList.addAccount(firstName, lastName, email, username, password, role);
     }
 
     public void editAccount(String firstName, String lastName, String username, String password, String email) {

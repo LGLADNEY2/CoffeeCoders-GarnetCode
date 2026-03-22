@@ -11,6 +11,7 @@ public class Driver {
         scenario1();
         scenario2();
         scenario3();
+        scenario4();
     }
 
     public void scenario1() {
@@ -49,6 +50,59 @@ public class Driver {
         return;
         }
     }
+
+    public void scenario4() {
+    System.out.println();
+    System.out.println("Create Account - Duplicate User");
+
+    qFacade.removeAccount("SSparrow");
+    qFacade.removeAccount("SallySparrow");
+
+    qFacade.addAccount("Sullivan", "Sparrow", "SSparrow", "Birds@123", "sullivan.sparrow@example.com");
+
+    boolean duplicateRejected = !qFacade.addAccount(
+        "Sally",
+        "Sparrow",
+        "SSparrow",
+        "Birds@123",
+        "sally.sparrow@example.com"
+    );
+
+    if (duplicateRejected) {
+        System.out.println("Sally Sparrow could not create an account because those credentials already belong to Sullivan Sparrow.");
+    } else {
+        System.out.println("Duplicate account test failed.");
+    }
+
+    System.out.println();
+    System.out.println("Create Account - Success");
+
+    boolean accountCreated = qFacade.addAccount(
+        "Sally",
+        "Sparrow",
+        "SallySparrow",
+        "TimeL00p@42",
+        "sally.sparrow@example.com",
+        Role.EDITOR
+    );
+
+    if (!accountCreated) {
+        System.out.println("Sally Sparrow's updated account could not be created.");
+        return;
+    }
+
+    System.out.println("Sally Sparrow successfully created a Publisher account.");
+
+    if (!qFacade.login("SallySparrow", "TimeL00p@42")) {
+        System.out.println("Sally Sparrow could not log in.");
+        return;
+    }
+
+    System.out.println("Sally Sparrow validly logged in as a Publisher.");
+    qFacade.logout();
+    System.out.println("Sally Sparrow is now logged out");
+    System.out.println();
+}
 
     public static void main(String[] args) {
         Driver driver = new Driver();
