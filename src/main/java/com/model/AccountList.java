@@ -56,35 +56,14 @@ public class AccountList {
     public boolean addAccount(String firstName, String lastName, String email, String username, String password, Role role) {
         if (hasAccount(username)) {
             return false;
-        }
-
-        UUID accountID = makeID();
-        
+        }        
         if (role == Role.EDITOR) {
-            accounts.add(new Editor (accountID, firstName, lastName, email, username, password, Role.EDITOR,
+            accounts.add(new Editor ( firstName, lastName, email, username, password, Role.EDITOR,
                 1, new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), new ArrayList<>()));
         } else {
-            accounts.add(new Student(accountID, firstName, lastName, email, username, password, Role.STUDENT,
-                1, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),  new ArrayList<>()));
+            accounts.add(new Student(firstName, lastName, email, username, password, Role.STUDENT, 1, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),  new ArrayList<>()));
         }
         return true;
-    }
-
-    // Generates a unique ID for a new user
-    public UUID makeID() {
-        while (true) {
-            UUID id = UUID.randomUUID();
-            boolean exists = false;
-            for (Account account : accounts) {
-                if (account.getAccountID().equals(id)) {
-                    exists = true;
-                    break;
-                }
-            }
-            if (!exists) {
-                return id;
-            }
-        }
     }
 
     // Saves the current list of accounts to the JSON file.

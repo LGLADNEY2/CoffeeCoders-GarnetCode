@@ -82,8 +82,7 @@ public class QuestionList {
         if (title == null || title.isEmpty() || authorID == null) {
             return null;
         }
-        Question question = new Question(authorID, title, recommendedTime,
-                difficulty, segments, tag, hints);
+        Question question = new Question(authorID, title, recommendedTime, difficulty, hints, tag, hints);
         questions.add(question);
         return question.getQuestionID(); //make return new question uuid
     }
