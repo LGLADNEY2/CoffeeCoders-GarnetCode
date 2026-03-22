@@ -148,6 +148,36 @@ public class Driver {
 }
         System.out.println("Jimmy Bauer's daily challenge: " + dailyChallenge.getTitle());
 
+        // Prints out the segments of the daily challenge question for Jimmy to work through
+        for (Segment segment : dailyChallenge.getSegments()) {
+        System.out.println(segment.getTitle() + ": " + segment.getDesc());
+        if (segment.getData() != null && !segment.getData().isBlank()) {
+            System.out.println(segment.getData());
+        }
+        System.out.println();
+}
+    // After Jimmy completes the daily challenge, prints out the solutions for the question
+    ArrayList<Solution> solutions = dailyChallenge.getSolutions();
+    for (int i = 0; i < solutions.size(); i++) {
+        Solution solution = solutions.get(i);
+        System.out.println("Solution " + (i + 1) + ": " + solution.getTitle());
+
+        for (Segment segment : solution.getSegments()) {
+            System.out.println(segment.getTitle() + ": " + segment.getDesc());
+            if (segment.getData() != null && !segment.getData().isBlank()) {
+                System.out.println(segment.getData());
+            }
+        }
+        System.out.println();
+}
+    // Adds a comment to the second solution for the question from Jimmy asking for an explanation of why the second solution works, then prints out the comment
+    if (solutions.size() >= 2) {
+        String jimmyComment = "Can someone explain why this second solution works?";
+        solutions.get(1).addComment(jimmyComment, jimmy.getAccountID());
+        System.out.println(jimmyComment);
+}
+
+
         qFacade.save();
         qFacade.logout();
         System.out.println("Jimmy Bauer is now logged out");
