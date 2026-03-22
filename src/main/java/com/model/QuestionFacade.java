@@ -42,13 +42,13 @@ public class QuestionFacade {
         return currentQuestion;
     }
 
-    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments,  ArrayList<Segment> hints) {
+    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints) {
         this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, hints, -1));
         return currentQuestion;
     }
 
     public boolean editQuestion(Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
-        if(currentQuestion != null) {
+        if (currentQuestion != null) {
             currentQuestion.setDifficulty(difficulty);
             currentQuestion.setQuestionTag(tag);
             currentQuestion.setSegments(segments);
@@ -81,7 +81,7 @@ public class QuestionFacade {
     //figure out where this goes
 
     public void giveFeedback(int rating) {
-            currentQuestion.addRating(rating);
+        currentQuestion.addRating(rating);
     }
 
 
@@ -92,6 +92,7 @@ public class QuestionFacade {
         }
         return false;
     }
+
     public boolean submitSolution(Language language, String title, ArrayList<Segment> segments) {
         return currentQuestion.addSolution(currentAccount.getAccountID(), title, language, segments);
     }
@@ -118,28 +119,6 @@ public class QuestionFacade {
         accountList.deleteAccount(username);
     }
 
-    public boolean login(String username, String password) {
-        Account account = accountList.getAccount(username, password);
-        if (account != null) {
-            currentAccount = account;
-            return true;
-        } 
-
-        return false;
-    }
-    
-    public boolean logout() {
-        save();
-        if (currentAccount != null) {
-            currentAccount = null;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean save() {
-        return DataWriter.saveAccounts() && DataWriter.saveQuestions();
-    }
 
     // Updates the daily streak for the current student (using today's date)
     public void updateDailyStreak() {
@@ -190,5 +169,28 @@ public class QuestionFacade {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean login(String username, String password) {
+        Account account = accountList.getAccount(username, password);
+        if (account != null) {
+            currentAccount = account;
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean logout() {
+        save();
+        if (currentAccount != null) {
+            currentAccount = null;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean save() {
+        return DataWriter.saveAccounts() && DataWriter.saveQuestions();
     }
 }
