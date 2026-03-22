@@ -8,6 +8,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import static com.model.DataType.HINT;
+import static com.model.DataType.STRING;
 
 public class DataLoader extends DataConstants {
     public static ArrayList<Account> getAccounts() {
@@ -149,7 +151,10 @@ public class DataLoader extends DataConstants {
                     recommendedTime = Integer.parseInt((String) recTimeObj);
                 }
 
-                // Parse segments
+                
+                // ================ segments ==================== //
+                // make a json array of the segments of each question, which is title, desc, data type, and data
+                // each "segments" instance is an array of these 4
                 JSONArray segmentsJSON = (JSONArray) questionJSON.get(QUESTION_SEGMENTS);
                 ArrayList<Segment> segments = new ArrayList<>();
                 for (Object segObj : segmentsJSON) {
@@ -162,11 +167,9 @@ public class DataLoader extends DataConstants {
                     ));
                 }
 
-                // Parse questionTag
-                JSONObject tagJSON = (JSONObject) questionJSON.get(QUESTION_QUESTION_TAG);
+                // ======================= question tags ======================= //
                 ArrayList<Category> categories = new ArrayList<>();
                 for (Object catObj : (JSONArray) tagJSON.get(QUESTION_TAG_CATEGORY)) {
-                    categories.add(Category.valueOf((String) catObj));
                 }
                 ArrayList<Language> languages = new ArrayList<>();
                 for (Object langObj : (JSONArray) tagJSON.get(QUESTION_TAG_LANGUAGE)) {
@@ -178,8 +181,10 @@ public class DataLoader extends DataConstants {
                 }
                 QuestionTag questionTag = new QuestionTag(categories, languages, courses);
 
-                // Parse hints (JSON stores them as plain strings, wrap each as a Segment)
+                // ===================== hints ===================== //
+                // make json array of hints
                 JSONArray hintsJSON = (JSONArray) questionJSON.get(QUESTION_HINTS);
+                // make array list of segments for hints, hint 
                 ArrayList<Segment> hints = new ArrayList<>();
                 if (hintsJSON != null) {
                     for (Object hintObj : hintsJSON) {
@@ -191,14 +196,21 @@ public class DataLoader extends DataConstants {
                             (String) hintJSON.get(SEGMENT_DATA)
                         ));
                     }
+                for (Object hintObj : hintsJSON) {
+                    hints.add(new Segment("Hint", (String) hintObj, "STRING", ""));
                 }
             
 
-                // Parse solutions
+                // ================ solutions ================== //
+                // make json array
                 JSONArray solutionsJSON = (JSONArray) questionJSON.get(QUESTION_SOLUTIONS);
+                // make an empty array list of solutions that will be returned at the end
                 ArrayList<Solution> solutions = new ArrayList<>();
+                // if the json file has at least questions in it, continue
                 if (solutionsJSON != null) {
+                    // for every json object in the solution json jsonarray,
                     for (Object solObj : solutionsJSON) {
+                        // get all of the variables
                         JSONObject solJSON = (JSONObject) solObj;
                         String solAuthorIDStr = (String) solJSON.get(SOLUTION_AUTHOR_ID);
                         if (solAuthorIDStr == null || solAuthorIDStr.isEmpty()) continue;
@@ -206,6 +218,7 @@ public class DataLoader extends DataConstants {
                         String solTitle = (String) solJSON.get(SOLUTION_TITLE);
                         Language solLanguage = Language.valueOf((String) solJSON.get(SOLUTION_LANGUAGE));
                         JSONArray solSegmentsJSON = (JSONArray) solJSON.get(SOLUTION_SEGMENTS);
+                        // make empty segement arraylist to hold the specific soltuions segments
                         ArrayList<Segment> solSegments = new ArrayList<>();
                         for (Object ssObj : solSegmentsJSON) {
                             JSONObject ssJSON = (JSONObject) ssObj;
@@ -234,6 +247,18 @@ public class DataLoader extends DataConstants {
                 }
 
                 questions.add(new Question(questionID, authorID, title, datePosted, rating, totalRatings, recommendedTime, difficulty, segments, questionTag, hints, solutions, comments));
+                // ======== comments ========== //
+                // make empty array list of comments 
+                ArrayList<Comment> comments = new ArrayList<>();
+                String commentText = (String) questionJSON.get(COMMENT_TEXT);
+                UUID commentAccountID = (UUID) questionJSON.get(COMMENT_ACCOUNT_ID);
+                int commentLikes = (Integer) questionJSON.get(COMMENT_LIKES);
+                String commentDatePosted = (String) questionJSON.get(COMMENT_DATE_POSTED);
+
+                // comments.add(new Comment(commentText, commentAccountID,));
+
+                questions.add(new Question(questionID, authorID, title, rating, datePosted,
+                recommendedTime, difficulty, segments, questionTag, hints, solutions, comments));
             }
 
             reader.close();
@@ -242,5 +267,6 @@ public class DataLoader extends DataConstants {
         }
 
         return questions;
+        }
     }
 }
