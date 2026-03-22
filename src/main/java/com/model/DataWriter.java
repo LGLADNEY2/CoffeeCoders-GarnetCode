@@ -143,12 +143,15 @@ public class DataWriter extends DataConstants{
     public static boolean saveQuestions() {
         QuestionList questionList = QuestionList.getInstance();
         ArrayList<Question> questions = questionList.getQuestions();
+        // Prevent accidental deletion: do not overwrite file if list is empty
+        if (questions == null || questions.isEmpty()) {
+            System.err.println("[Warning] Attempted to save empty questions list. Aborting save to prevent data loss.");
+            return false;
+        }
         JSONArray jsonQuestions = new JSONArray();
-
-        for(int i=0; i<questions.size(); ++i) {
+        for (int i = 0; i < questions.size(); ++i) {
             jsonQuestions.add(getQuestionJSON(questions.get(i)));
         }
-
         try (FileWriter file = new FileWriter(QUESTION_FILE_NAME)) {
             file.write(jsonQuestions.toJSONString());
             file.flush();
