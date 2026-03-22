@@ -17,6 +17,7 @@ public class Student extends Account {
     // basic constructor with just username and password
     public Student(String username, String password) {
         super(username, password);
+        this.setRole(Role.STUDENT);
     }
 
     // full constructor used by DataLoader to rebuild a student from JSON
@@ -31,8 +32,8 @@ public class Student extends Account {
     }
 
     // constructor with username/password and all student-specific lists
-    public Student(String username, String password, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
-        super(username, password);
+    public Student(String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
+        super(UUID.randomUUID(), username, password, firstName, lastName, email, role);
         this.dailyStreak = 1;
         this.lastLogin = new Date();
         this.favoriteQuestions = favoriteQuestions;

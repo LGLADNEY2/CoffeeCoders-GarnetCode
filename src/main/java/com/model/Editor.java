@@ -6,13 +6,19 @@ import java.util.UUID;
 public class Editor extends Student{
     private boolean admin;
 
-    public Editor(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions) {
-        super(accountID, firstName, lastName, email, username, password, role, dailyStreak, favoriteQuestions, completedQuestions, trustedRoles, userQuestions);
+    public Editor(String username, String password) {
+        super(username, password);
+        this.admin = true;
+    }
+
+    public Editor(String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions) {
+        super(UUID.randomUUID(), firstName, lastName, email, username, password, role, dailyStreak, favoriteQuestions, completedQuestions, trustedRoles, userQuestions);
         this.admin = false;
     }
-    public Editor(String username, String password, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions) {
-        super(username, password, dailyStreak, favoriteQuestions, completedQuestions, trustedRoles, userQuestions);
-        this.admin = false;
+    
+    public Editor(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions, boolean admin) {
+        super(accountID, firstName, lastName, email, username, password, role, dailyStreak, favoriteQuestions, completedQuestions, trustedRoles, userQuestions);
+        this.admin = admin;
     }
 
     public boolean getAdmin() {return admin;}
