@@ -202,7 +202,9 @@ public class DataLoader extends DataConstants {
                         }
                         Object approvedObj = solJSON.get(SOLUTION_APPROVED);
                         boolean approved = (approvedObj instanceof Boolean) && (Boolean) approvedObj;
-                        solutions.add(new Solution(solAuthorID, solTitle, solLanguage, solSegments, approved));
+                        //do we need approved boolean?
+                        // solutions.add(new Solution(solAuthorID, solTitle, solLanguage, solSegments, approved));
+                        solutions.add(new Solution(solAuthorID, solTitle, solLanguage, solSegments));
                     }
                 }
 

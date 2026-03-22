@@ -161,8 +161,6 @@ public class Question {
         return false;
     }
 
-    // needs a way to make hints. would it benefit to make it into its own class,
-    // either in here or in a seperate java file? or would we just need to make a method?
     public boolean addHint(Segment segment) {
         if (segment == null) {
             return false;
@@ -171,11 +169,12 @@ public class Question {
         return true;
     }
 
-    public boolean addSolution(UUID authorID, String title, Language language, ArrayList<Segment> segments, boolean approved) {
+    //should this have approved boolean?
+    public boolean addSolution(UUID authorID, String title, Language language, ArrayList<Segment> segments) {
         if( authorID == null ||title == null || title.isEmpty() || language == null || segments == null || segments.isEmpty()) {
             return false;
         } 
-        Solution solution = new Solution(authorID, title, language, segments, approved);
+        Solution solution = new Solution(authorID, title, language, segments);
         solutions.add(solution);
         return true;
     }

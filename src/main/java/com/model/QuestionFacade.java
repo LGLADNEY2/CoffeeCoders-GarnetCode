@@ -39,8 +39,8 @@ public class QuestionFacade {
     }
 
     //make return question instead of boolean, make new question currentQuestion
-    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, int recTime) {
-        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, new ArrayList<>(), new ArrayList<>(), recTime));
+    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, ArrayList<Solution> solutions, int recTime) {
+        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, hints, solutions, recTime));
         return currentQuestion;
     }
 
@@ -71,27 +71,31 @@ public class QuestionFacade {
         return currentQuestion.addComment(text, currentAccount.getAccountID());
     }
 
+    //gets a list of favorite questions linked to an account
     public ArrayList<Question> getFavoriteQuestions() {
-        return new ArrayList<>();
+        if (currentAccount.getRole() == Role.STUDENT) {
+            Student student = (Student) currentAccount;
+            return student.getFavoriteQuestions();
+        }
+        return null;
     }
 
+    //figure out where this goes
     public void giveFeedback(String text, int rating) {
     }
-
     public void giveFeedback(int rating) {
     }
 
+
     public boolean submitQuestion(ArrayList<QuestionTag> roles, Question question) {
+        if (currentAccount.getRole() == Role.STUDENT) {
+            Student student = (Student) currentAccount;
+            return student.addUserQuestion(question, roles);
+        }
         return false;
     }
-
-    //use this for answers, make currentSolution?
     public boolean submitSolution(Language language, String title, ArrayList<Segment> segments) {
-        return false;
-    }
-
-    public boolean submitSolution(Language language, String code) {
-        return false;
+        return currentQuestion.addSolution(currentAccount.getAccountID(), title, language, segments);
     }
 
     public void addAccount(String firstName, String lastName, String username, String password, String email) {
