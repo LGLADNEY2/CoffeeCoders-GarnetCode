@@ -1,6 +1,7 @@
 package com.model;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Driver {
@@ -119,16 +120,33 @@ public class Driver {
     public void scenario6() {
         System.out.println();
         System.out.println("Jimmy Bauer Completes Daily Tasks and Maintains a Streak");
-
+    // Checks to see if Jimmy can log in, if not prints an error message and exits the scenario
         if (!qFacade.login("JBauer", "L!obster67")) {
 			System.out.println("Sorry we couldn't login.");
 			return;
 		}
-        
+        // Gets the student account for Jimmy Bauer and updates his daily streak with the current date, then prints out his new daily streak        
         Student jimmy = (Student) AccountList.getInstance().getAccount("JBauer", "L!obster67");
         jimmy.updateDailyStreak(new java.util.Date());
         System.out.println("Jimmy Bauer is now logged in");
         System.out.println("Jimmy Bauer's current daily streak: " + jimmy.getDailyStreak());
+
+        // Finds the question with the title "Binary Search Tree" and sets it as the daily challenge for Jimmy to complete
+        ArrayList<Question> questions = QuestionList.getInstance().getQuestions();
+        Question dailyChallenge = null;
+
+        for (Question question : questions) {
+            if (question.getTitle().equalsIgnoreCase("Binary Search Tree")) {
+                dailyChallenge = question;
+                break;
+            }
+        }
+        // If the question is not found, prints an error message  
+        if (dailyChallenge == null) {
+        System.out.println("No daily challenge question was found.");
+         return;
+}
+        System.out.println("Jimmy Bauer's daily challenge: " + dailyChallenge.getTitle());
 
         qFacade.save();
         qFacade.logout();
