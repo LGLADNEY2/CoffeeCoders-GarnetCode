@@ -35,17 +35,17 @@ public class QuestionFacade {
 
     public Question getQuestion(UUID id) {
         currentQuestion = questionList.getQuestion(id);
-        return questionList.getQuestion(id);
-    }
-
-    //make return question instead of boolean, make new question currentQuestion
-    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, ArrayList<Solution> solutions, int recTime) {
-        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, hints, solutions, recTime));
         return currentQuestion;
     }
 
-    public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments) {
-        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, new ArrayList<>(), new ArrayList<>(), -1));
+    //make return question instead of boolean, make new question currentQuestion
+    public Question addQuestion(UUID authorID, String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, int recTime) {
+        currentQuestion = getQuestion(questionList.addQuestion(authorID, title, difficulty, tag, hints, segments, recTime));
+        return currentQuestion;
+    }
+
+    public Question addQuestion(UUID authorID, String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints) {
+        currentQuestion = getQuestion(questionList.addQuestion(authorID, title, difficulty, tag, hints, segments, -1));
         return currentQuestion;
     }
 
