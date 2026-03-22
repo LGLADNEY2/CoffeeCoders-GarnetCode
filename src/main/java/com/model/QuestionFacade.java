@@ -189,6 +189,6 @@ public class QuestionFacade {
     }
 
     public boolean save() {
-        return DataWriter.saveAccounts() && DataWriter.saveQuestions();
+        return questionList.save() && accountList.saveAccount();
     }
 }
