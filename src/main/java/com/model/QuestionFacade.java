@@ -78,8 +78,6 @@ public class QuestionFacade {
         return null;
     }
 
-    //figure out where this goes
-
     public void giveFeedback(int rating) {
         currentQuestion.addRating(rating);
     }
@@ -115,8 +113,8 @@ public class QuestionFacade {
         }
     }
 
-    public void removeAccount(String username) {
-        accountList.deleteAccount(username);
+    public void removeAccount(UUID accountID) {
+        accountList.deleteAccount(accountID);
     }
 
 

@@ -72,9 +72,9 @@ public class AccountList {
     }
 
     // Deletes the account with the specified username from the list.
-    public boolean deleteAccount(String userName) {
+    public boolean deleteAccount(UUID accountID) {
         for (int i = 0; i < accounts.size(); i++) {
-        if (accounts.get(i).getUsername().equalsIgnoreCase(userName)) {
+        if (accounts.get(i).getAccountID().equals(accountID)) {
             accounts.remove(i);
             }
         }
