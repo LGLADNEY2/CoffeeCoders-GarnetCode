@@ -19,7 +19,7 @@ public class Question {
     private ArrayList<Solution> solutions;
     private ArrayList<Comment> comments;
 
-    public Question(UUID authorID, String title, Difficulty difficulty, QuestionTag questionTag, ArrayList<Segment> segments, ArrayList<Segment> hints, ArrayList<Solution> solutions, int recTime) {
+    public Question(UUID authorID, String title, int recTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints) {
         this.questionID = UUID.randomUUID();
         this.authorID = authorID;
         this.title = title;
@@ -30,16 +30,14 @@ public class Question {
         this.segments = segments;
         this.questionTag = questionTag;
         this.hints = hints;
-        this.solutions = solutions;
+        this.solutions = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.recommendedTime = recTime;
-        ;
     }
-    public Question(UUID questionID, UUID authorID, String title, String datePosted,
-        int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments,
-        QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions,
+    public Question(UUID authorID, String title, String datePosted, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments,
+        QuestionTag questionTag, ArrayList<Segment> hints,
         ArrayList<Comment> comments) {
-        this.questionID = questionID;
+        this.questionID = UUID.randomUUID();
         this.authorID = authorID;
         this.title = title;
         this.datePosted = datePosted;
@@ -48,13 +46,13 @@ public class Question {
         this.segments = segments;
         this.questionTag = questionTag;
         this.hints = hints;
-        this.solutions = solutions;
+        this.solutions = new ArrayList<>();
         this.comments = comments;
         this.rating = -1;
         this.totalRatings = 0;
         
     }
-    public Question(UUID questionID, UUID authorID, String title, String datePosted, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions) {
+    public Question(UUID questionID, UUID authorID, String title, String datePosted, int rating, int totalRatings, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions, ArrayList<Comment> comments) {
         this.questionID = questionID;
         this.authorID = authorID;
         this.title = title;
@@ -64,9 +62,9 @@ public class Question {
         this.questionTag = questionTag;
         this.hints = hints;
         this.solutions = solutions;
-        this.comments = new ArrayList<>();
-        this.rating = -1;
-        this.totalRatings = 0;
+        this.comments = comments;
+        this.rating = rating;
+        this.totalRatings = totalRatings;
     }
 
     public UUID getQuestionID() {return questionID;}

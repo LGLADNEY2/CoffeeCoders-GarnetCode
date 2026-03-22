@@ -137,6 +137,7 @@ public class DataLoader extends DataConstants {
                 UUID authorID = UUID.fromString((String) questionJSON.get(AUTHOR_ID));
                 String title = (String) questionJSON.get(QUESTION_TITLE);
                 int rating = ((Long) questionJSON.get(QUESTION_RATING)).intValue();
+                int totalRatings = ((Long) questionJSON.get(QUESTION_TOTAL_RATINGS)).intValue();
                 ArrayList<Comment> comments = new ArrayList<>();
                 String datePosted = (String) questionJSON.get(QUESTION_DATE_POSTED);
                 int recommendedTime = ((Long) questionJSON.get(QUESTION_RECOMMENDED_TIME)).intValue();
@@ -203,13 +204,12 @@ public class DataLoader extends DataConstants {
                         Object approvedObj = solJSON.get(SOLUTION_APPROVED);
                         boolean approved = (approvedObj instanceof Boolean) && (Boolean) approvedObj;
                         //do we need approved boolean?
-                        // solutions.add(new Solution(solAuthorID, solTitle, solLanguage, solSegments, approved));
-                        solutions.add(new Solution(solAuthorID, solTitle, solLanguage, solSegments));
+                        // solutions.add(solAuthorID, solTitle, solLanguage, solSegments, solComments, likes, approved));
+                        solutions.add(new Solution(solAuthorID, solTitle, solLanguage, solSegments, solComments, likes, approved));
                     }
                 }
 
-                questions.add(new Question(questionID, authorID, title, datePosted,
-                recommendedTime, difficulty, segments, questionTag, hints, solutions, comments));
+                questions.add(new Question(questionID, authorID, title, datePosted, rating, totalRatings, difficulty, segments, questionTag, hints, solutions, comments));
             }
 
             reader.close();

@@ -78,12 +78,12 @@ public class QuestionList {
     }
 
     // creates a new question and adds it to the list
-    public UUID addQuestion(UUID authorID, String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, ArrayList<Solution> solutions, int recommendedTime) {
+    public UUID addQuestion(UUID authorID, String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, int recommendedTime) {
         if (title == null || title.isEmpty() || authorID == null) {
             return null;
         }
-        Question question = new Question(authorID, title,
-                difficulty, tag, segments, hints, solutions, recommendedTime);
+        Question question = new Question(authorID, title, recommendedTime,
+                difficulty, segments, tag, hints);
         questions.add(question);
         return question.getQuestionID(); //make return new question uuid
     }

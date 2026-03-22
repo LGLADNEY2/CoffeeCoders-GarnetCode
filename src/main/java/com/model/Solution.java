@@ -10,7 +10,7 @@ public class Solution {
     private ArrayList<Segment> segments;
     private ArrayList<Comment> comments;
     private int likes;
-    //private boolean approved;
+    private boolean approved;
 
     //do we keep approved boolean
     public Solution(UUID authorID, String title, Language language, ArrayList<Segment> segments) {
@@ -18,19 +18,19 @@ public class Solution {
         this.title = title;
         this.language = language;
         this.segments = segments;
-        // this.approved = approved;
+        this.approved = false;
         this.likes = 0;
         this.comments = new ArrayList<>();
     }
 
-    //do we keep approved boolean
-    public Solution(String title, Language language, ArrayList<Segment> segments) {
+    public Solution(UUID authorID, String title, Language language, ArrayList<Segment> segments, ArrayList<Comment> comments, int likes, boolean approved) {
+        this.authorID = authorID;
         this.title = title;
         this.language = language;
         this.segments = segments;
-        // this.approved = approved;
-        this.likes = 0;
-        this.comments = new ArrayList<>();
+        this.approved = approved;
+        this.likes = likes;
+        this.comments = comments;
     }
 
     public UUID getAuthorID() {return authorID;}

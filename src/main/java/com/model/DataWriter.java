@@ -106,6 +106,7 @@ public class DataWriter extends DataConstants{
         questionDetails.put(AUTHOR_ID, question.getAuthorID());
         questionDetails.put(QUESTION_TITLE, question.getTitle());
         questionDetails.put(QUESTION_RATING, question.getRating());
+        questionDetails.put(QUESTION_TOTAL_RATINGS, question.getTotalRatings());
         questionDetails.put(QUESTION_DATE_POSTED, question.getDatePosted());
         questionDetails.put(QUESTION_RECOMMENDED_TIME, question.getRecommendedTime());
         questionDetails.put(QUESTION_DIFFICULTY, question.getDifficulty().toString());

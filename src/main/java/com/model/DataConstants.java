@@ -23,6 +23,7 @@ public abstract class DataConstants {
     protected static final String AUTHOR_ID = "authorID";
     protected static final String QUESTION_TITLE = "title";
     protected static final String QUESTION_RATING = "rating";
+    protected static final String QUESTION_TOTAL_RATINGS = "totalRatings";
     protected static final String QUESTION_DATE_POSTED = "datePosted";
     protected static final String QUESTION_RECOMMENDED_TIME = "recommendedTime";
     protected static final String QUESTION_DIFFICULTY = "difficulty";
