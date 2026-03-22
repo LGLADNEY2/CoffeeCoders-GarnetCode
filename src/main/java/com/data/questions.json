@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-[{"difficulty":"INTERMEDIATE","questionID":"f59f0563-0eca-486f-8baa-ff54a53ad828","comments":[],"hints":[{"data":"","dataType":"HINT","title":"Hint 1","desc":"Try every possible subarray and compute its sum."},{"data":"","dataType":"HINT","title":"Hint 2","desc":"Can you use a HashMap to optimize?"}],"solutions":[{"comments":[],"language":JAVA,"authorID":062763c5-d9d3-4af2-893c-5986a7cae8b5,"title":"Brute Force Solution","segments":[{"data":"docs\/LongestSubarrayBruteForce.java","dataType":"FILE","title":"Brute Force Approach","desc":"Try every possible subarray and compute its sum. Time Complexity: O(n^2). See code in docs\/LongestSubarrayBruteForce.java."},{"data":"longestsubarray-bruteforce.png","dataType":"IMAGE","title":"Brute Force Image","desc":"See brute force code image."}],"likes":0},{"comments":[],"language":JAVA,"authorID":062763c5-d9d3-4af2-893c-5986a7cae8b5,"title":"HashMap Solution","segments":[{"data":"docs\/LongestSubarrayHashMap.java","dataType":"FILE","title":"HashMap Approach","desc":"Use prefix sums and a HashMap to track sums. Time Complexity: O(n). See code in docs\/LongestSubarrayHashMap.java."},{"data":"longestsubarray-hashmap.png","dataType":"IMAGE","title":"HashMap Image","desc":"See HashMap code image."}],"likes":0}],"totalRatings":0,"recommendedTime":20,"rating":-1,"authorID":062763c5-d9d3-4af2-893c-5986a7cae8b5,"title":"Longest Subarray with Given Sum","datePosted":"Sun Mar 22 17:05:59 EDT 2026","segments":[{"data":"","dataType":"HINT","title":"Hint 1","desc":"Try every possible subarray and compute its sum."},{"data":"","dataType":"HINT","title":"Hint 2","desc":"Can you use a HashMap to optimize?"}]}]
-=======
 [
     {
         "questionID": "a7658164-21a9-4f5e-a253-c331a9a783e7",
@@ -607,4 +604,3 @@
 
 ]
 
->>>>>>> 2fe0237490088a306a3eab57d6dcbe0a243c2b1f
