@@ -137,9 +137,9 @@ public class DataLoader extends DataConstants {
                 String datePosted = (String) questionJSON.get(QUESTION_DATE_POSTED);
                 Difficulty difficulty = Difficulty.valueOf((String) questionJSON.get(QUESTION_DIFFICULTY));
 
-                int rating = ((Integer) questionJSON.get(QUESTION_RATING));
-                int totalRatings = ((Integer) questionJSON.get(QUESTION_TOTAL_RATINGS));
-                int recommendedTime = ((Integer) questionJSON.get(QUESTION_RECOMMENDED_TIME));
+                int rating = toInt(questionJSON.get(QUESTION_RATING));
+                int totalRatings = toInt(questionJSON.get(QUESTION_TOTAL_RATINGS));
+                int recommendedTime = toInt(questionJSON.get(QUESTION_RECOMMENDED_TIME));
 
                 JSONArray segmentsJSON = (JSONArray) questionJSON.get(QUESTION_SEGMENTS);
                 ArrayList<Segment> segments = new ArrayList<>();
@@ -224,7 +224,7 @@ public class DataLoader extends DataConstants {
                         }
 
                         ArrayList<Comment> solComments = parseComments((JSONArray) solJSON.get(SOLUTION_COMMENTS));
-                        int likes = ((Integer) solJSON.get(SOLUTION_LIKES));
+                        int likes = toInt(solJSON.get(SOLUTION_LIKES));
                         //todo maaybe remove approved bool
                         solutions.add(new Solution(solAuthorID, solTitle, solLanguage, solSegments, solComments, likes));
                     }
@@ -270,11 +270,24 @@ public class DataLoader extends DataConstants {
 
             UUID accountID = UUID.fromString(accountIDStr);
             String datePosted = (String) commentJSON.get(COMMENT_DATE_POSTED);
-            int likes = ((Integer) commentJSON.get(COMMENT_LIKES));
+            int likes = toInt(commentJSON.get(COMMENT_LIKES));
             ArrayList<Comment> replies = parseComments((JSONArray) commentJSON.get(COMMENT_REPLIES));
             comments.add(new Comment(text, accountID, replies, likes, datePosted));
         }
 
         return comments;
+    }
+
+    private static int toInt(Object value) {
+        if (value instanceof Number) {
+            return ((Number) value).intValue();
+        }
+        if (value instanceof String) {
+            String str = (String) value;
+            if (!str.isEmpty()) {
+                return Integer.parseInt(str);
+            }
+        }
+        return 0;
     }
 }

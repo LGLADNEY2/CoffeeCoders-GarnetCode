@@ -165,7 +165,7 @@ public class DataWriter extends DataConstants{
     public static JSONObject getQuestionJSON(Question question) {
         JSONObject questionDetails = new JSONObject();
         questionDetails.put(QUESTION_ID, question.getQuestionID().toString());
-        questionDetails.put(AUTHOR_ID, question.getAuthorID());
+        questionDetails.put(AUTHOR_ID, question.getAuthorID().toString());
         questionDetails.put(QUESTION_TITLE, question.getTitle());
         questionDetails.put(QUESTION_RATING, question.getRating());
         questionDetails.put(QUESTION_TOTAL_RATINGS, question.getTotalRatings());
@@ -197,8 +197,8 @@ public class DataWriter extends DataConstants{
         JSONArray solutions = new JSONArray();
         for(int i = 0; i < question.getSolutions().size(); ++i) {
             JSONObject solution = new JSONObject();
-            solution.put(SOLUTION_AUTHOR_ID, question.getSolutions().get(i).getAuthorID());
-            solution.put(SOLUTION_LANGUAGE, question.getSolutions().get(i).getLanguage());
+            solution.put(SOLUTION_AUTHOR_ID, question.getSolutions().get(i).getAuthorID().toString());
+            solution.put(SOLUTION_LANGUAGE, question.getSolutions().get(i).getLanguage().toString());
             solution.put(SOLUTION_TITLE, question.getSolutions().get(i).getTitle());
             JSONArray solutionSegments = new JSONArray();
             for(int j = 0; j < question.getSolutions().get(i).getSegments().size(); ++j) {
@@ -227,7 +227,7 @@ public class DataWriter extends DataConstants{
             return jsonComments;
         for(int i=0; i < comments.size(); ++i) {
             JSONObject comment = new JSONObject();
-            comment.put(COMMENT_ACCOUNT_ID, comments.get(i).getAccountID());
+            comment.put(COMMENT_ACCOUNT_ID, comments.get(i).getAccountID().toString());
             comment.put(COMMENT_DATE_POSTED, comments.get(i).getDatePosted());
             comment.put(COMMENT_LIKES, comments.get(i).getLikes());
             comment.put(COMMENT_TEXT, comments.get(i).getText());

@@ -18,7 +18,7 @@ public class QuestionList {
     }
 
     public ArrayList<Question> getQuestions() {
-        return questions;
+        return DataLoader.getQuestions();
     }
 
     // turn into helper methods or make one method if possible?
