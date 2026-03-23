@@ -8,7 +8,17 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * Loads account and question data from JSON files into application model objects.
+ * @author Coffee Coders
+ */
 public class DataLoader extends DataConstants {
+    
+    /**
+     * Loads and returns all student accounts from the accounts json file.
+     *
+     * @return list of loaded accounts
+     */
     public static ArrayList<Account> getAccounts() {
         ArrayList<Account> accounts = new ArrayList<>();
         ArrayList<Question> allQuestions = getQuestions();
@@ -116,6 +126,11 @@ public class DataLoader extends DataConstants {
         return accounts;
     }
 
+    /**
+     * Loads and returns all questions from the questions json file.
+     *
+     * @return list of loaded questions
+     */
     public static ArrayList<Question> getQuestions() {
         ArrayList<Question> questions = new ArrayList<>();
 
@@ -225,7 +240,6 @@ public class DataLoader extends DataConstants {
 
                         ArrayList<Comment> solComments = parseComments((JSONArray) solJSON.get(SOLUTION_COMMENTS));
                         int likes = toInt(solJSON.get(SOLUTION_LIKES));
-                        //todo maaybe remove approved bool
                         solutions.add(new Solution(solAuthorID, solTitle, solLanguage, solSegments, solComments, likes));
                     }
                 }
@@ -257,6 +271,12 @@ public class DataLoader extends DataConstants {
         return questions;
     }
 
+    /**
+     * Parses a JSON array of comments into a list of Comment objects.
+     *
+     * @param commentsJSON JSON array containing comment data
+     * @return list of parsed comments
+     */
     private static ArrayList<Comment> parseComments(JSONArray commentsJSON) {
         ArrayList<Comment> comments = new ArrayList<>();
         if (commentsJSON == null) {
@@ -286,6 +306,12 @@ public class DataLoader extends DataConstants {
         return comments;
     }
 
+    /**
+     * Converts a numeric or numeric-string object to an integer value.
+     *
+     * @param value object to convert
+     * @return integer value, or 0 if conversion is not possible
+     */
     private static int toInt(Object value) {
         if (value instanceof Number) {
             return ((Number) value).intValue();
