@@ -5,7 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-// Student extends Account with student-specific data like streaks, favorites, and completed questions
+/**
+ * Represents a student account with streak, favorites, completed questions, and trusted role data.
+ * @author Coffee Coders
+ */
 public class Student extends Account {
     private int dailyStreak;
     private Date lastLogin;
@@ -14,13 +17,33 @@ public class Student extends Account {
     private ArrayList<QuestionTag> trustedRoles;
     private ArrayList<Question> userQuestions;
 
-    // basic constructor with just username and password
+    /**
+     * Creates a student account using username and password.
+     *
+     * @param username student username
+     * @param password student password
+     */
     public Student(String username, String password) {
         super(username, password);
         this.setRole(Role.STUDENT);
     }
 
-    // full constructor used by DataLoader to rebuild a student from JSON
+    /**
+     * Creates a student account with all fields, typically from loaded data.
+     *
+     * @param accountID account ID
+     * @param firstName first name
+     * @param lastName last name
+     * @param email email address
+     * @param username username
+     * @param password password
+     * @param role account role
+     * @param dailyStreak current daily streak
+     * @param favoriteQuestions favorite question list
+     * @param completedQuestions completed question list
+     * @param trustedRoles trusted role tags
+     * @param userQuestions user-created questions
+     */
     public Student(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(accountID, username, password, firstName, lastName, email, role);
         this.dailyStreak = dailyStreak;
@@ -31,7 +54,21 @@ public class Student extends Account {
         this.userQuestions = userQuestions;
     }
 
-    // constructor with username/password and all student-specific lists
+    /**
+     * Creates a new student account with generated account ID.
+     *
+     * @param firstName first name
+     * @param lastName last name
+     * @param email email address
+     * @param username username
+     * @param password password
+     * @param role account role
+     * @param dailyStreak current daily streak
+     * @param favoriteQuestions favorite question list
+     * @param completedQuestions completed question list
+     * @param trustedRoles trusted role tags
+     * @param userQuestions user-created questions
+     */
     public Student(String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(UUID.randomUUID(), username, password, firstName, lastName, email, role);
         this.dailyStreak = 1;
@@ -42,29 +79,89 @@ public class Student extends Account {
         this.userQuestions = userQuestions;
     }
 
-    // getters
+    /**
+     * Returns the student's daily streak.
+     *
+     * @return daily streak
+     */
     public int getDailyStreak() {return dailyStreak;}
+
+    /**
+     * Returns the student's last login date.
+     *
+     * @return last login date
+     */
     public Date getLastLogin() {return lastLogin;}
+
+    /**
+     * Returns the student's favorite questions.
+     *
+     * @return favorite question list
+     */
     public ArrayList<Question> getFavoriteQuestions() {return favoriteQuestions;}
+
+    /**
+     * Returns the student's completed questions.
+     *
+     * @return completed question list
+     */
     public ArrayList<Question> getCompletedQuestions() {return completedQuestions;}
+
+    /**
+     * Returns the student's trusted role tags.
+     *
+     * @return trusted role list
+     */
     public ArrayList<QuestionTag> getTrustedRoles() {return trustedRoles;}
+
+    /**
+     * Returns questions created by the student.
+     *
+     * @return user-created question list
+     */
     public ArrayList<Question> getUserQuestions() {return userQuestions;}
 
-    // setters (stubs)
+    /**
+     * Sets the student's daily streak.
+     *
+     * @param dailyStreak new daily streak
+     */
     public void setDailyStreak(int dailyStreak) {
         this.dailyStreak = dailyStreak;
     }
+
+    /**
+     * Sets the student's last login date.
+     *
+     * @param lastLogin new login date
+     */
     public void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
     }
+
+    /**
+     * Sets the student's trusted role tags.
+     *
+     * @param questionTags new trusted role list
+     */
     public void setTrustedRoles(ArrayList<QuestionTag> questionTags) {
         this.trustedRoles = questionTags;
     }
+
+    /**
+     * Sets the student's user-created questions.
+     *
+     * @param userQuestions new question list
+     */
     public void setUserQuestions(ArrayList<Question> userQuestions) {
         this.userQuestions = userQuestions;
     }
 
-    // looks up question by UUID from master list and adds to favorites (skips duplicates)
+    /**
+     * Adds a question to favorites by question ID.
+     *
+     * @param questionID question ID to add
+     */
     public void addFavoriteQuestion(UUID questionID) {
         if (questionID == null) return;
         for (Question q : favoriteQuestions) {
@@ -75,7 +172,11 @@ public class Student extends Account {
         favoriteQuestions.add(question);
     }
 
-    // looks up question by UUID from master list and adds to completed (skips duplicates)
+    /**
+     * Adds a question to completed questions by question ID.
+     *
+     * @param questionID question ID to add
+     */
     public void addCompletedQuestion(UUID questionID) {
         if (questionID == null) return;
         for (Question q : completedQuestions) {
@@ -86,12 +187,22 @@ public class Student extends Account {
         completedQuestions.add(question);
     }
 
-    // adds a trusted role tag to the student (stub)
+    /**
+     * Adds a trusted role tag to this student.
+     *
+     * @param questionTag trusted role tag to add
+     */
     public void addTrustedRole(QuestionTag questionTag) {
         trustedRoles.add(questionTag);
     }
 
-    // adds a user-created question if the student has the right trusted roles (stub)
+    /**
+     * Adds a user-created question if it matches one of the trusted roles.
+     *
+     * @param question question to add
+     * @param trustedRoles trusted role tags to validate against
+     * @return true if question is added, otherwise false
+     */
     public boolean addUserQuestion(Question question, ArrayList<QuestionTag> trustedRoles) {
         for(QuestionTag tag: trustedRoles) {
             if(question.getQuestionTag().getCategory().contains(tag.getCategory().get(0)) &&
@@ -103,7 +214,11 @@ public class Student extends Account {
         return false;
     }
 
-    // finds and removes a question from favorites by UUID
+    /**
+     * Removes a favorite question by question ID.
+     *
+     * @param questionID question ID to remove
+     */
     public void removeFavoriteQuestion(UUID questionID) {
         if (questionID == null) return;
         for (int i = 0; i < favoriteQuestions.size(); i++) {
@@ -114,7 +229,11 @@ public class Student extends Account {
         }
     }
 
-    // finds and removes a question from completed by UUID
+    /**
+     * Removes a completed question by question ID.
+     *
+     * @param questionID question ID to remove
+     */
     public void removeCompletedQuestion(UUID questionID) {
         if (questionID == null) return;
         for (int i = 0; i < completedQuestions.size(); i++) {
@@ -126,7 +245,12 @@ public class Student extends Account {
     }
 
 
-    // removes a trusted role from the student (stub)
+    /**
+     * Removes a trusted role tag from this student.
+     *
+     * @param questionTag trusted role tag to remove
+     * @return true if removed, otherwise false
+     */
     public boolean removeTrustedRole(QuestionTag questionTag) {
         for(QuestionTag tag: trustedRoles) {
             if(tag.equals(questionTag))
@@ -135,7 +259,12 @@ public class Student extends Account {
         return false;
     }
 
-    // removes a user-created question by UUID (stub)
+    /**
+     * Removes a user-created question by question ID.
+     *
+     * @param Question question ID to remove
+     * @return true if removed, otherwise false
+     */
     public boolean removeUserQuestion(UUID Question) {
         for(Question question: userQuestions) {
             if(question.getQuestionID().equals(Question))
@@ -144,7 +273,11 @@ public class Student extends Account {
         return false;
     }
 
-    // updates daily streak based on new login date (stub)
+    /**
+     * Updates the daily streak based on the provided login date.
+     *
+     * @param newLogin new login date
+     */
     public void updateDailyStreak(Date newLogin) {
         Calendar c = Calendar.getInstance();
         c.setTime(lastLogin);
@@ -159,7 +292,11 @@ public class Student extends Account {
         
     }
 
-    // returns a hint segment for the current question (stub)
+    /**
+     * Returns a hint segment for the current question.
+     *
+     * @return hint segment, or null when unavailable
+     */
     public Segment viewHint() {
         return null;
     }
