@@ -170,7 +170,6 @@ public class Question {
         return true;
     }
 
-    //should this have approved boolean?
     public boolean addSolution(UUID authorID, String title, Language language, ArrayList<Segment> segments) {
         if( authorID == null ||title == null || title.isEmpty() || language == null || segments == null || segments.isEmpty()) {
             return false;

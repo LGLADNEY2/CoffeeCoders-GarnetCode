@@ -18,11 +18,6 @@ public class QuestionFacade {
         this.currentQuestion = null;
     }
 
-    public ArrayList<Question> findQuestion() {
-        //what's the express purpose of here?
-        return new ArrayList<>();
-    }
-
     public ArrayList<Question> findQuestions(String keyword) {
         return questionList.getQuestions(keyword);
     }
