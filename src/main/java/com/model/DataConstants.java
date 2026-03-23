@@ -1,5 +1,9 @@
 package com.model;
 
+/**
+ * Defines shared constant keys and file paths used for JSON data loading and writing.
+ * @author Coffee Coders
+ */
 public abstract class DataConstants {
     protected static final String ACCOUNT_FILE_NAME = "src/main/java/com/data/accounts.json";
     protected static final String ACCOUNT_TEMP_FILE_NAME = "src/main/java/com/data/accounts_temp.json";
