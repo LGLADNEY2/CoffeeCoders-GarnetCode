@@ -4,13 +4,23 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Runs demonstration scenarios for account, question, and solution workflows.
+ * @author Coffee Coders
+ */
 public class Driver {
     private QuestionFacade qFacade;
 
+    /**
+     * Creates a driver with a new QuestionFacade instance.
+     */
     public Driver() {
         qFacade = new QuestionFacade();
     }
 
+    /**
+     * Executes all predefined demonstration scenarios.
+     */
     public void run() {
         scenario1();
         scenario2();
@@ -20,6 +30,9 @@ public class Driver {
         scenario6();
     }
 
+    /**
+     * Demonstrates a valid login and logout flow for Emma Johnson.
+     */
     public void scenario1() {
         System.out.println();
 
@@ -35,6 +48,9 @@ public class Driver {
         System.out.println();
     }
 
+    /**
+     * Demonstrates a valid login and logout flow for Oliver Smith.
+     */
     public void scenario2() {
         System.out.println();
 
@@ -49,7 +65,9 @@ public class Driver {
         System.out.println();
     }
 
-    //Invalid Login Attempt
+    /**
+     * Demonstrates an invalid login attempt.
+     */
     public void scenario3() {
         if (!qFacade.login("EJohnson", "WrongPassword")) {
             System.out.println("Invalid Username or Password.");
@@ -57,7 +75,9 @@ public class Driver {
         }
     }
 
-    // Create Account - Duplicate User
+    /**
+     * Demonstrates account creation, duplicate rejection, and editor account login.
+     */
     public void scenario4() {
     System.out.println();
     System.out.println("Create Account - Duplicate User");
@@ -116,7 +136,9 @@ public class Driver {
     System.out.println();
 }
 
-// Create a New Question with Two Solutions
+    /**
+     * Demonstrates creating a new question and submitting two solutions.
+     */
     public void scenario5() {
         System.out.println();
         System.out.println("Sally Sparrow Creates a New Question and Two Solutions");
@@ -200,7 +222,9 @@ public class Driver {
         System.out.println();
     }
 
-// Completes Daily Tasks and Maintains a Streak
+    /**
+     * Demonstrates completing daily tasks and updating a student's streak.
+     */
     public void scenario6() {
         System.out.println();
         System.out.println("Jimmy Bauer Completes Daily Tasks and Maintains a Streak");
@@ -281,6 +305,12 @@ public class Driver {
 
 
     }
+
+    /**
+     * Program entry point that runs all driver scenarios.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         Driver driver = new Driver();
         driver.run();

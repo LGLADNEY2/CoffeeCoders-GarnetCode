@@ -7,8 +7,17 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * Writes account and question model data to JSON files.
+ * @author Coffee Coders
+ */
 public class DataWriter extends DataConstants{
 
+    /**
+     * Saves all accounts to the accounts JSON file.
+     *
+     * @return true if save succeeds, otherwise false
+     */
     public static boolean saveAccounts() {
         AccountList accountList = AccountList.getInstance();
         ArrayList<Account> accounts = accountList.getAccounts();
@@ -28,6 +37,12 @@ public class DataWriter extends DataConstants{
         }
     }
 
+    /**
+     * Converts an Account object into its JSON representation.
+     *
+     * @param account account to convert
+     * @return JSON object for the account
+     */
     public static JSONObject getAccountJSON(Account account) {
         JSONObject accountDetails = new JSONObject();
         accountDetails.put(ACCOUNT_ID, account.getAccountID().toString());
@@ -140,6 +155,11 @@ public class DataWriter extends DataConstants{
         return accountDetails;
     }
 
+    /**
+     * Saves all questions to the questions JSON file.
+     *
+     * @return true if save succeeds, otherwise false
+     */
     public static boolean saveQuestions() {
         QuestionList questionList = QuestionList.getInstance();
         ArrayList<Question> questions = questionList.getQuestions();
@@ -162,6 +182,12 @@ public class DataWriter extends DataConstants{
         }
     }
 
+    /**
+     * Converts a Question object into its JSON representation.
+     *
+     * @param question question to convert
+     * @return JSON object for the question
+     */
     public static JSONObject getQuestionJSON(Question question) {
         JSONObject questionDetails = new JSONObject();
         questionDetails.put(QUESTION_ID, question.getQuestionID().toString());
@@ -221,6 +247,13 @@ public class DataWriter extends DataConstants{
         questionDetails.put(QUESTION_COMMENTS, getComments(start));
         return questionDetails;
     }
+
+    /**
+     * Converts a list of comments into a JSON array, including nested replies.
+     *
+     * @param comments comments to convert
+     * @return JSON array of comment objects
+     */
     public static JSONArray getComments(ArrayList<Comment> comments) {
         JSONArray jsonComments = new JSONArray();
         if(comments == null || comments.size() == 0 || comments.get(0) == null)
