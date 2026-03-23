@@ -17,15 +17,6 @@ public class Segment {
     public String getDesc() {return desc;}
     public DataType getDataType() {return dataType;}
     public String getData() {return data;}
-
-    public boolean editData(DataType dataType, String data) {
-            if (dataType == null || data == null || data.isBlank()) {
-                return false;
-            }
-            this.dataType = dataType;
-            this.data = data;
-        return true;
-    }
     
     public void setTitle(String title) {
         if (title != null && !title.isBlank()) {
@@ -37,6 +28,15 @@ public class Segment {
         if (desc != null && !desc.isBlank()) {
             this.desc = desc;
         }
+    }
+
+    public boolean editData(DataType dataType, String data) {
+        if (dataType == null || data == null || data.isBlank()) {
+            return false;
+        }
+        this.dataType = dataType;
+        this.data = data;
+        return true;
     }
 }
 

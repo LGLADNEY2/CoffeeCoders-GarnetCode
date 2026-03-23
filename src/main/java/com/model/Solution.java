@@ -37,13 +37,13 @@ public class Solution {
     public int getLikes() {return likes;}
 
     public void setAuthorID(UUID authorID) {
-
+        this.authorID = authorID;
     }
     public void setTitle(String title) {
         this.title = title;
     }
     public void setLanguage(Language language) {
-
+        this.language = language;
     }
     public void setSegments(ArrayList<Segment> segments) {
         this.segments = segments;
@@ -52,6 +52,7 @@ public class Solution {
     public void like() {
         this.likes++;
     }
+
     public boolean addComment(String text, UUID authorID) {
         if (text == null || text.isEmpty() || authorID == null) {
         return false;
