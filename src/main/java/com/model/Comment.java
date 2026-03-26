@@ -116,7 +116,7 @@ public class Comment {
      * @param datePosted date the reply was posted
      * @return true if the reply is added, otherwise false
      */
-    public boolean addReply(UUID accountID, String text, String datePosted) {
+    public boolean addReply(UUID accountID, String text) {
         if (accountID == null || text == null || text.isEmpty()) {
             return false;
         }
