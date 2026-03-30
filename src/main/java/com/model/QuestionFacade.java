@@ -329,6 +329,10 @@ public class QuestionFacade {
         return false;
     }
 
+    public Account debug_getAccount(){
+        return currentAccount;
+    }
+
     /**
      * Saves question and account data.
      *
