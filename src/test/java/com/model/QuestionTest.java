@@ -7,6 +7,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
+/**
+ * Tests for Question Class
+ * @author joshua coleman
+ */
 public class QuestionTest {
 
     @Test
