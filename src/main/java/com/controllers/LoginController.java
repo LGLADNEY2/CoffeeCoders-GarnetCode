@@ -2,6 +2,7 @@ package com.controllers;
 
 import java.io.IOException;
 
+import com.model.QuestionFacade;
 import com.techprep.App;
 
 import javafx.event.ActionEvent;
@@ -30,6 +31,13 @@ public class LoginController {
         String userName = txt_username.getText();
         String password = txt_password.getText();
         System.out.println("Your name is " + userName + " pass " + password);
+        QuestionFacade facade = QuestionFacade.getInstance();
+        //f.addAccount("temp", "temp", userName, password, "temp");
+        if(facade.login(userName, password)){
+            System.out.println("Successfully logged in");
+        } else {
+            System.out.println("Error logging in");
+        }
     }
 
 }

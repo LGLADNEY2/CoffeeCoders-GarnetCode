@@ -14,15 +14,24 @@ public class QuestionFacade {
     private AccountList accountList;
     private Account currentAccount;
     private Question currentQuestion;
+    private static QuestionFacade facade;
 
     /**
      * Creates a facade with shared question and account lists.
      */
-    public QuestionFacade() {
+    private QuestionFacade() {
         this.questionList = QuestionList.getInstance();
         this.accountList = AccountList.getInstance();
         this.currentAccount = null;
         this.currentQuestion = null;
+    }
+
+    public static QuestionFacade getInstance() {
+        if(facade == null){
+            facade = new QuestionFacade();
+        }
+
+        return facade;
     }
 
     /**
