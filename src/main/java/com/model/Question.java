@@ -12,7 +12,7 @@ public class Question {
     private UUID questionID;
     private UUID authorID;
     private String title;
-    private int rating;
+    private float rating;
     private int totalRatings;
     private String datePosted;
     private int recommendedTime;
@@ -96,7 +96,7 @@ public class Question {
      * @param solutions submitted solutions
      * @param comments question comments
      */
-    public Question(UUID questionID, UUID authorID, String title, String datePosted, int rating, int totalRatings, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions, ArrayList<Comment> comments) {
+    public Question(UUID questionID, UUID authorID, String title, String datePosted, float rating, int totalRatings, int recommendedTime, Difficulty difficulty, ArrayList<Segment> segments, QuestionTag questionTag, ArrayList<Segment> hints, ArrayList<Solution> solutions, ArrayList<Comment> comments) {
         this.questionID = questionID;
         this.authorID = authorID;
         this.title = title;
@@ -145,7 +145,11 @@ public class Question {
      *
      * @return rating value
      */
-    public int getRating() {return rating;}
+    public float getRating() {
+        if(rating == -1)
+            return 0;
+        return rating;
+    }
 
     /**
      * Returns the total number of ratings.
@@ -300,8 +304,8 @@ public class Question {
      * @param rating rating value from 1 to 5
      * @return true if rating is accepted, otherwise false
      */
-    public boolean addRating(int rating) {
-        if( rating < 1 || rating > 5) {
+    public boolean addRating(float rating) {
+        if( rating < 0 || rating > 5) {
             return false;
         }
         this.rating = calculateRating(rating);
@@ -315,12 +319,12 @@ public class Question {
      * @param rating new rating value
      * @return updated rating
      */
-    public int calculateRating(int rating) {
+    public float calculateRating(float rating) {
         if (this.rating == -1) {
-            this.totalRatings = 1;
+            this.totalRatings = 0;
             return rating;
         }
-        return (this.rating + this.rating*this.totalRatings) / this.totalRatings++;
+        return (this.rating + this.rating*this.totalRatings) / (this.totalRatings+1);
     }
 
     /**
