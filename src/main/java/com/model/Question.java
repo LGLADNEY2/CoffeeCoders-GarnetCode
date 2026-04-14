@@ -324,7 +324,7 @@ public class Question {
             this.totalRatings = 0;
             return rating;
         }
-        return (this.rating + this.rating*this.totalRatings) / (this.totalRatings+1);
+        return (this.rating*this.totalRatings + rating) / (this.totalRatings+1);
     }
 
     /**
@@ -344,21 +344,37 @@ public class Question {
     }
 
     /**
-     * Removes a comment by account ID and posted date.
+     * Removes a reply that matches the given account ID and index.
      *
-     * @param accountID comment author account ID
-     * @param datePosted posted date of the comment
-     * @return true if a comment is removed, otherwise false
+     * @param accountID account ID of the reply author
+     * @param index index of the accounts replies
+     * @return result of the remove attempt
      */
-    public boolean removeComment(UUID accountID, String datePosted) {
-        for (int i = 0; i < comments.size(); i++) {
-            Comment comment = comments.get(i);
-            if (comment.getAccountID().equals(accountID) && comment.getDatePosted().equals(datePosted)) {
-                comments.remove(i);
+    public boolean removeComment(UUID accountID, int index) {
+        ArrayList<Comment> accountReplies = getAccountComments(accountID);
+        String date = accountReplies.get(index).getDatePosted();
+        for(Comment comment: comments) {
+            if(comment.getDatePosted().equals(date)) {
+                comments.remove(comment);
                 return true;
             }
         }
         return false;
+    }
+
+     /**
+     * Returns the replies for a user.
+     *
+     * @param accountID A account's ID
+     * @return list of replies
+     */
+    public ArrayList<Comment> getAccountComments(UUID accountID) {
+        ArrayList<Comment> filtered = new ArrayList<>();
+        for(Comment comment: comments){
+            if(comment.getAccountID() == accountID)
+                filtered.add(comment);
+        }
+        return filtered;
     }
 
     /**
