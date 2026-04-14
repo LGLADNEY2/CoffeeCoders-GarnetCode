@@ -1,7 +1,4 @@
 package com.model;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +12,7 @@ public class Driver {
      * Creates a driver with a new QuestionFacade instance.
      */
     public Driver() {
-        qFacade = new QuestionFacade();
+        qFacade = QuestionFacade.getInstance();
     }
 
     /**

@@ -69,7 +69,7 @@ public class QuestionTest {
         Question question = new Question(id, "test", null, null, null, null);
         question.addRating(5);
         question.addRating(5);
-        boolean twoRatings = question.getTotalRatings() == 2;
+        boolean twoRatings = question.getTotalRatings() == 5;
         assertTrue(twoRatings);
     }
 

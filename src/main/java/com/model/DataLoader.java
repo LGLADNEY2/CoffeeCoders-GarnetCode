@@ -2,7 +2,7 @@ package com.model;
 
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -152,7 +152,7 @@ public class DataLoader extends DataConstants {
                 String datePosted = (String) questionJSON.get(QUESTION_DATE_POSTED);
                 Difficulty difficulty = Difficulty.valueOf((String) questionJSON.get(QUESTION_DIFFICULTY));
 
-                int rating = toInt(questionJSON.get(QUESTION_RATING));
+                float rating = Float.parseFloat(questionJSON.get(QUESTION_RATING).toString());
                 int totalRatings = toInt(questionJSON.get(QUESTION_TOTAL_RATINGS));
                 int recommendedTime = toInt(questionJSON.get(QUESTION_RECOMMENDED_TIME));
 
