@@ -27,6 +27,11 @@ public class LoginController {
     }
 
     @FXML
+    void goToSignup(ActionEvent event) throws IOException {
+        App.setRoot("signup");
+    }
+
+    @FXML
     void login(ActionEvent event) {
         String userName = txt_username.getText();
         String password = txt_password.getText();

@@ -1,31 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.LoginController">
-    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0">
-         <children>
-              <Button fx:id="secondaryButton" onAction="#back" text="&lt;" />
-              <Label layoutX="59.0" layoutY="8.0" styleClass="title" text="Login" />
-            <Label layoutX="9.0" layoutY="74.0" text="UserName" />
-            <TextField fx:id="txt_username" layoutX="4.0" layoutY="107.0" />
-            <Label layoutX="4.0" layoutY="151.0" text="Password" />
-            <TextField fx:id="txt_password" layoutX="4.0" layoutY="174.0" />
-         </children>
-      </Pane>
-      <Button fx:id="btn_login" onAction="#login" text="Login" />
-    </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-    <stylesheets>
-      <URL value="@styles.css" />
-   </stylesheets>
-</VBox>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           prefWidth="1300.0" prefHeight="1100.0"
+           style="-fx-background-color: #4f6da7;"
+           fx:controller="com.controllers.LoginController">
+
+    <!-- Background image -->
+    <ImageView fx:id="backgroundImage"
+               fitWidth="1300.0"
+               fitHeight="1100.0"
+               preserveRatio="false" />
+
+    <!-- Center login card -->
+    <AnchorPane prefWidth="520.0" prefHeight="640.0"
+                style="-fx-background-color: rgba(255,255,255,0.78);
+                       -fx-background-radius: 10;
+                       -fx-border-radius: 10;
+                       -fx-border-color: rgba(0,0,0,0.15);
+                       -fx-border-width: 1;">
+
+        <children>
+            <VBox spacing="18.0"
+                  AnchorPane.topAnchor="18.0"
+                  AnchorPane.leftAnchor="22.0"
+                  AnchorPane.rightAnchor="22.0"
+                  AnchorPane.bottomAnchor="18.0">
+
+                <children>
+                    <!-- Header -->
+                    <HBox alignment="CENTER_LEFT">
+                        <children>
+                            <Label text="Log in"
+                                   style="-fx-font-size: 26px;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #7a3c3c;" />
+                        </children>
+                    </HBox>
+
+                    <Label text=""
+                           style="-fx-border-color: rgba(0,0,0,0.35);
+                                  -fx-border-width: 0 0 1 0;" />
+
+                    <!-- Close button -->
+                    <HBox alignment="CENTER_RIGHT">
+                        <children>
+                                <Button text="×"
+                                    onAction="#back"
+                                    prefWidth="42.0"
+                                    prefHeight="42.0"
+                                    style="-fx-background-radius: 999;
+                                           -fx-border-radius: 999;
+                                           -fx-background-color: rgba(255,255,255,0.75);
+                                           -fx-border-color: rgba(122,60,60,0.55);
+                                           -fx-text-fill: #7a3c3c;
+                                           -fx-font-size: 22px;
+                                           -fx-font-weight: bold;" />
+                        </children>
+                    </HBox>
+
+                    <!-- Username -->
+                    <VBox spacing="8.0">
+                        <children>
+                            <Label text="Username"
+                                   style="-fx-font-size: 22px;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #7a3c3c;" />
+                            <TextField fx:id="txt_username" promptText="Enter Your Username"
+                                       prefHeight="48.0"
+                                       style="-fx-background-color: transparent;
+                                              -fx-border-color: #8c8c8c;
+                                              -fx-border-width: 2;
+                                              -fx-border-radius: 4;
+                                              -fx-background-radius: 4;
+                                              -fx-font-size: 20px;
+                                              -fx-text-fill: #666;" />
+                        </children>
+                    </VBox>
+
+                    <!-- Password -->
+                    <VBox spacing="8.0">
+                        <children>
+                            <Label text="Password"
+                                   style="-fx-font-size: 22px;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #7a3c3c;" />
+                            <PasswordField fx:id="txt_password" promptText="Enter Your Password"
+                                           prefHeight="48.0"
+                                           style="-fx-background-color: transparent;
+                                                  -fx-border-color: #8c8c8c;
+                                                  -fx-border-width: 2;
+                                                  -fx-border-radius: 4;
+                                                  -fx-background-radius: 4;
+                                                  -fx-font-size: 20px;
+                                                  -fx-text-fill: #666;" />
+                        </children>
+                    </VBox>
+
+                    <HBox alignment="CENTER_LEFT">
+                        <children>
+                            <Hyperlink text="Forgot password?"
+                                       style="-fx-text-fill: #7a3c3c;
+                                              -fx-font-size: 14px;
+                                              -fx-padding: 0;
+                                              -fx-underline: false;" />
+                        </children>
+                    </HBox>
+
+                    <VBox spacing="8.0" VBox.vgrow="ALWAYS" />
+
+                          <!-- Log in button -->
+                        <Button fx:id="btn_login" text="Log in"
+                            onAction="#login"
+                            prefHeight="68.0"
+                            maxWidth="1.7976931348623157E308"
+                            style="-fx-background-color: #d92b2b;
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 22px;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 4;
+                                   -fx-border-radius: 4;" />
+
+                    <Label text=""
+                           style="-fx-border-color: rgba(0,0,0,0.35);
+                                  -fx-border-width: 1 0 0 0;" />
+
+                    <!-- Bottom links -->
+                    <VBox spacing="6.0" alignment="CENTER">
+                        <children>
+                            <Label text="Don't have an account?"
+                                   style="-fx-font-size: 20px;
+                                          -fx-text-fill: #7a3c3c;" />
+                            <Button text="Sign up"
+                                 onAction="#goToSignup"
+                                 style="-fx-background-color: transparent;
+                                     -fx-font-size: 20px;
+                                     -fx-font-weight: bold;
+                                     -fx-text-fill: #7a3c3c;
+                                     -fx-underline: true;
+                                     -fx-cursor: hand;" />
+                        </children>
+                    </VBox>
+                </children>
+
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </VBox>
+        </children>
+    </AnchorPane>
+</StackPane>

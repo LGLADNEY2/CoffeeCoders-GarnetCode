@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #4f6da7;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25">
+<StackPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #4f6da7;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.controllers.SignupController">
 
     <!-- Background image -->
     <ImageView fx:id="backgroundImage" fitHeight="900.0" fitWidth="1200.0" preserveRatio="false">
@@ -39,7 +39,7 @@
                     <!-- Close button -->
                     <HBox alignment="CENTER_RIGHT">
                         <children>
-                            <Button prefHeight="42.0" prefWidth="42.0" style="-fx-background-radius: 999;                                            -fx-border-radius: 999;                                            -fx-background-color: rgba(255,255,255,0.75);                                            -fx-border-color: rgba(122,60,60,0.55);                                            -fx-text-fill: #7a3c3c;                                            -fx-font-size: 22px;                                            -fx-font-weight: bold;" text="×" />
+                            <Button onAction="#goToHome" prefHeight="42.0" prefWidth="42.0" style="-fx-background-radius: 999;                                            -fx-border-radius: 999;                                            -fx-background-color: rgba(255,255,255,0.75);                                            -fx-border-color: rgba(122,60,60,0.55);                                            -fx-text-fill: #7a3c3c;                                            -fx-font-size: 22px;                                            -fx-font-weight: bold;" text="×" />
                         </children>
                     </HBox>
 
@@ -78,7 +78,7 @@
                     <VBox alignment="CENTER" spacing="6.0">
                         <children>
                             <Label style="-fx-font-size: 20px;                                           -fx-text-fill: #7a3c3c;" text="Already have an account?" />
-                            <Label style="-fx-font-size: 20px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #7a3c3c;                                           -fx-underline: true;" text="Log in" />
+                            <Button onAction="#goToLogin" style="-fx-background-color: transparent;                                            -fx-font-size: 20px;                                            -fx-font-weight: bold;                                            -fx-text-fill: #7a3c3c;                                            -fx-underline: true;                                            -fx-cursor: hand;" text="Log in" />
                         </children>
                     </VBox>
                 </children>
