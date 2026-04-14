@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.techprep/com.techprep.App",
+            "projectName": "coffeecoders-garnetcode"
+        },
+        {
+            "type": "java",
             "name": "Driver",
             "request": "launch",
             "mainClass": "com.techprep/com.model.Driver",
