@@ -69,7 +69,7 @@ public class QuestionTest {
         Question question = new Question(id, "test", null, null, null, null);
         question.addRating(5);
         question.addRating(5);
-        boolean twoRatings = question.getTotalRatings() == 5;
+        boolean twoRatings = question.getTotalRatings() == 2;
         assertTrue(twoRatings);
     }
 
@@ -79,7 +79,8 @@ public class QuestionTest {
         Question question = new Question(id, "test", null, null, null, null);
         question.addRating(5);
         question.addRating(4);
-        boolean calculateRatings = question.getRating() == (5+4)/2;
+        float test = (float) 4.5;
+        boolean calculateRatings = question.getRating() == test;
         assertTrue(calculateRatings);
     }
 
@@ -118,9 +119,8 @@ public class QuestionTest {
         UUID accountID = UUID.randomUUID();
         Account account = new Account("User", "123");
         question.addComment("hello", accountID);
-        boolean commentRemoved = false;
-        // No way to find a comment's date after its been created
-        assertTrue(commentRemoved);  
+
+        assertTrue(question.removeComment(accountID, 0));  
     }
 
     @Test

@@ -82,6 +82,21 @@ public class Comment {
     public int getLikes() {return likes;}
 
     /**
+     * Returns the replies for a user.
+     *
+     * @param accountID A account's ID
+     * @return list of replies
+     */
+    public ArrayList<Comment> getAccountComments(UUID accountID) {
+        ArrayList<Comment> filtered = new ArrayList<>();
+        for(Comment comment: replies){
+            if(comment.getAccountID() == accountID)
+                filtered.add(comment);
+        }
+        return filtered;
+    }
+
+    /**
      * Updates the text for this comment.
      *
      * @param text new comment text
@@ -126,17 +141,20 @@ public class Comment {
     }
 
     /**
-     * Removes a reply that matches the given account ID and date.
+     * Removes a reply that matches the given account ID and index.
      *
      * @param accountID account ID of the reply author
-     * @param datePosted date of the reply
+     * @param index index of the accounts replies
      * @return result of the remove attempt
      */
-    public boolean removeComment(UUID accountID, String datePosted) {
-        for(Comment reply: replies) {
-            if(reply.getAccountID().equals(accountID) && reply.getDatePosted().equals(datePosted))
-                replies.remove(reply);
-            return true;
+    public boolean removeComment(UUID accountID, int index) {
+        ArrayList<Comment> accountReplies = getAccountComments(accountID);
+        String date = accountReplies.get(index).getDatePosted();
+        for(Comment comment: replies) {
+            if(comment.getDatePosted().equals(date)) {
+                replies.remove(comment);
+                return true;
+            }
         }
         return false;
     }
