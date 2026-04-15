@@ -37,9 +37,13 @@ public class LoginController {
         String password = txt_password.getText();
         System.out.println("Your name is " + userName + " pass " + password);
         QuestionFacade facade = QuestionFacade.getInstance();
-        //f.addAccount("temp", "temp", userName, password, "temp");
         if(facade.login(userName, password)){
             System.out.println("Successfully logged in");
+            try {
+                App.setRoot("dashboard");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             System.out.println("Error logging in");
         }
