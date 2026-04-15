@@ -198,6 +198,28 @@ public class DataWriter extends DataConstants{
         questionDetails.put(QUESTION_DATE_POSTED, question.getDatePosted());
         questionDetails.put(QUESTION_RECOMMENDED_TIME, question.getRecommendedTime());
         questionDetails.put(QUESTION_DIFFICULTY, question.getDifficulty().toString());
+        JSONObject questionTag = new JSONObject();
+        
+        JSONArray categories = new JSONArray();
+        for (Category category : question.getQuestionTag().getCategory()) {
+            categories.add(category.toString());
+        }
+
+        JSONArray languages = new JSONArray();
+        for (Language language : question.getQuestionTag().getLanguage()) {
+            languages.add(language.toString());
+        }
+
+        JSONArray courses = new JSONArray();
+            for (Course course : question.getQuestionTag().getCourse()) {
+                courses.add(course.toString());
+            }
+        questionTag.put(QUESTION_TAG_CATEGORY, categories);
+        questionTag.put(QUESTION_TAG_LANGUAGE, languages);
+        questionTag.put(QUESTION_TAG_COURSE, courses);
+        questionDetails.put(QUESTION_QUESTION_TAG, questionTag);
+
+
         JSONArray segments = new JSONArray();
         for(int i = 0; i < question.getSegments().size(); ++i) {
             JSONObject segment = new JSONObject();

@@ -35,12 +35,12 @@
                     <Label text="Continue" styleClass="section-title" />
                     <TableView fx:id="continueTable" styleClass="problem-table">
                         <columns>
-                            <TableColumn text="Problem Title  Date" />
-                            <TableColumn text="Category" />
-                            <TableColumn text="Language" />
-                            <TableColumn text="Class" />
-                            <TableColumn text="Difficulty" />
-                            <TableColumn text="Rating" />
+                            <TableColumn fx:id="colTitleDate" text="Problem Title / Date" />
+                            <TableColumn fx:id="colCategory" text="Category" />
+                            <TableColumn fx:id="colLanguage" text="Language" />
+                            <TableColumn fx:id="colClass" text="Class" />
+                            <TableColumn fx:id="colDifficulty" text="Difficulty" />
+                            <TableColumn fx:id="colRating" text="Rating" />
                         </columns>
                     </TableView>
                 </VBox>
@@ -49,12 +49,12 @@
                     <Label text="Recommended" styleClass="section-title" />
                     <TableView fx:id="recommendedTable" styleClass="problem-table">
                         <columns>
-                            <TableColumn text="Problem Title / Date" />
-                            <TableColumn text="Category" />
-                            <TableColumn text="Language" />
-                            <TableColumn text="Class" />
-                            <TableColumn text="Difficulty" />
-                            <TableColumn text="Rating" />
+                            <TableColumn fx:id="colTitleDate" text="Problem Title / Date" />
+                            <TableColumn fx:id="colCategory" text="Category" />
+                            <TableColumn fx:id="colLanguage" text="Language" />
+                            <TableColumn fx:id="colClass" text="Class" />
+                            <TableColumn fx:id="colDifficulty" text="Difficulty" />
+                            <TableColumn fx:id="colRating" text="Rating" />
                         </columns>
                     </TableView>
                 </VBox>
@@ -63,12 +63,12 @@
                     <Label text="Favorites" styleClass="section-title" />
                     <TableView fx:id="favoritesTable" styleClass="problem-table">
                         <columns>
-                            <TableColumn text="Problem Title  Date" />
-                            <TableColumn text="Category" />
-                            <TableColumn text="Language" />
-                            <TableColumn text="Class" />
-                            <TableColumn text="Difficulty" />
-                            <TableColumn text="Rating" />
+                            <TableColumn fx:id="colTitleDate" text="Problem Title / Date" />
+                            <TableColumn fx:id="colCategory" text="Category" />
+                            <TableColumn fx:id="colLanguage" text="Language" />
+                            <TableColumn fx:id="colClass" text="Class" />
+                            <TableColumn fx:id="colDifficulty" text="Difficulty" />
+                            <TableColumn fx:id="colRating" text="Rating" />
                         </columns>
                     </TableView>
                 </VBox>

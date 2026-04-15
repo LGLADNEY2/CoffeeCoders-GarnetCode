@@ -338,8 +338,16 @@ public class QuestionFacade {
         return false;
     }
 
-    public Account debug_getAccount(){
+    public Account getCurrentAccount(){
         return currentAccount;
+    }
+
+    public ArrayList<Question> getQuestions() {
+        return questionList.getQuestions();
+    }
+
+    public void setCurrentAccount(Account account) {
+        this.currentAccount = account;
     }
 
     /**

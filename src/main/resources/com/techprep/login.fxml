@@ -122,7 +122,7 @@
 
                           <!-- Log in button -->
                         <Button fx:id="btn_login" text="Log in"
-                            onAction="#login"
+                            onMouseClicked="#btn_Login"
                             prefHeight="68.0"
                             maxWidth="1.7976931348623157E308"
                             style="-fx-background-color: #d92b2b;

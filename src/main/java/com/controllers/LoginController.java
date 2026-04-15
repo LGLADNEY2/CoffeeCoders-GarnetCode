@@ -1,19 +1,20 @@
 package com.controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.model.QuestionFacade;
 import com.techprep.App;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
-public class LoginController {
-
-    @FXML
-    private Button btn_login;
+public class LoginController implements  Initializable{
+    public QuestionFacade qFacade;
 
     @FXML
     private TextField txt_password;
@@ -22,31 +23,30 @@ public class LoginController {
     private TextField txt_username;
 
     @FXML
-    void back(ActionEvent event) throws IOException {
+    private void back(ActionEvent event) throws IOException {
         App.setRoot("home");
     }
 
     @FXML
-    void goToSignup(ActionEvent event) throws IOException {
+    private void goToSignup(ActionEvent event) throws IOException {
         App.setRoot("signup");
     }
 
     @FXML
-    void login(ActionEvent event) {
-        String userName = txt_username.getText();
+    private void btn_Login(MouseEvent event) throws IOException{
+        String username = txt_username.getText();
         String password = txt_password.getText();
-        System.out.println("Your name is " + userName + " pass " + password);
-        QuestionFacade facade = QuestionFacade.getInstance();
-        if(facade.login(userName, password)){
-            System.out.println("Successfully logged in");
-            try {
-                App.setRoot("dashboard");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("Error logging in");
+        
+        if(!qFacade.login(username, password)){
+            return;
         }
+        qFacade.login(username, password);
+        App.setRoot("dashboard");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        qFacade = QuestionFacade.getInstance();
     }
 
 }

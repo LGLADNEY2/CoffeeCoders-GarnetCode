@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="814.0" prefWidth="900.0" style="-fx-background-color: #1f1a18;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.controllers.HomeController">
+<StackPane prefHeight="814.0" prefWidth="900.0" style="-fx-background-color: #1f1a18;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.HomeController">
 
     <!-- Background image -->
     <ImageView fx:id="backgroundImage" fitHeight="814.0" fitWidth="900.0" preserveRatio="false">
@@ -54,7 +54,7 @@
                         <children>
                             <Label style="-fx-text-fill: white;                                           -fx-font-size: 44px;                                           -fx-font-weight: bold;" text="Garnet Code" />
                             <Label style="-fx-text-fill: rgba(255,255,255,0.7);                                           -fx-font-size: 18px;" text="Prepare for Tech Interviews" />
-                            <Button onAction="#goToLogin" prefHeight="38.0" prefWidth="142.0" style="-fx-background-color: #a82525;                                            -fx-text-fill: white;                                            -fx-font-size: 14px;                                            -fx-background-radius: 6;                                            -fx-border-radius: 6;" text="Get Started" />
+                            <Button fx:id="button" onAction="#goToLogin" prefHeight="38.0" prefWidth="142.0" style="-fx-background-color: #a82525;                                            -fx-text-fill: white;                                            -fx-font-size: 14px;                                            -fx-background-radius: 6;                                            -fx-border-radius: 6;" text="Get Started" />
                         </children>
                     </VBox>
                 </center>
