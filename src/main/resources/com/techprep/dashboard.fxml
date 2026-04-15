@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="dashboardRoot" xmlns:fx="http://javafx.com/fxml" fx:controller="com.controllers.HomeController">
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="20" styleClass="sidebar" prefWidth="180" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+            <Label text="GARNETCODE" styleClass="sidebar-title" />
+            <VBox spacing="10" styleClass="sidebar-nav">
+                <Button text="Dashboard" styleClass="sidebar-btn" />
+                <Button text="Favorites" styleClass="sidebar-btn" />
+                <Button text="Questions" styleClass="sidebar-btn" />
+                <Button text="Create" styleClass="sidebar-btn" />
+            </VBox>
+        </VBox>
+    </left>
+    <!-- Main Content -->
+    <center>
+        <VBox spacing="20" styleClass="main-content" alignment="TOP_CENTER">
+            <!-- Top Bar -->
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="top-bar">
+                <TextField promptText="Search for problems here..." styleClass="search-bar" />
+                <Button styleClass="filter-btn">
+                    <Label text="\uD83D\uDD0D" />
+                </Button>
+            </HBox>
+            <!-- Sections -->
+            <VBox spacing="20" styleClass="sections">
+                <!-- Continue Section -->
+                <VBox spacing="10" styleClass="section">
+                    <Label text="Continue" styleClass="section-title" />
+                    <TableView fx:id="continueTable" styleClass="problem-table">
+                        <columns>
+                            <TableColumn text="Problem Title & Date" />
+                            <TableColumn text="Category" />
+                            <TableColumn text="Language" />
+                            <TableColumn text="Class" />
+                            <TableColumn text="Difficulty" />
+                            <TableColumn text="Rating" />
+                        </columns>
+                    </TableView>
+                </VBox>
+                <!-- Recommended Section -->
+                <VBox spacing="10" styleClass="section">
+                    <Label text="Recommended" styleClass="section-title" />
+                    <TableView fx:id="recommendedTable" styleClass="problem-table">
+                        <columns>
+                            <TableColumn text="Problem Title & Date" />
+                            <TableColumn text="Category" />
+                            <TableColumn text="Language" />
+                            <TableColumn text="Class" />
+                            <TableColumn text="Difficulty" />
+                            <TableColumn text="Rating" />
+                        </columns>
+                    </TableView>
+                </VBox>
+                <!-- Favorites Section -->
+                <VBox spacing="10" styleClass="section">
+                    <Label text="Favorites" styleClass="section-title" />
+                    <TableView fx:id="favoritesTable" styleClass="problem-table">
+                        <columns>
+                            <TableColumn text="Problem Title & Date" />
+                            <TableColumn text="Category" />
+                            <TableColumn text="Language" />
+                            <TableColumn text="Class" />
+                            <TableColumn text="Difficulty" />
+                            <TableColumn text="Rating" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </VBox>
+    </center>
+    <!-- Profile Panel -->
+    <right>
+        <VBox spacing="20" styleClass="profile-panel" alignment="TOP_CENTER" prefWidth="250">
+            <ImageView fx:id="profileImage" fitWidth="80" fitHeight="80" styleClass="profile-image" />
+            <Label text="Good Morning, Cocky!" styleClass="profile-greeting" />
+            <Label text="Continue Your Journey And\nAchieve Your Target" styleClass="profile-subtext" />
+            <HBox spacing="10" alignment="CENTER">
+                <Button styleClass="profile-icon-btn" />
+                <Button styleClass="profile-icon-btn" />
+                <Button styleClass="profile-icon-btn" />
+            </HBox>
+            <VBox spacing="10" alignment="CENTER">
+                <Label text="Daily Streak" styleClass="streak-label" />
+                <ProgressBar fx:id="streakBar" progress="0.2" styleClass="streak-bar" />
+                <Label text="2" styleClass="streak-count" />
+            </VBox>
+            <Label text="Longest Streak\n295 Days" styleClass="profile-stat" />
+            <Label text="Completed Questions\n0" styleClass="profile-stat" />
+        </VBox>
+    </right>
+</BorderPane>
