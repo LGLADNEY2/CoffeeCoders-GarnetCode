@@ -6,6 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
+import com.techprep.App;
+
 public class CreateQuestionController {
     @FXML private TextField titleField;
     @FXML private TextField timeField;
@@ -20,6 +24,16 @@ public class CreateQuestionController {
     @FXML
     private void initialize() {
         
+    }
+
+    @FXML
+    private void goToDashboard(ActionEvent event) throws IOException {
+        App.setRoot("dashboard");
+    }
+
+    @FXML
+    private void goToQuestions(ActionEvent event) throws IOException {
+        App.setRoot("question_list");
     }
 
     @FXML

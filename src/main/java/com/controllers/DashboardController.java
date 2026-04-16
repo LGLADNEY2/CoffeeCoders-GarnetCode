@@ -17,8 +17,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.shape.Circle;
 
 public class DashboardController implements Initializable{
     private QuestionFacade qFacade;
@@ -48,6 +51,7 @@ public class DashboardController implements Initializable{
     @FXML private TableColumn<ObservableList<String>, String> favClass;
     @FXML private TableColumn<ObservableList<String>, String> favDifficulty;
     @FXML private TableColumn<ObservableList<String>, String> favRating;
+    @FXML private ImageView profileImage;
 
 
     @FXML
@@ -88,7 +92,7 @@ public class DashboardController implements Initializable{
         qFacade = QuestionFacade.getInstance();
 
         this.account = qFacade.getCurrentAccount();
-        System.out.println("account is " + account);
+        loadProfileImage();
 
          // Configure columns for all three tables
         configureTableColumns(conTitleDate, conCategory, conLanguage, conClass, conDifficulty, conRating);
@@ -132,5 +136,19 @@ public class DashboardController implements Initializable{
                 }
             }
         }
+    }
+
+    private void loadProfileImage() {
+        if (profileImage == null) {
+            return;
+        }
+
+        Image image = new Image(getClass().getResourceAsStream("/com/techprep/images/CockyPFP.jpg"));
+        profileImage.setImage(image);
+        profileImage.setPreserveRatio(true);
+        profileImage.setSmooth(true);
+
+        Circle clip = new Circle(40, 40, 40);
+        profileImage.setClip(clip);
     }
 }
