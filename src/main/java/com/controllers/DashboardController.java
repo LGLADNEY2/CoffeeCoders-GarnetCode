@@ -24,12 +24,30 @@ public class DashboardController implements Initializable{
     private QuestionFacade qFacade;
     private Account account;
     @FXML private TableView<ObservableList<String>> continueTable;
-    @FXML private TableColumn<ObservableList<String>, String> colTitleDate;
-    @FXML private TableColumn<ObservableList<String>, String> colCategory;
-    @FXML private TableColumn<ObservableList<String>, String> colLanguage;
-    @FXML private TableColumn<ObservableList<String>, String> colClass;
-    @FXML private TableColumn<ObservableList<String>, String> colDifficulty;
-    @FXML private TableColumn<ObservableList<String>, String> colRating;
+    @FXML private TableColumn<ObservableList<String>, String> conTitleDate;
+    @FXML private TableColumn<ObservableList<String>, String> conCategory;
+    @FXML private TableColumn<ObservableList<String>, String> conLanguage;
+    @FXML private TableColumn<ObservableList<String>, String> conClass;
+    @FXML private TableColumn<ObservableList<String>, String> conDifficulty;
+    @FXML private TableColumn<ObservableList<String>, String> conRating;
+
+    // Recommended table and its columns
+    @FXML private TableView<ObservableList<String>> recommendedTable;
+    @FXML private TableColumn<ObservableList<String>, String> recTitleDate;
+    @FXML private TableColumn<ObservableList<String>, String> recCategory;
+    @FXML private TableColumn<ObservableList<String>, String> recLanguage;
+    @FXML private TableColumn<ObservableList<String>, String> recClass;
+    @FXML private TableColumn<ObservableList<String>, String> recDifficulty;
+    @FXML private TableColumn<ObservableList<String>, String> recRating;
+
+    // Favorites table and its columns
+    @FXML private TableView<ObservableList<String>> favoritesTable;
+    @FXML private TableColumn<ObservableList<String>, String> favTitleDate;
+    @FXML private TableColumn<ObservableList<String>, String> favCategory;
+    @FXML private TableColumn<ObservableList<String>, String> favLanguage;
+    @FXML private TableColumn<ObservableList<String>, String> favClass;
+    @FXML private TableColumn<ObservableList<String>, String> favDifficulty;
+    @FXML private TableColumn<ObservableList<String>, String> favRating;
 
 
     @FXML
@@ -37,14 +55,26 @@ public class DashboardController implements Initializable{
         App.setRoot("create_question");
     }
 
-    @FXML
-    private void goToQuestions(ActionEvent event) throws IOException {
-        App.setRoot("question_list");
+    private void configureTableColumns(
+            TableColumn<ObservableList<String>, String> col0,
+            TableColumn<ObservableList<String>, String> col1,
+            TableColumn<ObservableList<String>, String> col2,
+            TableColumn<ObservableList<String>, String> col3,
+            TableColumn<ObservableList<String>, String> col4,
+            TableColumn<ObservableList<String>, String> col5) {
+        
+        col0.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(0)));
+        col1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(1)));
+        col2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(2)));
+        col3.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(3)));
+        col4.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(4)));
+        col5.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(5)));
     }
 
-    private void addRow(TableView<ObservableList<String>> table, String titleDate, String category, String language, String course, String difficulty, String rating) {
+    private void addRow(TableView<ObservableList<String>> table, String titleDate, String category, 
+                        String language, String course, String difficulty, String rating) {
         ObservableList<String> row = FXCollections.observableArrayList(
-            titleDate, category, language, course, difficulty, rating);
+                titleDate, category, language, course, difficulty, rating);
         table.getItems().add(row);
     }
 
@@ -52,26 +82,49 @@ public class DashboardController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         qFacade = QuestionFacade.getInstance();
 
-        Account account = qFacade.getCurrentAccount();
-
+        this.account = qFacade.getCurrentAccount();
         System.out.println("account is " + account);
-      //  qFacade.setCurrentAccount(account);
-        colTitleDate.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().get(0)));
-        colCategory.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().get(1)));
-        colLanguage.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().get(2)));
-        colClass.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().get(3)));
-        colDifficulty.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().get(4)));
-        colRating.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().get(5)));
+
+         // Configure columns for all three tables
+        configureTableColumns(conTitleDate, conCategory, conLanguage, conClass, conDifficulty, conRating);
+        configureTableColumns(recTitleDate, recCategory, recLanguage, recClass, recDifficulty, recRating);
+        configureTableColumns(favTitleDate, favCategory, favLanguage, favClass, favDifficulty, favRating);
+
+        // Initialize tables with empty data
         continueTable.setItems(FXCollections.observableArrayList());
-        if(account.getRole() == Role.STUDENT) {
-            for(Question question: ((Student)account).getCompletedQuestions()) {
-                addRow(continueTable, (question.getTitle() + " " + question.getDatePosted()), question.getQuestionTag().getCategory().get(0).toString(), question.getQuestionTag().getCourse().get(0).toString(), question.getQuestionTag().getCourse().get(0).toString(), question.getDifficulty().toString(), question.getRating() + "");
+        recommendedTable.setItems(FXCollections.observableArrayList());
+        favoritesTable.setItems(FXCollections.observableArrayList());
+
+        if (account.getRole() == Role.STUDENT) {
+            for (Question question : ((Student) account).getCompletedQuestions()) {
+                    addRow(continueTable,
+                        question.getTitle() + "\n" + question.getDatePosted(),
+                        question.getQuestionTag().getCategory().get(0).toString(),
+                        question.getQuestionTag().getLanguage().toString(),
+                        question.getQuestionTag().getCourse().get(0).toString(),
+                        question.getDifficulty().toString(),
+                        question.getRating() + "");
+            }
+            for (Question question : ((Student) account).getFavoriteQuestions()) {
+                addRow(favoritesTable,
+                        question.getTitle() + "\n" + question.getDatePosted(),
+                        question.getQuestionTag().getCategory().get(0).toString(),
+                        question.getQuestionTag().getLanguage().toString(),
+                        question.getQuestionTag().getCourse().get(0).toString(),
+                        question.getDifficulty().toString(),
+                        question.getRating() + "");
+            }
+            for (Question question : qFacade.getQuestions()) {
+                if(((Student)account).getCompletedQuestions().contains(question)) {}
+                else {
+                    addRow(recommendedTable,
+                        question.getTitle() + "\n" + question.getDatePosted(),
+                        question.getQuestionTag().getCategory().get(0).toString(),
+                        question.getQuestionTag().getLanguage().toString(),
+                        question.getQuestionTag().getCourse().get(0).toString(),
+                        question.getDifficulty().toString(),
+                        question.getRating() + "");
+                }
             }
         }
     }

@@ -85,9 +85,9 @@
         "authorID": "4460fe58-54de-4eba-b277-72724d408588",
         "title": "Check Even or Odd",
         "questionTag": {
-            "course": [],
-            "language": [],
-            "category": []
+            "course": ["CSCE_145"],
+            "language": ["JAVA"],
+            "category": ["CLASS"]
         },
         "segments": [
             {
@@ -192,9 +192,9 @@
         "authorID": "4460fe58-54de-4eba-b277-72724d408588",
         "title": "Two Sum",
         "questionTag": {
-            "course": [],
-            "language": [],
-            "category": []
+            "course": ["CSCE_145"],
+            "language": ["JAVA"],
+            "category": ["CLASS"]
         },
         "segments": [
             {
@@ -279,9 +279,9 @@
         "authorID": "4460fe58-54de-4eba-b277-72724d408588",
         "title": "Valid Palindrome",
         "questionTag": {
-            "course": [],
-            "language": [],
-            "category": []
+            "course": ["CSCE_145"],
+            "language": ["JAVA"],
+            "category": ["CLASS"]
         },
         "segments": [
             {
@@ -381,9 +381,9 @@
         "authorID": "4460fe58-54de-4eba-b277-72724d408588",
         "title": "Reverse String",
         "questionTag": {
-            "course": [],
-            "language": [],
-            "category": []
+            "course": ["CSCE_145"],
+            "language": ["JAVA"],
+            "category": ["CLASS"]
         },
         "segments": [
             {
@@ -493,9 +493,9 @@
         "authorID": "4460fe58-54de-4eba-b277-72724d408588",
         "title": "Binary Search Tree",
         "questionTag": {
-            "course": [],
-            "language": [],
-            "category": []
+            "course": ["CSCE_145"],
+            "language": ["JAVA"],
+            "category": ["CLASS"]
         },
         "segments": [
             {
