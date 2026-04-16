@@ -10,6 +10,7 @@ import com.techprep.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -21,6 +22,9 @@ public class LoginController implements  Initializable{
 
     @FXML
     private TextField txt_username;
+
+    @FXML
+    private Label lbl_loginError;
 
     @FXML
     private void back(ActionEvent event) throws IOException {
@@ -38,9 +42,12 @@ public class LoginController implements  Initializable{
         String password = txt_password.getText();
         
         if(!qFacade.login(username, password)){
+            lbl_loginError.setText("Invalid Login, Please Try Again");
+            txt_username.clear();
+            txt_password.clear();
             return;
         }
-        qFacade.login(username, password);
+        lbl_loginError.setText("");
         App.setRoot("dashboard");
     }
 
