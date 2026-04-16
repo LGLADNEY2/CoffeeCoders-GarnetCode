@@ -37,6 +37,11 @@ public class DashboardController implements Initializable{
         App.setRoot("create_question");
     }
 
+    @FXML
+    private void goToQuestions(ActionEvent event) throws IOException {
+        App.setRoot("question_list");
+    }
+
     private void addRow(TableView<ObservableList<String>> table, String titleDate, String category, String language, String course, String difficulty, String rating) {
         ObservableList<String> row = FXCollections.observableArrayList(
             titleDate, category, language, course, difficulty, rating);
