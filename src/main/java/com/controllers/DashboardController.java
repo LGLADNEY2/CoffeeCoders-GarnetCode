@@ -148,7 +148,7 @@ public class DashboardController implements Initializable{
         profileImage.setPreserveRatio(true);
         profileImage.setSmooth(true);
 
-        Circle clip = new Circle(40, 40, 40);
+        Circle clip = new Circle(31, 31, 31);
         profileImage.setClip(clip);
     }
 }

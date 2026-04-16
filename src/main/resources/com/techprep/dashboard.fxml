@@ -3,6 +3,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
 <BorderPane fx:id="dashboardRoot" xmlns:fx="http://javafx.com/fxml" fx:controller="com.controllers.DashboardController"
             style="-fx-background-color: linear-gradient(to bottom, #000000 0%, #220000 100%);">
     <!-- Sidebar -->
@@ -24,16 +26,15 @@
               style="-fx-background-color: #23201e; -fx-background-radius: 18px; -fx-padding: 32 32 32 32; -fx-effect: dropshadow(gaussian, #00000055, 16, 0.2, 0, 4);">
             <!-- Top Bar -->
             <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-padding: 0 0 18 0;">
-                <TextField promptText="Search for problems here..." style="-fx-background-color: #a82525; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-background-radius: 24px; -fx-padding: 8 18 8 18; -fx-prompt-text-fill: #fff8; -fx-border-width: 0;" />
-                <Button style="-fx-background-color: #a82525; -fx-background-radius: 24px; -fx-text-fill: #fff; -fx-font-size: 20px; -fx-padding: 8 16 8 16; -fx-cursor: hand;">
-                    <Label text="🔍" />
-                </Button>
+                <TextField promptText="Search for problems here..." HBox.hgrow="ALWAYS" prefWidth="1000"
+                           style="-fx-background-color: #a82525; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-background-radius: 24px; -fx-padding: 10 18 10 18; -fx-prompt-text-fill: #fff8; -fx-border-width: 0;" />
             </HBox>
             <!-- Sections -->
             <VBox spacing="20" styleClass="sections">
                 <!-- Continue Section -->
                 <VBox spacing="10" styleClass="section">
-                    <Label text="Continue" styleClass="section-title" />
+                    <Label text="Continue" styleClass="section-title" maxWidth="1.7976931348623157E308" alignment="CENTER" textAlignment="CENTER"
+                           style="-fx-text-fill: #f5f5f5; -fx-font-size: 18px; -fx-font-weight: bold;" />
                     <TableView fx:id="continueTable" styleClass="problem-table">
                         <columns>
                             <TableColumn fx:id="conTitleDate" text="Problem Title / Date" />
@@ -47,7 +48,8 @@
                 </VBox>
                 <!-- Recommended Section -->
                 <VBox spacing="10" styleClass="section">
-                    <Label text="Recommended" styleClass="section-title" />
+                    <Label text="Recommended" styleClass="section-title" maxWidth="1.7976931348623157E308" alignment="CENTER" textAlignment="CENTER"
+                           style="-fx-text-fill: #f5f5f5; -fx-font-size: 18px; -fx-font-weight: bold;" />
                     <TableView fx:id="recommendedTable" styleClass="problem-table">
                         <columns>
                             <TableColumn fx:id="recTitleDate" text="Problem Title / Date" />
@@ -61,7 +63,8 @@
                 </VBox>
                 <!-- Favorites Section -->
                 <VBox spacing="10" styleClass="section">
-                    <Label text="Favorites" styleClass="section-title" />
+                    <Label text="Favorites" styleClass="section-title" maxWidth="1.7976931348623157E308" alignment="CENTER" textAlignment="CENTER"
+                           style="-fx-text-fill: #f5f5f5; -fx-font-size: 18px; -fx-font-weight: bold;" />
                     <TableView fx:id="favoritesTable" styleClass="problem-table">
                         <columns>
                             <TableColumn fx:id="favTitleDate" text="Problem Title / Date" />
@@ -78,23 +81,51 @@
     </center>
     <!-- Profile Panel -->
     <right>
-        <VBox spacing="20" alignment="TOP_CENTER" prefWidth="250"
-              style="-fx-background-color: #23201e; -fx-background-radius: 18px; -fx-padding: 32 0 32 0; -fx-effect: dropshadow(gaussian, #00000055, 16, 0.2, 0, 4);">
-            <ImageView fx:id="profileImage" fitWidth="80" fitHeight="80" style="-fx-background-radius: 40px; -fx-effect: dropshadow(gaussian, #a82525, 8, 0.2, 0, 2);" />
-            <Label text="Good Morning, Cocky!" style="-fx-text-fill: #fff; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 8 0 0 0;" />
-            <Label text="Continue Your Journey And&#10;Achieve Your Target" style="-fx-text-fill: #bdbdbd; -fx-font-size: 13px; -fx-padding: 0 0 12 0;" />
-            <HBox spacing="10" alignment="CENTER">
-                <Button style="-fx-background-color: #181716; -fx-background-radius: 50%; -fx-text-fill: #fff; -fx-font-size: 18px; -fx-padding: 8 8 8 8; -fx-cursor: hand;" />
-                <Button style="-fx-background-color: #181716; -fx-background-radius: 50%; -fx-text-fill: #fff; -fx-font-size: 18px; -fx-padding: 8 8 8 8; -fx-cursor: hand;" />
-                <Button style="-fx-background-color: #181716; -fx-background-radius: 50%; -fx-text-fill: #fff; -fx-font-size: 18px; -fx-padding: 8 8 8 8; -fx-cursor: hand;" />
-            </HBox>
-            <VBox spacing="10" alignment="CENTER">
-                <Label text="Daily Streak" style="-fx-text-fill: #fff; -fx-font-size: 14px; -fx-font-weight: bold;" />
-                <ProgressBar fx:id="streakBar" progress="0.2" style="-fx-accent: #a82525; -fx-background-radius: 8px; -fx-pref-height: 8px;" />
-                <Label text="2" style="-fx-text-fill: #a82525; -fx-font-size: 22px; -fx-font-weight: bold;" />
+        <VBox alignment="TOP_CENTER" prefWidth="248" style="-fx-padding: 18 12 18 12;">
+            <VBox spacing="14" alignment="TOP_CENTER" prefWidth="222"
+                  style="-fx-background-color: #1d1a1a; -fx-background-radius: 24px; -fx-padding: 18 14 18 14; -fx-effect: dropshadow(gaussian, #00000088, 18, 0.28, 0, 6);">
+
+                <StackPane prefWidth="168" style="-fx-padding: 0 0 2 0;">
+                    <Label text="Your Profile" style="-fx-text-fill: #f2f2f2; -fx-font-size: 20px; -fx-font-weight: bold;" />
+                    <Label text="..." style="-fx-text-fill: #d4d4d4; -fx-font-size: 28px; -fx-font-weight: bold;" StackPane.alignment="TOP_RIGHT" />
+                </StackPane>
+
+                <StackPane style="-fx-padding: 4 4 4 4;">
+                    <ProgressIndicator progress="0.72" prefWidth="96" prefHeight="96"
+                                       style="-fx-progress-color: #f15e67; -fx-control-inner-background: #1d1a1a;" />
+                    <ImageView fx:id="profileImage" fitWidth="62" fitHeight="62"
+                               style="-fx-effect: dropshadow(gaussian, #000000aa, 8, 0.22, 0, 2);" />
+                </StackPane>
+
+                  <Label text="Good Morning,&#10;Cocky!" wrapText="true" textOverrun="CLIP" textAlignment="CENTER" maxWidth="1.7976931348623157E308"
+                      style="-fx-text-fill: #f3f3f3; -fx-font-size: 26px; -fx-font-weight: bold; -fx-alignment: center;" />
+                <Label text="Continue Your Journey And&#10;Achieve Your Target"
+                      wrapText="true" textOverrun="CLIP" textAlignment="CENTER" maxWidth="1.7976931348623157E308"
+                      style="-fx-text-fill: #a5a5a5; -fx-font-size: 15px; -fx-alignment: center;" />
+
+                <Label text="Daily Streak" textAlignment="CENTER" maxWidth="1.7976931348623157E308"
+                       style="-fx-text-fill: #f15e67; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: center;" />
+                <StackPane prefWidth="122" prefHeight="122">
+                    <Pane prefWidth="122" prefHeight="122" maxWidth="122" maxHeight="122">
+                        <children>
+                            <Circle centerX="61" centerY="61" radius="52" fill="transparent" stroke="#4f4f4f" strokeWidth="8" />
+                            <Arc type="OPEN" centerX="61" centerY="61" radiusX="52" radiusY="52" startAngle="90" length="-144"
+                                 fill="transparent" stroke="#f15e67" strokeWidth="8" strokeLineCap="ROUND" />
+                        </children>
+                    </Pane>
+                    <Label text="2" style="-fx-text-fill: #f15e67; -fx-font-size: 44px; -fx-font-weight: bold;" />
+                </StackPane>
+
+                <VBox spacing="2" alignment="CENTER">
+                    <Label text="Longest Streak" style="-fx-text-fill: #f0f0f0; -fx-font-size: 15px;" />
+                    <Label text="295 Days" style="-fx-text-fill: #f15e67; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                </VBox>
+
+                <VBox spacing="2" alignment="CENTER">
+                    <Label text="Completed Questions" style="-fx-text-fill: #f0f0f0; -fx-font-size: 15px;" />
+                    <Label text="0" style="-fx-text-fill: #f15e67; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                </VBox>
             </VBox>
-            <Label text="Longest Streak&#10;295 Days" style="-fx-text-fill: #fff; -fx-font-size: 14px; -fx-padding: 6 0 0 0;" />
-            <Label text="Completed Questions&#10;0" style="-fx-text-fill: #fff; -fx-font-size: 14px; -fx-padding: 6 0 0 0;" />
         </VBox>
     </right>
 </BorderPane>
