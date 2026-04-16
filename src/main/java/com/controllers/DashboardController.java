@@ -55,6 +55,11 @@ public class DashboardController implements Initializable{
         App.setRoot("create_question");
     }
 
+    @FXML
+    private void goToQuestions(ActionEvent event) throws IOException {
+        App.setRoot("question_list");
+    }
+
     private void configureTableColumns(
             TableColumn<ObservableList<String>, String> col0,
             TableColumn<ObservableList<String>, String> col1,
