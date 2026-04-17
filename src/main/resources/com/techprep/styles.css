@@ -16,3 +16,38 @@
 .special {
     -fx-text-fill:violet;
 }
+
+.profile-menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #f3f3f3;
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-padding: -2 0 0 0;
+    -fx-cursor: hand;
+}
+
+.profile-menu-button .arrow {
+    -fx-padding: 0;
+    -fx-shape: "";
+}
+
+.profile-menu-button .context-menu {
+    -fx-background-color: #1d1a1a;
+    -fx-background-radius: 8;
+    -fx-padding: 6 4 6 4;
+}
+
+.profile-menu-button .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 8 14 8 14;
+}
+
+.profile-menu-button .menu-item:focused {
+    -fx-background-color: #2a2525;
+}
+
+.profile-menu-button .menu-item .label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}

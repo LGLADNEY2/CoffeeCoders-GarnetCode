@@ -12,17 +12,26 @@ import com.model.QuestionList;
 import com.model.QuestionTag;
 import com.techprep.App;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class QuestionListController implements Initializable {
 
-    @FXML
-    private VBox questionRows;
+    @FXML private TableView<ObservableList<String>> questionTable;
+    @FXML private TableColumn<ObservableList<String>, String> listTitleDate;
+    @FXML private TableColumn<ObservableList<String>, String> listCategory;
+    @FXML private TableColumn<ObservableList<String>, String> listLanguage;
+    @FXML private TableColumn<ObservableList<String>, String> listClass;
+    @FXML private TableColumn<ObservableList<String>, String> listDifficulty;
+    @FXML private TableColumn<ObservableList<String>, String> listRating;
 
     @FXML
     private void goToDashboard(ActionEvent event) throws IOException {
@@ -39,77 +48,66 @@ public class QuestionListController implements Initializable {
         App.setRoot("create_question");
     }
 
+    private void configureTableColumns() {
+        questionTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        listTitleDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(0)));
+        listCategory.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(1)));
+        listLanguage.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(2)));
+        listClass.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(3)));
+        listDifficulty.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(4)));
+        listRating.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(5)));
+
+        listTitleDate.setCellFactory(column -> new TableCell<>() {
+            private final Label wrappedLabel = new Label();
+
+            {
+                wrappedLabel.setWrapText(true);
+                wrappedLabel.setStyle("-fx-text-fill: white; -fx-font-size: 13px;");
+                setPrefHeight(USE_COMPUTED_SIZE);
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                    return;
+                }
+
+                wrappedLabel.setText(item);
+                wrappedLabel.setMaxWidth(Math.max(120, getTableColumn().getWidth() - 18));
+                setGraphic(wrappedLabel);
+            }
+        });
+    }
+
+    private void addRow(Question question) {
+        ObservableList<String> row = FXCollections.observableArrayList(
+            question.getTitle() + "\n" + question.getDatePosted(),
+            joinCategories(question.getQuestionTag()),
+            joinLanguages(question.getQuestionTag()),
+            joinCourses(question.getQuestionTag()),
+            question.getDifficulty().toString(),
+            formatRating(question.getRating())
+        );
+        questionTable.getItems().add(row);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        configureTableColumns();
+        questionTable.setItems(FXCollections.observableArrayList());
+
         ArrayList<Question> questions = QuestionList.getInstance().getQuestions();
         if (questions == null || questions.isEmpty()) {
-            questionRows.getChildren().add(createEmptyState());
+            questionTable.setPlaceholder(new Label("No questions found."));
             return;
         }
 
         for (Question question : questions) {
-            questionRows.getChildren().add(createQuestionRow(question));
+            addRow(question);
         }
-    }
-
-    private VBox createEmptyState() {
-        VBox emptyState = new VBox();
-        emptyState.setStyle("-fx-background-color: #171313; -fx-background-radius: 18; -fx-padding: 22 18;");
-
-        Label label = new Label("No questions found.");
-        label.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
-        emptyState.getChildren().add(label);
-        return emptyState;
-    }
-
-    private HBox createQuestionRow(Question question) {
-        HBox row = new HBox(18.0);
-        row.setStyle("-fx-background-color: #171313; -fx-background-radius: 18; -fx-padding: 14 18;");
-
-        VBox titleBox = new VBox(4.0);
-        titleBox.setPrefWidth(260.0);
-        HBox.setHgrow(titleBox, javafx.scene.layout.Priority.ALWAYS);
-
-        Label titleLabel = new Label(question.getTitle());
-        titleLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
-
-        Label dateLabel = new Label(question.getDatePosted());
-        dateLabel.setStyle("-fx-text-fill: #c9c9c9; -fx-font-size: 10px;");
-
-        titleBox.getChildren().addAll(titleLabel, dateLabel);
-
-        row.getChildren().add(titleBox);
-        row.getChildren().add(createTagLabel(joinCategories(question.getQuestionTag())));
-        row.getChildren().add(createTagLabel(joinLanguages(question.getQuestionTag())));
-        row.getChildren().add(createTagLabel(joinCourses(question.getQuestionTag())));
-        row.getChildren().add(createDifficultyLabel(question));
-
-        Label rating = new Label(formatRating(question.getRating()));
-        rating.setStyle("-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;");
-        row.getChildren().add(rating);
-
-        return row;
-    }
-
-    private Label createTagLabel(String text) {
-        Label label = new Label(text);
-        label.setStyle("-fx-text-fill: #ffd6d6; -fx-font-size: 10px; -fx-background-color: #6b2323; -fx-background-radius: 999; -fx-padding: 4 10;");
-        return label;
-    }
-
-    private Label createDifficultyLabel(Question question) {
-        Label label = new Label(question.getDifficulty().toString());
-        String difficulty = question.getDifficulty().toString().toUpperCase();
-        String color;
-        if ("BEGINNER".equals(difficulty)) {
-            color = "#4f8f37";
-        } else if ("INTERMEDIATE".equals(difficulty)) {
-            color = "#d8a33c";
-        } else {
-            color = "#d85c43";
-        }
-        label.setStyle("-fx-text-fill: white; -fx-font-size: 10px; -fx-background-color: " + color + "; -fx-background-radius: 999; -fx-padding: 4 10;");
-        return label;
     }
 
     private String joinLanguages(QuestionTag questionTag) {

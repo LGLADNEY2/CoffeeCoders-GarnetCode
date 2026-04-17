@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
 <BorderPane fx:id="dashboardRoot" xmlns:fx="http://javafx.com/fxml" fx:controller="com.controllers.DashboardController"
-            style="-fx-background-color: linear-gradient(to bottom, #000000 0%, #220000 100%);">
+            style="-fx-background-color: linear-gradient(to bottom, #000000 0%, #220000 100%);" stylesheets="@styles.css">
     <!-- Sidebar -->
     <left>
         <VBox spacing="20" prefWidth="180" alignment="TOP_CENTER" BorderPane.alignment="CENTER"
@@ -81,14 +81,22 @@
     </center>
     <!-- Profile Panel -->
     <right>
-        <VBox alignment="TOP_CENTER" prefWidth="248" style="-fx-padding: 18 12 18 12;">
-            <VBox spacing="14" alignment="TOP_CENTER" prefWidth="222"
-                  style="-fx-background-color: #1d1a1a; -fx-background-radius: 24px; -fx-padding: 18 14 18 14; -fx-effect: dropshadow(gaussian, #00000088, 18, 0.28, 0, 6);">
+                <VBox alignment="TOP_CENTER" prefWidth="270" style="-fx-padding: 18 8 18 8;">
+                        <VBox spacing="14" alignment="TOP_CENTER" prefWidth="244"
+                                    style="-fx-background-color: #1d1a1a; -fx-background-radius: 24px; -fx-padding: 18 10 18 10; -fx-effect: dropshadow(gaussian, #00000088, 18, 0.28, 0, 6);">
 
-                <StackPane prefWidth="168" style="-fx-padding: 0 0 2 0;">
-                    <Label text="Your Profile" style="-fx-text-fill: #f2f2f2; -fx-font-size: 20px; -fx-font-weight: bold;" />
-                    <Label text="..." style="-fx-text-fill: #d4d4d4; -fx-font-size: 28px; -fx-font-weight: bold;" StackPane.alignment="TOP_RIGHT" />
-                </StackPane>
+                                <HBox alignment="CENTER_LEFT" prefWidth="224" maxWidth="1.7976931348623157E308" style="-fx-padding: 0 0 2 0;" spacing="4">
+                    <children>
+                        <Label text="Your Profile" style="-fx-text-fill: #f2f2f2; -fx-font-size: 20px; -fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <MenuButton text="⋯" popupSide="BOTTOM" styleClass="profile-menu-button">
+                            <items>
+                                <MenuItem text="⚙  Settings" onAction="#openSettings" />
+                                <MenuItem text="⇦  Log out" onAction="#logout" />
+                            </items>
+                        </MenuButton>
+                    </children>
+                </HBox>
 
                 <StackPane style="-fx-padding: 4 4 4 4;">
                     <ProgressIndicator progress="0.72" prefWidth="96" prefHeight="96"

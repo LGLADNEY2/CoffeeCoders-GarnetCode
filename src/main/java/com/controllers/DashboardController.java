@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.TableColumn;
@@ -62,6 +63,21 @@ public class DashboardController implements Initializable{
     @FXML
     private void goToQuestions(ActionEvent event) throws IOException {
         App.setRoot("question_list");
+    }
+
+    @FXML
+    private void openSettings(ActionEvent event) {
+        Alert settingsAlert = new Alert(Alert.AlertType.INFORMATION);
+        settingsAlert.setTitle("Settings");
+        settingsAlert.setHeaderText("Settings");
+        settingsAlert.setContentText("Settings panel coming soon.");
+        settingsAlert.showAndWait();
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        qFacade.logout();
+        App.setRoot("home");
     }
 
     private void configureTableColumns(
