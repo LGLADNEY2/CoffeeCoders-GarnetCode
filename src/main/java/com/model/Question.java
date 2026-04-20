@@ -437,5 +437,14 @@ public class Question {
         return true;
     }
 
+    public String formatDate() {
+        String formattedDate = this.datePosted;
+        String month = formattedDate.substring(0,2);
+        String day = formattedDate.substring(2,4);
+        String year = formattedDate.substring(4,8);
+        formattedDate = month + "/" + day + "/" + year;
+        return formattedDate;
+    }
+
     
 }
