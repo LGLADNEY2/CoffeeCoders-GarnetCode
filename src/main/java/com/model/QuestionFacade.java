@@ -346,10 +346,6 @@ public class QuestionFacade {
         return questionList.getQuestions();
     }
 
-    public void setCurrentAccount(Account account) {
-        this.currentAccount = account;
-    }
-
     /**
      * Saves question and account data.
      *

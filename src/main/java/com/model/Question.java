@@ -437,6 +437,11 @@ public class Question {
         return true;
     }
 
+    /**
+     * Formats a date into mm/dd/yyyy 
+     * 
+     * @return a date formatted in mm/dd/yyyy
+     */
     public String formatDate() {
         String formattedDate = this.datePosted;
         String month = formattedDate.substring(0,2);

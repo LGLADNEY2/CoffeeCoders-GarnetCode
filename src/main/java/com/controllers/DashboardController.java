@@ -2,6 +2,7 @@ package com.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.model.Account;
@@ -18,15 +19,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
 public class DashboardController implements Initializable{
     private QuestionFacade qFacade;
     private Account account;
+    @FXML private Label completedQuestions;
+    @FXML private Label dailyStreak;
     @FXML private TableView<ObservableList<String>> continueTable;
     @FXML private TableColumn<ObservableList<String>, String> conTitleDate;
     @FXML private TableColumn<ObservableList<String>, String> conCategory;
@@ -121,6 +125,9 @@ public class DashboardController implements Initializable{
         favoritesTable.setItems(FXCollections.observableArrayList());
 
         if (account.getRole() == Role.STUDENT) {
+             ((Student)account).updateDailyStreak(new Date());
+            completedQuestions.setText(((Student)account).getCompletedQuestions().size() + "");
+            dailyStreak.setText(((Student)account).getDailyStreak()+"");
             for (Question question : ((Student) account).getCompletedQuestions()) {
                     addRow(continueTable,
                         question.getTitle() + "\n" + question.getDatePosted(),
