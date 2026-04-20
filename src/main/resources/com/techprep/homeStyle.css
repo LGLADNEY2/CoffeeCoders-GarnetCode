@@ -1,0 +1,53 @@
+.main {
+}
+
+.header {
+    -fx-background-color: #9e2626;
+    -fx-background-radius: 0 0 18 18;
+    -fx-padding: 8 24 8 24;
+}
+.header-title{
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+.login-banner{
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.center-title{
+    -fx-text-fill: white;
+    -fx-font-size: 44px;
+    -fx-font-weight: bold;
+}
+.center-text{
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+.center-button{
+    -fx-background-color: #9e2626;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6;
+    -fx-padding: 8 24 8 24;
+}
+
+
+.footer {
+    -fx-background-color: #1f1a18;
+    -fx-padding: 36;
+}
+.footer-title{
+    -fx-text-fill: #ff5b57;
+    -fx-font-size: 18px;
+}
+.footer-heading{
+    -fx-text-fill: #ff5b57;
+    -fx-font-size: 12px;
+}
+.footer-text{
+    -fx-text-fill: #9a9998;
+    -fx-font-size: 12px;
+}
