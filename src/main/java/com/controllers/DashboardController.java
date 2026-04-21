@@ -178,7 +178,7 @@ public class DashboardController implements Initializable{
             dailyStreak.setText(((Student)account).getDailyStreak()+"");
             for (Question question : ((Student) account).getCompletedQuestions()) {
                     addRow(continueTable,
-                        question.getTitle() + "\n" + question.getDatePosted(),
+                        question.getTitle() + "\n" + question.formatDate(question.getDatePosted()),
                         question.getQuestionTag().getCategory().get(0).toString(),
                         question.getQuestionTag().getLanguage().toString(),
                         question.getQuestionTag().getCourse().get(0).toString(),
@@ -187,7 +187,7 @@ public class DashboardController implements Initializable{
             }
             for (Question question : ((Student) account).getFavoriteQuestions()) {
                 addRow(favoritesTable,
-                        question.getTitle() + "\n" + question.getDatePosted(),
+                        question.getTitle() + "\n" + question.formatDate(question.getDatePosted()),
                         question.getQuestionTag().getCategory().get(0).toString(),
                         question.getQuestionTag().getLanguage().toString(),
                         question.getQuestionTag().getCourse().get(0).toString(),
@@ -198,7 +198,7 @@ public class DashboardController implements Initializable{
                 if(((Student)account).getCompletedQuestions().contains(question)) {}
                 else {
                     addRow(recommendedTable,
-                        question.getTitle() + "\n" + question.getDatePosted(),
+                        question.getTitle() + "\n" + question.formatDate(question.getDatePosted()),
                         question.getQuestionTag().getCategory().get(0).toString(),
                         question.getQuestionTag().getLanguage().toString(),
                         question.getQuestionTag().getCourse().get(0).toString(),

@@ -79,6 +79,7 @@ public class QuestionFacade {
     public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, int recTime) {
         java.util.UUID authorId = (currentAccount != null) ? currentAccount.getAccountID() : java.util.UUID.randomUUID();
         this.currentQuestion = questionList.getQuestion(questionList.addQuestion(authorId, title, difficulty, tag, segments, hints, recTime));
+        save();
         return currentQuestion;
     }
 
@@ -95,6 +96,7 @@ public class QuestionFacade {
     public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints) {
         java.util.UUID authorId = (currentAccount != null) ? currentAccount.getAccountID() : java.util.UUID.randomUUID();
         this.currentQuestion = questionList.getQuestion(questionList.addQuestion(authorId, title, difficulty, tag, segments, hints, -1));
+        save();
         return currentQuestion;
     }
 
@@ -111,6 +113,7 @@ public class QuestionFacade {
             currentQuestion.setDifficulty(difficulty);
             currentQuestion.setQuestionTag(tag);
             currentQuestion.setSegments(segments);
+            save();
             return true;
         }
         return false;
@@ -124,6 +127,7 @@ public class QuestionFacade {
     public boolean removeQuestion() {
         if (currentQuestion != null) {
             questionList.removeQuestion(currentQuestion.getQuestionID());
+            save();
             return true;
         }
         return false;
@@ -171,7 +175,7 @@ public class QuestionFacade {
      */
     public boolean submitQuestion(ArrayList<QuestionTag> roles, Question question) {
         if (currentAccount.getRole() == Role.STUDENT) {
-            Student student = (Student) currentAccount;
+            Student student = (Student)currentAccount;
             return student.addUserQuestion(question, roles);
         }
         return false;
@@ -186,7 +190,11 @@ public class QuestionFacade {
      * @return true if submission succeeds, otherwise false
      */
     public boolean submitSolution(Language language, String title, ArrayList<Segment> segments) {
-        return currentQuestion.addSolution(currentAccount.getAccountID(), title, language, segments);
+        if(currentQuestion.addSolution(currentAccount.getAccountID(), title, language, segments)) {
+            save();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -200,7 +208,11 @@ public class QuestionFacade {
      * @return true if account is added, otherwise false
      */
     public boolean addAccount(String firstName, String lastName, String username, String password, String email) {
-        return accountList.addAccount(firstName, lastName, email, username, password);
+        if(accountList.addAccount(firstName, lastName, email, username, password)) {
+            save();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -215,7 +227,11 @@ public class QuestionFacade {
      * @return true if account is added, otherwise false
      */
     public boolean addAccount(String firstName, String lastName, String username, String password, String email, Role role) {
-        return accountList.addAccount(firstName, lastName, email, username, password, role);
+        if(accountList.addAccount(firstName, lastName, email, username, password, role)) {
+            save();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -234,6 +250,7 @@ public class QuestionFacade {
             currentAccount.setUsername(username);
             currentAccount.setPassword(password);
             currentAccount.setEmail(email);
+            save();
         }
     }
 
@@ -254,6 +271,7 @@ public class QuestionFacade {
         if (currentAccount != null && currentAccount.getRole() == Role.STUDENT) {
             Student student = (Student) currentAccount;
             student.updateDailyStreak(new java.util.Date());
+            save();
         }
     }
 

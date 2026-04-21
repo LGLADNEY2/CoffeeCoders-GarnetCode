@@ -442,8 +442,8 @@ public class Question {
      * 
      * @return a date formatted in mm/dd/yyyy
      */
-    public String formatDate() {
-        String formattedDate = this.datePosted;
+    public String formatDate(String date) {
+        String formattedDate = date;
         String month = formattedDate.substring(0,2);
         String day = formattedDate.substring(2,4);
         String year = formattedDate.substring(4,8);
