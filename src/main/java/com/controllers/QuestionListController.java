@@ -23,6 +23,11 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+/**
+ * Controller for the question list view. Configures the question table
+ * and populates rows from the application's question list.
+ * @author Coffee Coders
+ */
 public class QuestionListController implements Initializable {
 
     @FXML private TableView<ObservableList<String>> questionTable;
@@ -33,21 +38,43 @@ public class QuestionListController implements Initializable {
     @FXML private TableColumn<ObservableList<String>, String> listDifficulty;
     @FXML private TableColumn<ObservableList<String>, String> listRating;
 
+    /**
+     * Navigate to the dashboard view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void goToDashboard(ActionEvent event) throws IOException {
         App.setRoot("dashboard");
     }
 
+    /**
+     * Refreshes/opens the questions list view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void goToQuestions(ActionEvent event) throws IOException {
         App.setRoot("question_list");
     }
 
+    /**
+     * Navigates to the create-question view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void goToCreate(ActionEvent event) throws IOException {
         App.setRoot("create_question");
     }
 
+    /**
+     * Configures table columns, cell factories and cell value mapping
+     * for the question table.
+     */
     private void configureTableColumns() {
         questionTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -82,6 +109,11 @@ public class QuestionListController implements Initializable {
         });
     }
 
+    /**
+     * Adds a question as a row in the questions table.
+     *
+     * @param question question to add
+     */
     private void addRow(Question question) {
         ObservableList<String> row = FXCollections.observableArrayList(
             question.getTitle() + "\n" + question.getDatePosted(),
@@ -94,6 +126,10 @@ public class QuestionListController implements Initializable {
         questionTable.getItems().add(row);
     }
 
+    /**
+     * Initializes the controller after its root element has been
+     * completely processed. Populates the table with available questions.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configureTableColumns();
@@ -110,6 +146,12 @@ public class QuestionListController implements Initializable {
         }
     }
 
+    /**
+     * Returns a comma-separated string of language tags for the given question tag.
+     *
+     * @param questionTag tag containing language data
+     * @return joined language string
+     */
     private String joinLanguages(QuestionTag questionTag) {
         if (questionTag == null || questionTag.getLanguage() == null || questionTag.getLanguage().isEmpty()) {
             return "JAVA";
@@ -122,6 +164,12 @@ public class QuestionListController implements Initializable {
         return String.join(", ", languages);
     }
 
+    /**
+     * Returns a comma-separated string of category tags for the given question tag.
+     *
+     * @param questionTag tag containing category data
+     * @return joined category string
+     */
     private String joinCategories(QuestionTag questionTag) {
         if (questionTag == null || questionTag.getCategory() == null || questionTag.getCategory().isEmpty()) {
             return "CLASS";
@@ -134,6 +182,12 @@ public class QuestionListController implements Initializable {
         return String.join(", ", categories);
     }
 
+    /**
+     * Returns a comma-separated string of course tags for the given question tag.
+     *
+     * @param questionTag tag containing course data
+     * @return joined course string
+     */
     private String joinCourses(QuestionTag questionTag) {
         if (questionTag == null || questionTag.getCourse() == null || questionTag.getCourse().isEmpty()) {
             return "COURSE";
@@ -146,6 +200,12 @@ public class QuestionListController implements Initializable {
         return String.join(", ", courses);
     }
 
+    /**
+     * Formats the question rating for display; normalizes negative values to 0.0.
+     *
+     * @param rating raw rating value
+     * @return string formatted to one decimal place
+     */
     private String formatRating(float rating) {
         if (rating < 0) {
             return "0.0";

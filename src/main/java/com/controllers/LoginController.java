@@ -14,6 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Controller for the login view; handles login flow and navigation.
+ * @author Coffee Coders
+ */
 public class LoginController implements  Initializable{
     public QuestionFacade qFacade;
 
@@ -26,16 +30,34 @@ public class LoginController implements  Initializable{
     @FXML
     private Label lbl_loginError;
 
+    /**
+     * Navigate back to the home view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void back(ActionEvent event) throws IOException {
         App.setRoot("home");
     }
 
+    /**
+     * Open the signup view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void goToSignup(ActionEvent event) throws IOException {
         App.setRoot("signup");
     }
 
+    /**
+     * Attempt to authenticate and navigate to the dashboard on success.
+     *
+     * @param event mouse event from the login button
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void btn_Login(MouseEvent event) throws IOException{
         String username = txt_username.getText();
@@ -51,6 +73,9 @@ public class LoginController implements  Initializable{
         App.setRoot("dashboard");
     }
 
+    /**
+     * Controller initialization hook used to obtain facade instance.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         qFacade = QuestionFacade.getInstance();
