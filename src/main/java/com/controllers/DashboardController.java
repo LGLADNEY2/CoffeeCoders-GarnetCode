@@ -25,6 +25,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
+/**
+ * Controller for the dashboard view. Manages user profile display,
+ * multiple question tables (continue, recommended, favorites), and
+ * user actions such as logout and navigation.
+ * @author Coffee Coders
+ */
 public class DashboardController implements Initializable{
     private QuestionFacade qFacade;
     private Account account;
@@ -58,27 +64,60 @@ public class DashboardController implements Initializable{
     @FXML private ImageView profileImage;
 
 
+    /**
+     * Navigate to the create-question view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void goToCreate(ActionEvent event) throws IOException {
         App.setRoot("create_question");
     }
 
+    /**
+     * Open the question list view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void goToQuestions(ActionEvent event) throws IOException {
         App.setRoot("question_list");
     }
 
+    /**
+     * Display a placeholder settings dialog.
+     *
+     * @param event UI action event
+     */
     @FXML
     private void openSettings(ActionEvent event) throws IOException {
         App.setRoot("settings");
     }
 
+    /**
+     * Logout the current account and return to the home view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void logout(ActionEvent event) throws IOException {
         qFacade.logout();
         App.setRoot("home");
     }
 
+    /**
+     * Helper to configure six table columns at once for the UI tables.
+     *
+     * @param col0 title/date column
+     * @param col1 category column
+     * @param col2 language column
+     * @param col3 class/course column
+     * @param col4 difficulty column
+     * @param col5 rating column
+     */
     private void configureTableColumns(
             TableColumn<ObservableList<String>, String> col0,
             TableColumn<ObservableList<String>, String> col1,
@@ -95,6 +134,17 @@ public class DashboardController implements Initializable{
         col5.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(5)));
     }
 
+    /**
+     * Adds a row to the specified table with the provided cell values.
+     *
+     * @param table target table
+     * @param titleDate combined title and date cell
+     * @param category category cell
+     * @param language language cell
+     * @param course course/class cell
+     * @param difficulty difficulty cell
+     * @param rating rating cell
+     */
     private void addRow(TableView<ObservableList<String>> table, String titleDate, String category, 
                         String language, String course, String difficulty, String rating) {
         ObservableList<String> row = FXCollections.observableArrayList(
@@ -102,6 +152,9 @@ public class DashboardController implements Initializable{
         table.getItems().add(row);
     }
 
+    /**
+     * Initializes dashboard controls, configures tables and loads account data.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         qFacade = QuestionFacade.getInstance();
@@ -156,6 +209,9 @@ public class DashboardController implements Initializable{
         }
     }
 
+    /**
+     * Loads and configures the profile image displayed on the dashboard.
+     */
     private void loadProfileImage() {
         if (profileImage == null) {
             return;
