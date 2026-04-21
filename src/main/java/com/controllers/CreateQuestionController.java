@@ -7,8 +7,18 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.techprep.App;
+import com.model.QuestionFacade;
+import com.model.Difficulty;
+import com.model.QuestionTag;
+import com.model.Segment;
+import com.model.DataType;
+import com.model.Category;
+import com.model.Language;
+import com.model.Course;
+import com.model.Question;
 
 /**
  * Controller for the create-question view. Collects input fields and
@@ -72,7 +82,60 @@ public class CreateQuestionController {
         String hint2 = hint2Field.getText();
         String hint3 = hint3Field.getText();
         String solution = solutionField.getText();
-        
-        System.out.println("Submitted Question: " + title + ", " + time + ", " + difficulty);
+
+        if (title == null || title.isBlank()) {
+            System.out.println("Cannot submit: title is required.");
+            return;
+        }
+
+        int recTime = -1;
+        try {
+            if (time != null && !time.isBlank()) recTime = Integer.parseInt(time.trim());
+        } catch (NumberFormatException e) {
+            recTime = -1;
+        }
+
+        Difficulty diff = Difficulty.BEGINNER;
+        try {
+            if (difficulty != null && !difficulty.isBlank())
+                diff = Difficulty.valueOf(difficulty.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            diff = Difficulty.BEGINNER;
+        }
+
+        ArrayList<Segment> segments = new ArrayList<>();
+        if (description != null && !description.isBlank()) {
+            segments.add(new Segment("Description", description, DataType.STRING, ""));
+        } else {
+            segments.add(new Segment("Description", "No description provided.", DataType.STRING, ""));
+        }
+
+        ArrayList<Segment> hints = new ArrayList<>();
+        if (hint1 != null && !hint1.isBlank()) hints.add(new Segment("Hint 1", hint1, DataType.HINT, ""));
+        if (hint2 != null && !hint2.isBlank()) hints.add(new Segment("Hint 2", hint2, DataType.HINT, ""));
+        if (hint3 != null && !hint3.isBlank()) hints.add(new Segment("Hint 3", hint3, DataType.HINT, ""));
+
+        ArrayList<Category> categories = new ArrayList<>();
+        categories.add(Category.CLASS);
+        ArrayList<Language> languages = new ArrayList<>();
+        languages.add(Language.JAVA);
+        ArrayList<Course> courses = new ArrayList<>();
+        courses.add(Course.CSCE_247);
+        QuestionTag tag = new QuestionTag(categories, languages, courses);
+
+        QuestionFacade qf = QuestionFacade.getInstance();
+
+        // Allow submission even when not logged in; facade will use a generated author id.
+        Question created = qf.addQuestion(title, diff, tag, segments, hints, recTime);
+        if (created != null) {
+            System.out.println("Submitted Question: " + title + " (id=" + created.getQuestionID() + ")");
+            try {
+                App.setRoot("question_list");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Failed to create question.");
+        }
     }
 }

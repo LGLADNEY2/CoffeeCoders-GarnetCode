@@ -35,7 +35,8 @@ public class QuestionList {
      * @return list of questions
      */
     public ArrayList<Question> getQuestions() {
-        return DataLoader.getQuestions();
+        // Return the in-memory list managed by this singleton instance.
+        return new ArrayList<>(questions);
     }
 
     /**
@@ -120,7 +121,7 @@ public class QuestionList {
         if (title == null || title.isEmpty() || authorID == null) {
             return null;
         }
-        Question question = new Question(authorID, title, recommendedTime, difficulty, hints, tag, hints);
+        Question question = new Question(authorID, title, recommendedTime, difficulty, segments, tag, hints);
         questions.add(question);
         return question.getQuestionID(); //make return new question uuid
     }

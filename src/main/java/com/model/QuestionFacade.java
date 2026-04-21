@@ -77,7 +77,8 @@ public class QuestionFacade {
      * @return newly created question
      */
     public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints, int recTime) {
-        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, hints, recTime));
+        java.util.UUID authorId = (currentAccount != null) ? currentAccount.getAccountID() : java.util.UUID.randomUUID();
+        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(authorId, title, difficulty, tag, segments, hints, recTime));
         return currentQuestion;
     }
 
@@ -92,7 +93,8 @@ public class QuestionFacade {
      * @return newly created question
      */
     public Question addQuestion(String title, Difficulty difficulty, QuestionTag tag, ArrayList<Segment> segments, ArrayList<Segment> hints) {
-        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(currentAccount.getAccountID(), title, difficulty, tag, segments, hints, -1));
+        java.util.UUID authorId = (currentAccount != null) ? currentAccount.getAccountID() : java.util.UUID.randomUUID();
+        this.currentQuestion = questionList.getQuestion(questionList.addQuestion(authorId, title, difficulty, tag, segments, hints, -1));
         return currentQuestion;
     }
 
