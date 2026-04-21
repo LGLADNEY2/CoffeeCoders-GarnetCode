@@ -18,7 +18,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -70,12 +69,8 @@ public class DashboardController implements Initializable{
     }
 
     @FXML
-    private void openSettings(ActionEvent event) {
-        Alert settingsAlert = new Alert(Alert.AlertType.INFORMATION);
-        settingsAlert.setTitle("Settings");
-        settingsAlert.setHeaderText("Settings");
-        settingsAlert.setContentText("Settings panel coming soon.");
-        settingsAlert.showAndWait();
+    private void openSettings(ActionEvent event) throws IOException {
+        App.setRoot("settings");
     }
 
     @FXML
@@ -166,8 +161,23 @@ public class DashboardController implements Initializable{
             return;
         }
 
-        Image image = new Image(getClass().getResourceAsStream("/com/techprep/images/CockyPFP.jpg"));
-        profileImage.setImage(image);
+        Image image = null;
+        String[] candidatePaths = {
+            "/com/techprep/images/CockyPFP.jpg",
+            "/com/techprep/images/uofsccampusvillage.jpg"
+        };
+
+        for (String path : candidatePaths) {
+            URL resource = getClass().getResource(path);
+            if (resource != null) {
+                image = new Image(resource.toExternalForm());
+                break;
+            }
+        }
+
+        if (image != null && !image.isError()) {
+            profileImage.setImage(image);
+        }
         profileImage.setPreserveRatio(true);
         profileImage.setSmooth(true);
 
