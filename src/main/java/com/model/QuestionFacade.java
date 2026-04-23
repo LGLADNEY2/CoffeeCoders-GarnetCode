@@ -207,8 +207,11 @@ public class QuestionFacade {
      * @param email email address
      * @return true if account is added, otherwise false
      */
-    public boolean addAccount(String firstName, String lastName, String username, String password, String email) {
-        if(accountList.addAccount(firstName, lastName, email, username, password)) {
+    public boolean addAccount(String firstName, String lastName, String email, String username, String password) {
+        if(password == null || password.length()<8 || password.contains(" ") || email.contains(" ") || username.contains(" ")) {
+            return false;
+        }
+        if(accountList.addAccount(firstName,lastName, email, username, password)) {
             save();
             return true;
         }
@@ -226,7 +229,10 @@ public class QuestionFacade {
      * @param role account role
      * @return true if account is added, otherwise false
      */
-    public boolean addAccount(String firstName, String lastName, String username, String password, String email, Role role) {
+    public boolean addAccount(String firstName, String lastName, String email, String username, String password, Role role) {
+        if(password == null || password.length()<7 || password.contains(" ") || email.contains(" ") || username.contains(" ") || role == null) {
+            return false;
+        }
         if(accountList.addAccount(firstName, lastName, email, username, password, role)) {
             save();
             return true;

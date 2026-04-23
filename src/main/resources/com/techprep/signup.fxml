@@ -47,7 +47,7 @@
                     <VBox spacing="8.0">
                         <children>
                             <Label style="-fx-font-size: 22px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #7a3c3c;" text="Name" />
-                            <TextField prefHeight="48.0" promptText="Enter Your Full Name" style="-fx-background-color: transparent;                                               -fx-border-color: #8c8c8c;                                               -fx-border-width: 2;                                               -fx-border-radius: 4;                                               -fx-background-radius: 4;                                               -fx-font-size: 20px;                                               -fx-text-fill: #666;" />
+                            <TextField prefHeight="48.0" fx:id="txt_name" promptText="Enter Your Full Name" style="-fx-background-color: transparent;                                               -fx-border-color: #8c8c8c;                                               -fx-border-width: 2;                                               -fx-border-radius: 4;                                               -fx-background-radius: 4;                                               -fx-font-size: 20px;                                               -fx-text-fill: #666;" />
                         </children>
                     </VBox>
 
@@ -55,7 +55,7 @@
                     <VBox spacing="8.0">
                         <children>
                             <Label style="-fx-font-size: 22px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #7a3c3c;" text="Username" />
-                            <TextField prefHeight="48.0" promptText="Enter Your Username" style="-fx-background-color: transparent;                                               -fx-border-color: #8c8c8c;                                               -fx-border-width: 2;                                               -fx-border-radius: 4;                                               -fx-background-radius: 4;                                               -fx-font-size: 20px;                                               -fx-text-fill: #666;" />
+                            <TextField prefHeight="48.0" fx:id="txt_username" promptText="Enter Your Username" style="-fx-background-color: transparent;                                               -fx-border-color: #8c8c8c;                                               -fx-border-width: 2;                                               -fx-border-radius: 4;                                               -fx-background-radius: 4;                                               -fx-font-size: 20px;                                               -fx-text-fill: #666;" />
                         </children>
                     </VBox>
 
@@ -63,14 +63,14 @@
                     <VBox spacing="8.0">
                         <children>
                             <Label style="-fx-font-size: 22px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #7a3c3c;" text="Password" />
-                            <PasswordField prefHeight="48.0" promptText="At least 8 characters" style="-fx-background-color: transparent;                                                   -fx-border-color: #8c8c8c;                                                   -fx-border-width: 2;                                                   -fx-border-radius: 4;                                                   -fx-background-radius: 4;                                                   -fx-font-size: 20px;                                                   -fx-text-fill: #666;" />
+                            <PasswordField prefHeight="48.0" fx:id="txt_password" promptText="At least 8 characters" style="-fx-background-color: transparent;                                                   -fx-border-color: #8c8c8c;                                                   -fx-border-width: 2;                                                   -fx-border-radius: 4;                                                   -fx-background-radius: 4;                                                   -fx-font-size: 20px;                                                   -fx-text-fill: #666;" />
                         </children>
                     </VBox>
 
                     <VBox spacing="8.0" VBox.vgrow="ALWAYS" />
 
                     <!-- Sign up button -->
-                    <Button maxWidth="1.7976931348623157E308" prefHeight="68.0" style="-fx-background-color: #d92b2b;                                    -fx-text-fill: white;                                    -fx-font-size: 22px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 4;                                    -fx-border-radius: 4;" text="Sign up" />
+                    <Button fx:id="btn_signup" maxWidth="1.7976931348623157E308" prefHeight="68.0" style="-fx-background-color: #d92b2b;                                    -fx-text-fill: white;                                    -fx-font-size: 22px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 4;                                    -fx-border-radius: 4;" text="Sign up" />
 
                     <Label style="-fx-border-color: rgba(0,0,0,0.35);                                   -fx-border-width: 1 0 0 0;" text="" />
 

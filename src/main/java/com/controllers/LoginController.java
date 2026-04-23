@@ -60,8 +60,8 @@ public class LoginController implements  Initializable{
      */
     @FXML
     private void btn_Login(MouseEvent event) throws IOException{
-        String username = txt_username.getText();
-        String password = txt_password.getText();
+        String username = txt_username.getText().trim();
+        String password = txt_password.getText().trim();
         
         if(!qFacade.login(username, password)){
             lbl_loginError.setText("Invalid Login, Please Try Again");
