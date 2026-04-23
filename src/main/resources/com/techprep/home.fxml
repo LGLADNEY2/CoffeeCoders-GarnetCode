@@ -1,132 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
 
-<StackPane prefHeight="814.0" prefWidth="900.0" style="-fx-background-color: #1f1a18;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.HomeController">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.controllers.HomeController"
+      stylesheets="@homeStyle.css"
+      minHeight="650" minWidth="650">
 
-    <!-- Background image -->
-    <ImageView fx:id="backgroundImage" fitHeight="814.0" fitWidth="900.0" preserveRatio="false">
-      <image>
-         <Image url="@images/uofsccampusvillage.jpg" />
-      </image></ImageView>
+    <!-- Main Pane -->
+    <StackPane fx:id="main" styleClass="main" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity">
+        <!-- Dark Overlay to dim background for readability -->
+        <Pane style="-fx-background-color: rgba(0,0,0,0.4);" />
+        <BorderPane>
+            <top>
+                <HBox styleClass="header" alignment="CENTER_LEFT">
+                    <Label text="Garnet Code" styleClass="header-title"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="Log In" styleClass="login-banner" onMouseClicked="#goToLoginFromNav"/>
+                </HBox>
+            </top>
+            <center>
+                <VBox alignment="CENTER" spacing="18.0">
+                    <Label text="Garnet Code" styleClass="center-title" />
+                    <Label text="Prepare for Tech Interviews" styleClass="center-text" />
+                    <Button text="Get Started" styleClass="center-button" onAction="#goToLogin" />
+                </VBox>
+            </center>
+        </BorderPane>
+    </StackPane>
 
-    <!-- Optional dark overlay for readability -->
-    <AnchorPane prefHeight="814.0" prefWidth="900.0" style="-fx-background-color: rgba(0,0,0,0.15);">
+    <!-- Footer Pane -->
+    <HBox styleClass="footer" spacing="40" minHeight="192">
+        <VBox spacing="8">
+            <Label text="Garnet Code" styleClass="footer-title" />
+            <Label text="Interview and Study Preparation" styleClass="footer-text" />
+            <HBox spacing="20">
+                <VBox.margin><Insets top="8"/></VBox.margin>
+                <ImageView fitWidth="16" preserveRatio="true">
+                    <Image url="@images/instagram.png"/>
+                </ImageView>
+                <ImageView fitWidth="16" preserveRatio="true">
+                    <Image url="@images/linkedin.png"/>
+                </ImageView>
+                <ImageView fitWidth="16" preserveRatio="true">
+                    <Image url="@images/twitter.png"/>
+                </ImageView>
+            </HBox>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox spacing="8">
+            <Label text="Features" styleClass="footer-heading" />
+            <Label text="Core Features" styleClass="footer-text" />
+            <Label text="Pro Experience" styleClass="footer-text" />
+            <Label text="Integrations" styleClass="footer-text" />
+        </VBox>
+        <VBox spacing="8">
+            <Label text="Learn More" styleClass="footer-heading" />
+            <Label text="Blog" styleClass="footer-text" />
+            <Label text="Case Studies" styleClass="footer-text" />
+            <Label text="Customer Stories" styleClass="footer-text" />
+            <Label text="Best Practices" styleClass="footer-text" />
+        </VBox>
+        <VBox spacing="8">
+            <Label text="Features" styleClass="footer-heading" />
+            <Label text="Contact" styleClass="footer-text" />
+            <Label text="Support" styleClass="footer-text" />
+            <Label text="Legal" styleClass="footer-text" />
+        </VBox>
+    </HBox>
 
-        <children>
-            <BorderPane prefHeight="814.0" prefWidth="900.0">
-
-                <!-- Top navigation bar -->
-                <top>
-                    <BorderPane prefHeight="40.0" style="-fx-background-color: #a82525;                                  -fx-background-radius: 0 0 18 18;" BorderPane.alignment="CENTER">
-                        <center>
-                            <Label style="-fx-text-fill: white;                                           -fx-font-size: 18px;                                           -fx-font-weight: bold;" text="CoffeeCoders" BorderPane.alignment="CENTER" />
-                        </center>
-                        <right>
-                            <HBox alignment="CENTER_RIGHT">
-                                <children>
-                                    <Label onMouseClicked="#goToLoginFromNav" style="-fx-text-fill: white;                                                   -fx-font-size: 13px;                                                   -fx-cursor: hand;" text="Log in" />
-                                </children>
-                                <padding>
-                                    <Insets bottom="8" left="0" right="35" top="8" />
-                                </padding>
-                            </HBox>
-                        </right>
-                    </BorderPane>
-                </top>
-
-                <!-- Center hero section -->
-                <center>
-                    <VBox alignment="CENTER" spacing="18.0">
-                        <children>
-                            <Label style="-fx-text-fill: white;                                           -fx-font-size: 44px;                                           -fx-font-weight: bold;" text="Garnet Code" />
-                            <Label style="-fx-text-fill: rgba(255,255,255,0.7);                                           -fx-font-size: 18px;" text="Prepare for Tech Interviews" />
-                            <Button fx:id="button" onAction="#goToLogin" prefHeight="38.0" prefWidth="142.0" style="-fx-background-color: #a82525;                                            -fx-text-fill: white;                                            -fx-font-size: 14px;                                            -fx-background-radius: 6;                                            -fx-border-radius: 6;" text="Get Started" />
-                        </children>
-                    </VBox>
-                </center>
-
-                <!-- Footer -->
-                <bottom>
-                    <HBox prefHeight="260.0" style="-fx-background-color: #1f1a18;">
-                        <children>
-                            <!-- Left footer block -->
-                            <VBox prefWidth="330.0" spacing="14.0">
-                                <children>
-                                    <Label style="-fx-text-fill: #ff5b57;                                                   -fx-font-size: 18px;                                                   -fx-font-weight: bold;" text="Garnet Code" />
-                                    <Label style="-fx-text-fill: rgba(255,255,255,0.55);                                                   -fx-font-size: 13px;" text="Interview and Study Preparation" />
-
-                                    <HBox spacing="18.0">
-                                        <children>
-                                            <Label style="-fx-text-fill: #a82525;                                                           -fx-font-size: 18px;" text="◎" />
-                                            <Label style="-fx-text-fill: #a82525;                                                           -fx-font-size: 18px;                                                           -fx-font-weight: bold;" text="in" />
-                                            <Label style="-fx-text-fill: #a82525;                                                           -fx-font-size: 18px;" text="X" />
-                                        </children>
-                                    </HBox>
-                                </children>
-                                <padding>
-                                    <Insets bottom="0" left="50" right="0" top="40" />
-                                </padding>
-                            </VBox>
-
-                            <!-- Footer columns -->
-                            <HBox alignment="TOP_LEFT" spacing="42.0">
-                                <children>
-                                    <VBox spacing="10.0">
-                                        <children>
-                                            <Label style="-fx-text-fill: #ff5b57;                                                           -fx-font-size: 14px;                                                           -fx-font-weight: bold;" text="Features" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Core features" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Pro experience" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Integrations" />
-                                        </children>
-                                        <padding>
-                                            <Insets bottom="0" left="80" right="0" top="40" />
-                                        </padding>
-                                    </VBox>
-
-                                    <VBox spacing="10.0">
-                                        <children>
-                                            <Label style="-fx-text-fill: #ff5b57;                                                           -fx-font-size: 14px;                                                           -fx-font-weight: bold;" text="Learn more" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Blog" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Case studies" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Customer stories" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Best practices" />
-                                        </children>
-                                        <padding>
-                                            <Insets bottom="0" left="0" right="0" top="40" />
-                                        </padding>
-                                    </VBox>
-
-                                    <VBox spacing="10.0">
-                                        <children>
-                                            <Label style="-fx-text-fill: #ff5b57;                                                           -fx-font-size: 14px;                                                           -fx-font-weight: bold;" text="Support" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Contact" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Support" />
-                                            <Label style="-fx-text-fill: rgba(255,255,255,0.55);" text="Legal" />
-                                        </children>
-                                        <padding>
-                                            <Insets bottom="0" left="0" right="0" top="40" />
-                                        </padding>
-                                    </VBox>
-                                </children>
-                                <padding>
-                                    <Insets bottom="0" left="40" right="0" top="0" />
-                                </padding>
-                            </HBox>
-                        </children>
-                    </HBox>
-                </bottom>
-
-            </BorderPane>
-        </children>
-    </AnchorPane>
-</StackPane>
+</VBox>
