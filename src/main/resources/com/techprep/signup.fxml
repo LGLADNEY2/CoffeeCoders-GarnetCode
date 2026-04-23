@@ -36,14 +36,14 @@
                 <!-- credential boxes -->
                 <VBox alignment="CENTER_LEFT" styleClass="bounding-box">
                     <Label text="Name" styleClass="center-label" />
-                    <TextField promptText="First and Last Name" prefHeight="48.0" styleClass="center-input" />
+                    <TextField fx:id="txt_name" promptText="First and Last Name" prefHeight="48.0" styleClass="center-input" />
                     <Label text="Username" styleClass="center-label" />
-                    <TextField promptText="Enter Username" prefHeight="48.0" styleClass="center-input" />
+                    <TextField fx:id="txt_username" promptText="Enter Username" prefHeight="48.0" styleClass="center-input" />
                     <Label text="Password" styleClass="center-label" />
-                    <PasswordField promptText="Enter Password" prefHeight="48.0" styleClass="center-input" />
+                    <PasswordField fx:id="txt_password" promptText="Enter Password" prefHeight="48.0" styleClass="center-input" />
                     <Hyperlink text="Forgot Password?" styleClass="center-reset" />
-                    <Label styleClass="center-error" />
-                    <Button text="Sign Up" prefHeight="42.0" maxWidth="Infinity" styleClass="center-login-button" />
+                    <Label fx:id="lbl_SignupError" styleClass="center-error" />
+                    <Button text="Sign Up" onMouseClicked="#btn_Signup" prefHeight="42.0" maxWidth="Infinity" styleClass="center-login-button" />
                 </VBox>
 
                 <Separator maxWidth="318" styleClass="separator" />
