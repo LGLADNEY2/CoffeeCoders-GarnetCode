@@ -1,0 +1,28 @@
+.keyword {
+    -fx-fill: #569CD6;
+    -fx-font-weight: bold;
+}
+
+.paren {
+    -fx-fill: #D4D4D4;
+}
+
+.brace {
+    -fx-fill: #D4D4D4;
+}
+
+.bracket {
+    -fx-fill: #D4D4D4;
+}
+
+.semicolon {
+    -fx-fill: #D4D4D4;
+}
+
+.string {
+    -fx-fill: #CE9178;
+}
+
+.comment {
+    -fx-fill: #6A9955;
+}

@@ -3,6 +3,9 @@ module com.techprep {
     requires javafx.fxml;
     requires json.simple;
     requires junit;
+    requires org.fxmisc.richtext;
+    requires org.fxmisc.flowless;
+    requires reactfx;
 
     opens com.controllers to javafx.fxml;
 
