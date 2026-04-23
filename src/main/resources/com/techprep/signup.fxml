@@ -1,92 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
 
-<StackPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #4f6da7;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.controllers.SignupController">
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.controllers.SignupController"
+           stylesheets="@credentialStyle.css"
+           styleClass="main"
+           minHeight="650.0" minWidth="650.0">
 
-    <!-- Background image -->
-    <ImageView fx:id="backgroundImage" fitHeight="900.0" fitWidth="1200.0" preserveRatio="false">
-      <image>
-         <Image url="@images/uofsccampusvillage.jpg" />
-      </image></ImageView>
+    <BorderPane>
+        <center>
+            <!-- Container box -->
+            <VBox styleClass="card" alignment="CENTER" minHeight="-Infinity" maxHeight="-Infinity" maxWidth="350">
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT" styleClass="bounding-box">
+                    <Label text="Sign Up" styleClass="header-text"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="x" onAction="#goToHome" minWidth="30.0" minHeight="30.0" maxWidth="30.0" maxHeight="30.0" styleClass="header-button">
+                        <shape>
+                            <Circle radius="15" />
+                        </shape>
+                    </Button>
+                </HBox>
 
-    <!-- Center sign-up card -->
-    <AnchorPane prefHeight="640.0" prefWidth="520.0" style="-fx-background-color: rgba(255,255,255,0.78);                        -fx-background-radius: 10;                        -fx-border-radius: 10;                        -fx-border-color: rgba(0,0,0,0.15);                        -fx-border-width: 1;">
+                <Separator maxWidth="318" styleClass="separator" />
 
-        <children>
-            <VBox spacing="18.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="18.0">
+                <!-- credential boxes -->
+                <VBox alignment="CENTER_LEFT" styleClass="bounding-box">
+                    <Label text="Name" styleClass="center-label" />
+                    <TextField promptText="First and Last Name" prefHeight="48.0" styleClass="center-input" />
+                    <Label text="Username" styleClass="center-label" />
+                    <TextField promptText="Enter Username" prefHeight="48.0" styleClass="center-input" />
+                    <Label text="Password" styleClass="center-label" />
+                    <PasswordField promptText="Enter Password" prefHeight="48.0" styleClass="center-input" />
+                    <Hyperlink text="Forgot Password?" styleClass="center-reset" />
+                    <Label styleClass="center-error" />
+                    <Button text="Sign Up" prefHeight="42.0" maxWidth="Infinity" styleClass="center-login-button" />
+                </VBox>
 
-                <children>
-                    <!-- Title row -->
-                    <HBox alignment="CENTER_LEFT">
-                        <children>
-                            <Label style="-fx-font-size: 26px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #7a3c3c;" text="Sign up" />
-                        </children>
-                    </HBox>
+                <Separator maxWidth="318" styleClass="separator" />
 
-                    <Label style="-fx-border-color: rgba(0,0,0,0.35);                                   -fx-border-width: 0 0 1 0;" text="" />
-
-                    <!-- Close button -->
-                    <HBox alignment="CENTER_RIGHT">
-                        <children>
-                            <Button onAction="#goToHome" prefHeight="42.0" prefWidth="42.0" style="-fx-background-radius: 999;                                            -fx-border-radius: 999;                                            -fx-background-color: rgba(255,255,255,0.75);                                            -fx-border-color: rgba(122,60,60,0.55);                                            -fx-text-fill: #7a3c3c;                                            -fx-font-size: 22px;                                            -fx-font-weight: bold;" text="×" />
-                        </children>
-                    </HBox>
-
-                    <!-- Name -->
-                    <VBox spacing="8.0">
-                        <children>
-                            <Label style="-fx-font-size: 22px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #7a3c3c;" text="Name" />
-                            <TextField prefHeight="48.0" fx:id="txt_name" promptText="Enter Your Full Name" style="-fx-background-color: transparent;                                               -fx-border-color: #8c8c8c;                                               -fx-border-width: 2;                                               -fx-border-radius: 4;                                               -fx-background-radius: 4;                                               -fx-font-size: 20px;                                               -fx-text-fill: #666;" />
-                        </children>
-                    </VBox>
-
-                    <!-- Username -->
-                    <VBox spacing="8.0">
-                        <children>
-                            <Label style="-fx-font-size: 22px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #7a3c3c;" text="Username" />
-                            <TextField prefHeight="48.0" fx:id="txt_username" promptText="Enter Your Username" style="-fx-background-color: transparent;                                               -fx-border-color: #8c8c8c;                                               -fx-border-width: 2;                                               -fx-border-radius: 4;                                               -fx-background-radius: 4;                                               -fx-font-size: 20px;                                               -fx-text-fill: #666;" />
-                        </children>
-                    </VBox>
-
-                    <!-- Password -->
-                    <VBox spacing="8.0">
-                        <children>
-                            <Label style="-fx-font-size: 22px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #7a3c3c;" text="Password" />
-                            <PasswordField prefHeight="48.0" fx:id="txt_password" promptText="At least 8 characters" style="-fx-background-color: transparent;                                                   -fx-border-color: #8c8c8c;                                                   -fx-border-width: 2;                                                   -fx-border-radius: 4;                                                   -fx-background-radius: 4;                                                   -fx-font-size: 20px;                                                   -fx-text-fill: #666;" />
-                        </children>
-                    </VBox>
-
-                    <VBox spacing="8.0" VBox.vgrow="ALWAYS" />
-
-                    <!-- Sign up button -->
-                    <Button fx:id="btn_signup" maxWidth="1.7976931348623157E308" prefHeight="68.0" style="-fx-background-color: #d92b2b;                                    -fx-text-fill: white;                                    -fx-font-size: 22px;                                    -fx-font-weight: bold;                                    -fx-background-radius: 4;                                    -fx-border-radius: 4;" text="Sign up" />
-
-                    <Label style="-fx-border-color: rgba(0,0,0,0.35);                                   -fx-border-width: 1 0 0 0;" text="" />
-
-                    <!-- Bottom links -->
-                    <VBox alignment="CENTER" spacing="6.0">
-                        <children>
-                            <Label style="-fx-font-size: 20px;                                           -fx-text-fill: #7a3c3c;" text="Already have an account?" />
-                            <Button onAction="#goToLogin" style="-fx-background-color: transparent;                                            -fx-font-size: 20px;                                            -fx-font-weight: bold;                                            -fx-text-fill: #7a3c3c;                                            -fx-underline: true;                                            -fx-cursor: hand;" text="Log in" />
-                        </children>
-                    </VBox>
-                </children>
-
-                <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
+                <VBox alignment="CENTER" styleClass="bounding-box">
+                    <Label text="Already have an account?" styleClass="footer-label" />
+                    <Button text="Log in" onAction="#goToLogin" styleClass="footer-button" />
+                </VBox>
             </VBox>
-        </children>
-    </AnchorPane>
+        </center>
+    </BorderPane>
 </StackPane>
