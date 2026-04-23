@@ -208,7 +208,7 @@ public class QuestionFacade {
      * @return true if account is added, otherwise false
      */
     public boolean addAccount(String firstName, String lastName, String email, String username, String password) {
-        if(password == null || password.length()<8 || password.contains(" ") || email.contains(" ") || username.contains(" ")) {
+        if(password == null || password.length()<7 || password.contains(" ") || email.contains(" ") || username.contains(" ")) {
             return false;
         }
         if(accountList.addAccount(firstName,lastName, email, username, password)) {

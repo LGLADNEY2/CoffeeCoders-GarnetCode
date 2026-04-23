@@ -10,7 +10,6 @@ import com.techprep.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -29,8 +28,8 @@ public class SignupController implements Initializable{
     @FXML
     private TextField txt_name;
 
-    @FXML
-    private Label lbl_SignupError;
+    //@FXML
+    //private Label lbl_SignupError;
 
 
     /**
@@ -55,13 +54,19 @@ public class SignupController implements Initializable{
         App.setRoot("login");
     }
 
+    /**
+     * Attempt to create an account and navigate to the dashboard on success.
+     *
+     * @param event mouse event from the signup button
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
     private void btn_Signup(MouseEvent event) throws IOException{
         String username = txt_username.getText().trim();
         String password = txt_password.getText().trim();
         String name = txt_name.getText().trim();
         if(!name.contains(" ")) {
-            lbl_SignupError.setText("Invalid Name, Please Try Again");
+            //lbl_SignupError.setText("Invalid Name, Please Try Again");
             txt_name.clear();
             return;
         }
@@ -69,13 +74,16 @@ public class SignupController implements Initializable{
         String firstName = name.substring(0, firstSpace);
         String lastName = name.substring(firstSpace + 1);
         if(!qFacade.addAccount(firstName, lastName, "temp@email.com", username, password)){
-            lbl_SignupError.setText("Invalid Signup, Please Try Again");
+            //lbl_SignupError.setText("Invalid Signup, Please Try Again");
             txt_username.clear();
             txt_password.clear();
             txt_name.clear();
             return;
         }
-        lbl_SignupError.setText("");
+        if (!qFacade.login(username, password)) {
+            return;
+        }
+        //lbl_SignupError.setText("");
         App.setRoot("dashboard");
 
     }

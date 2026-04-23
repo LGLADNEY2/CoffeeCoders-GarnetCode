@@ -3,7 +3,9 @@ package com.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import com.model.Account;
 import com.model.Question;
@@ -14,12 +16,12 @@ import com.techprep.App;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,31 +38,31 @@ public class DashboardController implements Initializable{
     private Account account;
     @FXML private Label completedQuestions;
     @FXML private Label dailyStreak;
-    @FXML private TableView<ObservableList<String>> continueTable;
-    @FXML private TableColumn<ObservableList<String>, String> conTitleDate;
-    @FXML private TableColumn<ObservableList<String>, String> conCategory;
-    @FXML private TableColumn<ObservableList<String>, String> conLanguage;
-    @FXML private TableColumn<ObservableList<String>, String> conClass;
-    @FXML private TableColumn<ObservableList<String>, String> conDifficulty;
-    @FXML private TableColumn<ObservableList<String>, String> conRating;
+    @FXML private TableView<Question> continueTable;
+    @FXML private TableColumn<Question, String> conTitleDate;
+    @FXML private TableColumn<Question, String> conCategory;
+    @FXML private TableColumn<Question, String> conLanguage;
+    @FXML private TableColumn<Question, String> conClass;
+    @FXML private TableColumn<Question, String> conDifficulty;
+    @FXML private TableColumn<Question, String> conRating;
 
     // Recommended table and its columns
-    @FXML private TableView<ObservableList<String>> recommendedTable;
-    @FXML private TableColumn<ObservableList<String>, String> recTitleDate;
-    @FXML private TableColumn<ObservableList<String>, String> recCategory;
-    @FXML private TableColumn<ObservableList<String>, String> recLanguage;
-    @FXML private TableColumn<ObservableList<String>, String> recClass;
-    @FXML private TableColumn<ObservableList<String>, String> recDifficulty;
-    @FXML private TableColumn<ObservableList<String>, String> recRating;
+    @FXML private TableView<Question> recommendedTable;
+    @FXML private TableColumn<Question, String> recTitleDate;
+    @FXML private TableColumn<Question, String> recCategory;
+    @FXML private TableColumn<Question, String> recLanguage;
+    @FXML private TableColumn<Question, String> recClass;
+    @FXML private TableColumn<Question, String> recDifficulty;
+    @FXML private TableColumn<Question, String> recRating;
 
     // Favorites table and its columns
-    @FXML private TableView<ObservableList<String>> favoritesTable;
-    @FXML private TableColumn<ObservableList<String>, String> favTitleDate;
-    @FXML private TableColumn<ObservableList<String>, String> favCategory;
-    @FXML private TableColumn<ObservableList<String>, String> favLanguage;
-    @FXML private TableColumn<ObservableList<String>, String> favClass;
-    @FXML private TableColumn<ObservableList<String>, String> favDifficulty;
-    @FXML private TableColumn<ObservableList<String>, String> favRating;
+    @FXML private TableView<Question> favoritesTable;
+    @FXML private TableColumn<Question, String> favTitleDate;
+    @FXML private TableColumn<Question, String> favCategory;
+    @FXML private TableColumn<Question, String> favLanguage;
+    @FXML private TableColumn<Question, String> favClass;
+    @FXML private TableColumn<Question, String> favDifficulty;
+    @FXML private TableColumn<Question, String> favRating;
     @FXML private ImageView profileImage;
 
 
@@ -119,38 +121,53 @@ public class DashboardController implements Initializable{
      * @param col5 rating column
      */
     private void configureTableColumns(
-            TableColumn<ObservableList<String>, String> col0,
-            TableColumn<ObservableList<String>, String> col1,
-            TableColumn<ObservableList<String>, String> col2,
-            TableColumn<ObservableList<String>, String> col3,
-            TableColumn<ObservableList<String>, String> col4,
-            TableColumn<ObservableList<String>, String> col5) {
+        TableColumn<Question, String> titleDateCol,
+        TableColumn<Question, String> categoryCol,
+        TableColumn<Question, String> languageCol,
+        TableColumn<Question, String> classCol,
+        TableColumn<Question, String> difficultyCol,
+        TableColumn<Question, String> ratingCol) {
         
-        col0.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(0)));
-        col1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(1)));
-        col2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(2)));
-        col3.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(3)));
-        col4.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(4)));
-        col5.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(5)));
+        titleDateCol.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getTitle() + "\n" +
+                    cellData.getValue().formatDate(cellData.getValue().getDatePosted())));
+
+        categoryCol.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getQuestionTag().getCategory().get(0).toString()));
+
+        languageCol.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getQuestionTag().getLanguage().toString()));
+
+        classCol.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getQuestionTag().getCourse().get(0).toString()));
+
+        difficultyCol.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getDifficulty().toString()));
+
+        ratingCol.setCellValueFactory(cellData ->
+            new SimpleStringProperty(String.valueOf(cellData.getValue().getRating())));
     }
 
-    /**
-     * Adds a row to the specified table with the provided cell values.
-     *
-     * @param table target table
-     * @param titleDate combined title and date cell
-     * @param category category cell
-     * @param language language cell
-     * @param course course/class cell
-     * @param difficulty difficulty cell
-     * @param rating rating cell
-     */
-    private void addRow(TableView<ObservableList<String>> table, String titleDate, String category, 
-                        String language, String course, String difficulty, String rating) {
-        ObservableList<String> row = FXCollections.observableArrayList(
-                titleDate, category, language, course, difficulty, rating);
-        table.getItems().add(row);
-    }
+    private void setupTableClickHandler(TableView<Question> table) {
+    table.setRowFactory(tv -> {
+        TableRow<Question> row = new TableRow<>();
+        row.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && !row.isEmpty()) {  // double‑click
+                Question selectedQuestion = row.getItem();
+                if (selectedQuestion != null) {
+                    // Store the question so the detail page can access it
+                    qFacade.getQuestion(selectedQuestion.getQuestionID());
+                    try {
+                        App.setRoot("question_detail");  // your detail FXML name
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        return row;
+    });
+}
 
     /**
      * Initializes dashboard controls, configures tables and loads account data.
@@ -162,50 +179,29 @@ public class DashboardController implements Initializable{
         this.account = qFacade.getCurrentAccount();
         loadProfileImage();
 
-         // Configure columns for all three tables
-        configureTableColumns(conTitleDate, conCategory, conLanguage, conClass, conDifficulty, conRating);
-        configureTableColumns(recTitleDate, recCategory, recLanguage, recClass, recDifficulty, recRating);
-        configureTableColumns(favTitleDate, favCategory, favLanguage, favClass, favDifficulty, favRating);
+        setupTableClickHandler(continueTable);
+        setupTableClickHandler(recommendedTable);
+        setupTableClickHandler(favoritesTable);
 
-        // Initialize tables with empty data
-        continueTable.setItems(FXCollections.observableArrayList());
-        recommendedTable.setItems(FXCollections.observableArrayList());
-        favoritesTable.setItems(FXCollections.observableArrayList());
+        configureTableColumns(conTitleDate, conCategory, conLanguage, 
+                            conClass, conDifficulty, conRating);
+        configureTableColumns(recTitleDate, recCategory, recLanguage, 
+                            recClass, recDifficulty, recRating);
+        configureTableColumns(favTitleDate, favCategory, favLanguage, 
+                            favClass, favDifficulty, favRating);
 
         if (account.getRole() == Role.STUDENT) {
-             ((Student)account).updateDailyStreak(new Date());
-            completedQuestions.setText(((Student)account).getCompletedQuestions().size() + "");
-            dailyStreak.setText(((Student)account).getDailyStreak()+"");
-            for (Question question : ((Student) account).getCompletedQuestions()) {
-                    addRow(continueTable,
-                        question.getTitle() + "\n" + question.formatDate(question.getDatePosted()),
-                        question.getQuestionTag().getCategory().get(0).toString(),
-                        question.getQuestionTag().getLanguage().toString(),
-                        question.getQuestionTag().getCourse().get(0).toString(),
-                        question.getDifficulty().toString(),
-                        question.getRating() + "");
-            }
-            for (Question question : ((Student) account).getFavoriteQuestions()) {
-                addRow(favoritesTable,
-                        question.getTitle() + "\n" + question.formatDate(question.getDatePosted()),
-                        question.getQuestionTag().getCategory().get(0).toString(),
-                        question.getQuestionTag().getLanguage().toString(),
-                        question.getQuestionTag().getCourse().get(0).toString(),
-                        question.getDifficulty().toString(),
-                        question.getRating() + "");
-            }
-            for (Question question : qFacade.getQuestions()) {
-                if(((Student)account).getCompletedQuestions().contains(question)) {}
-                else {
-                    addRow(recommendedTable,
-                        question.getTitle() + "\n" + question.formatDate(question.getDatePosted()),
-                        question.getQuestionTag().getCategory().get(0).toString(),
-                        question.getQuestionTag().getLanguage().toString(),
-                        question.getQuestionTag().getCourse().get(0).toString(),
-                        question.getDifficulty().toString(),
-                        question.getRating() + "");
-                }
-            }
+            Student student = (Student) account;
+            student.updateDailyStreak(new Date());
+            completedQuestions.setText(String.valueOf(student.getCompletedQuestions().size()));
+            dailyStreak.setText(String.valueOf(student.getDailyStreak()));
+
+            continueTable.setItems(FXCollections.observableArrayList(student.getCompletedQuestions()));
+            favoritesTable.setItems(FXCollections.observableArrayList(student.getFavoriteQuestions()));
+
+            // Recommended = all questions not already completed
+            List<Question> recommended = qFacade.getQuestions().stream().filter(q -> !student.getCompletedQuestions().contains(q)).collect(Collectors.toList());
+            recommendedTable.setItems(FXCollections.observableArrayList(recommended));
         }
     }
 
