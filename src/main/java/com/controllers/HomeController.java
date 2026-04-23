@@ -16,7 +16,7 @@ public class HomeController {
 
     @FXML
     private void goToLogin(ActionEvent event) throws IOException{
-        App.setRoot("login"); 
+        App.setRoot("signup");
     }
 
     @FXML
