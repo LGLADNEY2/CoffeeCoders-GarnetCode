@@ -89,6 +89,17 @@ public class DashboardController implements Initializable{
     }
 
     /**
+     * Open the favorites view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
+    @FXML
+    private void goToFavorites(ActionEvent event) throws IOException {
+        App.setRoot("favorites");
+    }
+
+    /**
      * Display a placeholder settings dialog.
      *
      * @param event UI action event
@@ -146,6 +157,20 @@ public class DashboardController implements Initializable{
 
         ratingCol.setCellValueFactory(cellData ->
             new SimpleStringProperty(String.valueOf(cellData.getValue().getRating())));
+
+        titleDateCol.setPrefWidth(320);
+        categoryCol.setPrefWidth(140);
+        languageCol.setPrefWidth(120);
+        classCol.setPrefWidth(120);
+        difficultyCol.setPrefWidth(140);
+        ratingCol.setPrefWidth(90);
+
+        titleDateCol.setMinWidth(220);
+        categoryCol.setMinWidth(110);
+        languageCol.setMinWidth(95);
+        classCol.setMinWidth(95);
+        difficultyCol.setMinWidth(110);
+        ratingCol.setMinWidth(70);
     }
 
     private void setupTableClickHandler(TableView<Question> table) {
@@ -158,7 +183,7 @@ public class DashboardController implements Initializable{
                     // Store the question so the detail page can access it
                     qFacade.getQuestion(selectedQuestion.getQuestionID());
                     try {
-                        App.setRoot("question_detail");  // your detail FXML name
+                        App.setRoot("question_detail");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -189,6 +214,10 @@ public class DashboardController implements Initializable{
                             recClass, recDifficulty, recRating);
         configureTableColumns(favTitleDate, favCategory, favLanguage, 
                             favClass, favDifficulty, favRating);
+
+        continueTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        recommendedTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        favoritesTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
         if (account.getRole() == Role.STUDENT) {
             Student student = (Student) account;

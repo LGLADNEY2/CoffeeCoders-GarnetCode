@@ -6,14 +6,19 @@ import java.nio.file.Files;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
 
+import com.techprep.App;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -22,6 +27,9 @@ public class CodeViewController {
 
     @FXML
     private CodeArea codeArea;
+
+    @FXML
+    private ComboBox<String> languagePicker;
 
     private static final String[] KEYWORDS = new String[] {
         "abstract","assert","boolean","break","byte","case","catch","char","class",
@@ -56,6 +64,13 @@ public class CodeViewController {
             getClass().getResource("/com/techprep/java-keywords.css").toExternalForm()
         );
 
+        codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
+        codeArea.setWrapText(false);
+
+        languagePicker.getItems().setAll(List.of("C++", "Java", "Python"));
+        languagePicker.getSelectionModel().select("C++");
+        codeArea.clear();
+
         codeArea.multiPlainChanges()
                 .successionEnds(Duration.ofMillis(300))
                 .subscribe(ignore -> 
@@ -64,11 +79,31 @@ public class CodeViewController {
     }
 
     @FXML
+    private void runCode() {
+        // Placeholder action until execution service is wired.
+    }
+
+    @FXML
+    private void submitCode() {
+        // Placeholder action until submission service is wired.
+    }
+
+    @FXML
+    private void goBackToQuestion() {
+        try {
+            App.setRoot("question_detail");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void openFile() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Java File");
-        fileChooser.getExtensionFilters().add(
-            new FileChooser.ExtensionFilter("Java Files", "*.java")
+        fileChooser.setTitle("Open Source File");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Source Files", "*.cpp", "*.cc", "*.cxx", "*.java", "*.py"),
+            new FileChooser.ExtensionFilter("All Files", "*.*")
         );
 
         Scene scene = codeArea.getScene();

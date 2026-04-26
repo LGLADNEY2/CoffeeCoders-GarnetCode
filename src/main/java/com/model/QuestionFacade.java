@@ -368,6 +368,15 @@ public class QuestionFacade {
         return currentAccount;
     }
 
+    /**
+     * Returns the currently selected question, if any.
+     *
+     * @return current question or null
+     */
+    public Question getCurrentQuestion() {
+        return currentQuestion;
+    }
+
     public ArrayList<Question> getQuestions() {
         return questionList.getQuestions();
     }

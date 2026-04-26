@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/25"
+            fx:controller="com.controllers.QuestionDetailController"
+            stylesheets="@styles.css"
+            style="-fx-background-color: linear-gradient(to bottom, #000000 0%, #220000 100%);">
+
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="20" style="-fx-background-color: #a82525; -fx-background-radius: 18px; -fx-padding: 24 0 24 0;" BorderPane.alignment="CENTER">
+            <Label text="GARNETCODE" style="-fx-text-fill: #fff; -fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 0 0 18 0;" />
+            <VBox spacing="10">
+                <Button text="Dashboard" onAction="#goToDashboard" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" />
+                <Button text="Favorites" onAction="#goToFavorites" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" />
+                <Button text="Questions" onAction="#goToQuestions" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand; -fx-underline: true;" />
+                <Button text="Create" onAction="#goToCreate" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" />
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;" BorderPane.alignment="CENTER">
+            <content>
+                <VBox spacing="12" style="-fx-padding: 18 18 18 18;">
+                    <HBox spacing="8" styleClass="detail-tabs">
+                        <Button text="Question" styleClass="detail-tab-active" />
+                        <Button text="Solution" onAction="#goToSolution" styleClass="detail-tab" />
+                        <Button text="Comments" onAction="#goToComments" styleClass="detail-tab" />
+                    </HBox>
+
+                    <VBox spacing="8" styleClass="detail-card">
+                        <Label fx:id="titleLabel" text="Question Title" style="-fx-text-fill: #f0f0f0; -fx-font-size: 34px; -fx-font-weight: bold;" />
+                        <HBox spacing="10">
+                            <Label fx:id="difficultyLabel" text="BEGINNER" styleClass="detail-badge" />
+                            <Label fx:id="metadataLabel" text="N/A min • 0.0 rating" style="-fx-text-fill: #bbbbbb; -fx-font-size: 13px;" />
+                        </HBox>
+                    </VBox>
+
+                    <VBox spacing="8" styleClass="detail-card">
+                        <Label text="Problem Details" styleClass="detail-section-title" />
+                        <Label fx:id="detailText" text="" wrapText="true" styleClass="detail-body" />
+                    </VBox>
+
+                    <VBox spacing="8" styleClass="detail-card">
+                        <Label text="Example Cases" styleClass="detail-section-title" />
+                        <Label fx:id="examplesText" text="" wrapText="true" styleClass="detail-body" />
+                    </VBox>
+
+                    <VBox spacing="8" styleClass="detail-card">
+                        <Label text="Constraints" styleClass="detail-section-title" />
+                        <Label fx:id="constraintsText" text="" wrapText="true" styleClass="detail-body" />
+                    </VBox>
+
+                    <VBox spacing="8" styleClass="detail-card">
+                        <Label text="Hints" styleClass="detail-section-title" />
+                        <VBox fx:id="hintsBox" spacing="8" />
+                    </VBox>
+                </VBox>
+            </content>
+            <padding>
+                <Insets top="0" right="0" bottom="0" left="0" />
+            </padding>
+        </ScrollPane>
+    </center>
+</BorderPane>

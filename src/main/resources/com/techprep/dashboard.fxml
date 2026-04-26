@@ -25,7 +25,7 @@
             <Label style="-fx-text-fill: #fff; -fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 0 0 18 0;" text="GARNETCODE" />
             <VBox spacing="10">
                 <Button style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand; -fx-underline: true;" text="Dashboard" />
-                <Button style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" text="Favorites" />
+                <Button onAction="#goToFavorites" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" text="Favorites" />
                 <Button onAction="#goToQuestions" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" text="Questions" />
                 <Button onAction="#goToCreate" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" text="Create" />
             </VBox>

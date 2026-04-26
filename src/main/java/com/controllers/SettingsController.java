@@ -74,6 +74,11 @@ public class SettingsController implements Initializable {
     }
 
     @FXML
+    private void goToFavorites(ActionEvent event) throws IOException {
+        App.setRoot("favorites");
+    }
+
+    @FXML
     private void goToCreate(ActionEvent event) throws IOException {
         App.setRoot("create_question");
     }

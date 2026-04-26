@@ -67,6 +67,17 @@ public class CreateQuestionController {
     }
 
     /**
+     * Open the favorites view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
+    @FXML
+    private void goToFavorites(ActionEvent event) throws IOException {
+        App.setRoot("favorites");
+    }
+
+    /**
      * Handle the submit action for creating a new question. Currently
      * logs the captured input values to stdout.
      *

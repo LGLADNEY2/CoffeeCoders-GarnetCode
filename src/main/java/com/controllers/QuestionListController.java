@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import com.model.Course;
 import com.model.Language;
 import com.model.Question;
+import com.model.QuestionFacade;
 import com.model.QuestionList;
 import com.model.QuestionTag;
 import com.techprep.App;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 
 /**
@@ -29,6 +31,7 @@ import javafx.scene.control.TableView;
  * @author Coffee Coders
  */
 public class QuestionListController implements Initializable {
+    private final QuestionFacade qFacade = QuestionFacade.getInstance();
 
     @FXML private TableView<ObservableList<String>> questionTable;
     @FXML private TableColumn<ObservableList<String>, String> listTitleDate;
@@ -61,6 +64,17 @@ public class QuestionListController implements Initializable {
     }
 
     /**
+     * Open the favorites view.
+     *
+     * @param event UI action event
+     * @throws IOException when the FXML cannot be loaded
+     */
+    @FXML
+    private void goToFavorites(ActionEvent event) throws IOException {
+        App.setRoot("favorites");
+    }
+
+    /**
      * Navigates to the create-question view.
      *
      * @param event UI action event
@@ -76,7 +90,22 @@ public class QuestionListController implements Initializable {
      * for the question table.
      */
     private void configureTableColumns() {
-        questionTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        questionTable.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        questionTable.setFixedCellSize(56);
+
+        listTitleDate.setPrefWidth(320);
+        listCategory.setPrefWidth(140);
+        listLanguage.setPrefWidth(120);
+        listClass.setPrefWidth(120);
+        listDifficulty.setPrefWidth(140);
+        listRating.setPrefWidth(90);
+
+        listTitleDate.setMinWidth(220);
+        listCategory.setMinWidth(110);
+        listLanguage.setMinWidth(95);
+        listClass.setMinWidth(95);
+        listDifficulty.setMinWidth(110);
+        listRating.setMinWidth(70);
 
         listTitleDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(0)));
         listCategory.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(1)));
@@ -106,6 +135,25 @@ public class QuestionListController implements Initializable {
                 wrappedLabel.setMaxWidth(Math.max(120, getTableColumn().getWidth() - 18));
                 setGraphic(wrappedLabel);
             }
+        });
+
+        questionTable.setRowFactory(tv -> {
+            TableRow<ObservableList<String>> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    int index = row.getIndex();
+                    ArrayList<Question> questions = QuestionList.getInstance().getQuestions();
+                    if (index >= 0 && index < questions.size()) {
+                        qFacade.getQuestion(questions.get(index).getQuestionID());
+                        try {
+                            App.setRoot("question_detail");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+            return row;
         });
     }
 
