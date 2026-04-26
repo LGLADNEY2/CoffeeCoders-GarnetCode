@@ -10,6 +10,10 @@ import javafx.scene.layout.*;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Legacy controller for the home view; replaced by HomeController.
+ * @author Coffee Coders
+ */
 public class HomeController_old {
 
     @FXML

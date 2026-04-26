@@ -23,6 +23,10 @@ import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the code view; handles code editing, syntax highlighting, and file operations.
+ * @author Coffee Coders
+ */
 public class CodeViewController {
 
     @FXML
@@ -58,6 +62,9 @@ public class CodeViewController {
       + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
 
+    /**
+     * Initializes the code area with syntax highlighting, line numbers, and language selection.
+     */
     @FXML
     public void initialize() {
         codeArea.getStylesheets().add(
@@ -73,28 +80,35 @@ public class CodeViewController {
 
         codeArea.multiPlainChanges()
                 .successionEnds(Duration.ofMillis(300))
-                .subscribe(ignore -> 
+                .subscribe(ignore ->
                     codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText()))
                 );
     }
 
+    /**
+     * Placeholder for code execution functionality.
+     */
     @FXML
     private void runCode() {
         // Placeholder action until execution service is wired.
     }
 
+    /**
+     * Placeholder for code submission functionality.
+     */
     @FXML
     private void submitCode() {
         // Placeholder action until submission service is wired.
     }
 
+    /**
+     * Navigates back to the question detail view.
+     *
+     * @throws IOException when the FXML cannot be loaded
+     */
     @FXML
-    private void goBackToQuestion() {
-        try {
-            App.setRoot("question_detail");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void goBackToQuestion() throws IOException {
+        App.setRoot("question_detail");
     }
 
     @FXML

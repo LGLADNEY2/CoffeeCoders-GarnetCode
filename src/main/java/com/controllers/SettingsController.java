@@ -16,6 +16,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the settings view; manages user profile editing and application preferences.
+ * @author Coffee Coders
+ */
 public class SettingsController implements Initializable {
     private QuestionFacade qFacade;
     private Account account;
@@ -27,6 +31,9 @@ public class SettingsController implements Initializable {
     @FXML private CheckBox fullscreenCheck;
     @FXML private Label statusLabel;
 
+    /**
+     * Controller initialization hook used to load current account data into form fields.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         qFacade = QuestionFacade.getInstance();

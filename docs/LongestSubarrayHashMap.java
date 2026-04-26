@@ -1,7 +1,18 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Optimized solution for finding the longest subarray with sum equal to k using HashMap.
+ * @author Coffee Coders
+ */
 public class LongestSubarrayHashMap {
+    /**
+     * Finds the length of the longest subarray with sum equal to k using prefix sums and HashMap.
+     *
+     * @param nums the input array of integers
+     * @param k the target sum
+     * @return the length of the longest subarray with sum k
+     */
     public int longestSubarray(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
         int prefixSum = 0;
