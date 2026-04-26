@@ -267,6 +267,9 @@ public class QuestionFacade {
      */
     public void removeAccount(UUID accountID) {
         accountList.deleteAccount(accountID);
+        if (currentAccount != null && currentAccount.getAccountID().equals(accountID)) {
+            currentAccount = null;
+        }
     }
 
 

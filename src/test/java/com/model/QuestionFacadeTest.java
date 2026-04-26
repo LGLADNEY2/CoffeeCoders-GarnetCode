@@ -15,11 +15,19 @@ class QuestionFacadeTest {
 
     @BeforeEach
     public void setUp(){
-        facade = new QuestionFacade();
-        facade.addAccount("Ballister", "Blackheart", "BBH2012", "Passw0rd@123", "BBH2012@Institution.org", Role.STUDENT);
+        facade = QuestionFacade.getInstance();
+        // Clear existing accounts for test isolation
+        AccountList accountList = AccountList.getInstance();
+        ArrayList<Account> accounts = accountList.getAccounts();
+        for (Account acc : accounts) {
+            accountList.deleteAccount(acc.getAccountID());
+        }
+        // Reset facade state
+        facade.logout();
+        facade.addAccount("Ballister", "Blackheart", "BBH2012@Institution.org", "BBH2012", "Passw0rd@123", Role.STUDENT);
         boolean loggedIn = facade.login("BBH2012", "Passw0rd@123");
         assertTrue(loggedIn, "Setup Fail, Login Failed");
-        accountTest = facade.debug_getAccount();
+        accountTest = facade.getCurrentAccount();
 
         //question setup from older driver
         String title = "Longest Subarray with Given Sum";
@@ -50,7 +58,7 @@ class QuestionFacadeTest {
         int recommendedTime = 20;
         Question question = facade.addQuestion(title, difficulty, tag, segments, hints, recommendedTime);
         questionIDTest = question.getQuestionID();
-        studentTest = (Student) facade.debug_getAccount();
+        studentTest = (Student) facade.getCurrentAccount();
         studentTest.addFavoriteQuestion(questionIDTest);
         studentTest.addTrustedRole(tag);
     }
@@ -282,21 +290,21 @@ class QuestionFacadeTest {
 
     @Test
     public void addAccount_duplicateFail() {
-        assertFalse(facade.addAccount("Ballister", "Boldheart", "BBH2012", "Pas5word@345", "BBH2012@institution.org"), "Should return False, as username is already in use");
+        assertFalse(facade.addAccount("Ballister", "Boldheart", "duplicate@example.com", "BBH2012", "Pas5word@345"), "Should return False, as username is already in use");
 
     }
 
     @Test
     public void editAccount_test() {
         facade.editAccount(accountTest.getFirstName(), "Boldheart", "BBH2023", accountTest.getPassword(), accountTest.getEmail());
-        assertEquals("BBH2023", facade.debug_getAccount().getUsername());
+        assertEquals("BBH2023", facade.getCurrentAccount().getUsername());
     }
 
     @Test
     public void removeAccount_test() {
         facade.removeAccount(accountTest.getAccountID());
-        accountTest = facade.debug_getAccount();
-        assertNull(accountTest.getAccountID(), "Should return Null, as no account exists.");
+        accountTest = facade.getCurrentAccount();
+        assertNull(accountTest, "Should return Null, as no account exists.");
     }
 
     @Test

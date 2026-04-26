@@ -149,6 +149,9 @@ public class Comment {
      */
     public boolean removeComment(UUID accountID, int index) {
         ArrayList<Comment> accountReplies = getAccountComments(accountID);
+        if (index < 0 || index >= accountReplies.size()) {
+            return false;
+        }
         String date = accountReplies.get(index).getDatePosted();
         for(Comment comment: replies) {
             if(comment.getDatePosted().equals(date)) {
