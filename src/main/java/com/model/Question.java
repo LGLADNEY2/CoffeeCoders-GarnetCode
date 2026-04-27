@@ -447,6 +447,8 @@ public class Question {
      * @return a date formatted in mm/dd/yyyy
      */
     public String formatDate(String date) {
+        if(date == null || date.length() < 10)
+            return "invalid";
         return date.substring(0,10);
     }
 
