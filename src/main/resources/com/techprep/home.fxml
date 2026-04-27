@@ -14,7 +14,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.controllers.HomeController"
       stylesheets="@homeStyle.css"
-      minHeight="650" minWidth="650">
+      minHeight="900" minWidth="1500">
 
     <!-- Main Pane -->
     <StackPane fx:id="main" styleClass="main" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity">

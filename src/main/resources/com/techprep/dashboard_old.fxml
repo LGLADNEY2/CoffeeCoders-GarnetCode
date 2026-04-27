@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane fx:id="dashboardRoot" style="-fx-background-color: linear-gradient(to bottom, #000000 0%, #220000 100%);" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="com.controllers.DashboardController">
+    <!-- Sidebar -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="180" spacing="20" style="-fx-background-color: #a82525; -fx-background-radius: 18px; -fx-padding: 24 0 24 0;" BorderPane.alignment="CENTER">
+            <Label style="-fx-text-fill: #fff; -fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 0 0 18 0;" text="GARNETCODE" />
+            <VBox spacing="10">
+                <Button style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand; -fx-underline: true;" text="Dashboard" />
+                <Button style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" text="Favorites" />
+                <Button onAction="#goToQuestions" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" text="Questions" />
+                <Button onAction="#goToCreate" style="-fx-background-color: transparent; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: CENTER_LEFT; -fx-padding: 10 0 10 18; -fx-background-radius: 8px; -fx-cursor: hand;" text="Create" />
+            </VBox>
+        </VBox>
+    </left>
+    <!-- Main Content -->
+    <center>
+          <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: #23201e; -fx-background-radius: 18px; -fx-padding: 32 32 32 32; -fx-effect: dropshadow(gaussian, #00000055, 16, 0.2, 0, 4);">
+            <!-- Top Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: transparent; -fx-padding: 0 0 18 0;">
+                <TextField prefWidth="1000" promptText="Search for problems here..." style="-fx-background-color: #a82525; -fx-text-fill: #fff; -fx-font-size: 16px; -fx-background-radius: 24px; -fx-padding: 10 18 10 18; -fx-prompt-text-fill: #fff8; -fx-border-width: 0;" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <!-- Sections -->
+            <VBox spacing="20" styleClass="sections">
+                <!-- Continue Section -->
+                <VBox spacing="10" styleClass="section">
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #f5f5f5; -fx-font-size: 18px; -fx-font-weight: bold;" styleClass="section-title" text="Continue" textAlignment="CENTER" />
+                    <TableView fx:id="continueTable" styleClass="problem-table">
+                        <columns>
+                            <TableColumn fx:id="conTitleDate" text="Problem Title / Date" />
+                            <TableColumn fx:id="conCategory" text="Category" />
+                            <TableColumn fx:id="conLanguage" text="Language" />
+                            <TableColumn fx:id="conClass" text="Class" />
+                            <TableColumn fx:id="conDifficulty" text="Difficulty" />
+                            <TableColumn fx:id="conRating" text="Rating" />
+                        </columns>
+                    </TableView>
+                </VBox>
+                <!-- Recommended Section -->
+                <VBox spacing="10" styleClass="section">
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #f5f5f5; -fx-font-size: 18px; -fx-font-weight: bold;" styleClass="section-title" text="Recommended" textAlignment="CENTER" />
+                    <TableView fx:id="recommendedTable" styleClass="problem-table">
+                        <columns>
+                            <TableColumn fx:id="recTitleDate" text="Problem Title / Date" />
+                            <TableColumn fx:id="recCategory" text="Category" />
+                            <TableColumn fx:id="recLanguage" text="Language" />
+                            <TableColumn fx:id="recClass" text="Class" />
+                            <TableColumn fx:id="recDifficulty" text="Difficulty" />
+                            <TableColumn fx:id="recRating" text="Rating" />
+                        </columns>
+                    </TableView>
+                </VBox>
+                <!-- Favorites Section -->
+                <VBox spacing="10" styleClass="section">
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #f5f5f5; -fx-font-size: 18px; -fx-font-weight: bold;" styleClass="section-title" text="Favorites" textAlignment="CENTER" />
+                    <TableView fx:id="favoritesTable" styleClass="problem-table">
+                        <columns>
+                            <TableColumn fx:id="favTitleDate" text="Problem Title / Date" />
+                            <TableColumn fx:id="favCategory" text="Category" />
+                            <TableColumn fx:id="favLanguage" text="Language" />
+                            <TableColumn fx:id="favClass" text="Class" />
+                            <TableColumn fx:id="favDifficulty" text="Difficulty" />
+                            <TableColumn fx:id="favRating" text="Rating" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </VBox>
+    </center>
+    <!-- Profile Panel -->
+    <right>
+        <VBox alignment="TOP_CENTER" prefWidth="270" style="-fx-padding: 18 8 18 8;">
+            <VBox alignment="TOP_CENTER" prefWidth="244" spacing="14" style="-fx-background-color: #1d1a1a; -fx-background-radius: 24px; -fx-padding: 18 10 18 10; -fx-effect: dropshadow(gaussian, #00000088, 18, 0.28, 0, 6);">
+
+                <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="224" spacing="4" style="-fx-padding: 0 0 2 0;">
+                    <children>
+                        <Label style="-fx-text-fill: #f2f2f2; -fx-font-size: 20px; -fx-font-weight: bold;" text="Your Profile" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <MenuButton popupSide="BOTTOM" styleClass="profile-menu-button" text="⋯">
+                            <items>
+                                <MenuItem onAction="#openSettings" text="⚙  Settings" />
+                                <MenuItem onAction="#logout" text="⇦  Log out" />
+                            </items>
+                        </MenuButton>
+                    </children>
+                </HBox>
+
+                <StackPane style="-fx-padding: 4 4 4 4;">
+                    <ProgressIndicator prefHeight="96" prefWidth="96" progress="0.72" style="-fx-progress-color: #f15e67; -fx-control-inner-background: #1d1a1a;" />
+                    <ImageView fx:id="profileImage" fitHeight="62" fitWidth="62" style="-fx-effect: dropshadow(gaussian, #000000aa, 8, 0.22, 0, 2);" />
+                </StackPane>
+
+                  <Label style="-fx-text-fill: #f3f3f3; -fx-font-size: 26px; -fx-font-weight: bold; -fx-alignment: center;" text="Good Morning,&#10;Cocky!" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+                <Label style="-fx-text-fill: #a5a5a5; -fx-font-size: 15px; -fx-alignment: center;" text="Continue Your Journey And&#10;Achieve Your Target" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+
+                <Label style="-fx-text-fill: #f15e67; -fx-font-size: 16px; -fx-font-weight: bold; -fx-alignment: center;" text="Daily Streak" textAlignment="CENTER" />
+                <StackPane prefHeight="122" prefWidth="122">
+                    <Pane maxHeight="122" maxWidth="122" prefHeight="122" prefWidth="122">
+                        <children>
+                            <Circle centerX="61" centerY="61" fill="transparent" radius="52" stroke="#4f4f4f" strokeWidth="8" />
+                            <Arc centerX="61" centerY="61" fill="transparent" length="-144" radiusX="52" radiusY="52" startAngle="90" stroke="#f15e67" strokeLineCap="ROUND" strokeWidth="8" type="OPEN" />
+                        </children>
+                    </Pane>
+                    <Label fx:id="dailyStreak" style="-fx-text-fill: #f15e67; -fx-font-size: 44px; -fx-font-weight: bold;" text="2" />
+                </StackPane>
+
+                <VBox alignment="CENTER" spacing="2">
+                    <Label style="-fx-text-fill: #f0f0f0; -fx-font-size: 15px;" text="Completed Questions" />
+                    <Label fx:id="completedQuestions" style="-fx-text-fill: #f15e67; -fx-font-size: 16px; -fx-font-weight: bold;" text="0" />
+                </VBox>
+            </VBox>
+        </VBox>
+    </right>
+</BorderPane>

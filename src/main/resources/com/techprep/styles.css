@@ -18,12 +18,7 @@
 }
 
 .profile-menu-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: #f3f3f3;
-    -fx-font-size: 34px;
-    -fx-font-weight: bold;
-    -fx-padding: -2 0 0 0;
-    -fx-cursor: hand;
+n
 }
 
 .profile-menu-button .arrow {

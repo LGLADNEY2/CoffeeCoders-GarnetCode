@@ -1,0 +1,167 @@
+.main{
+    -fx-background-color: linear-gradient(to bottom, #000000 0%, #220000 100%);
+    -fx-padding: 6px;
+}
+
+.left-sidebar{
+    -fx-background-color: #a82525;
+    -fx-background-radius: 18px;
+    -fx-padding: 24 8 24 8;
+    -fx-alignment: top-center;
+}
+
+.left-header{
+    -fx-text-fill: #fff;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 18 0;
+}
+
+.left-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 0 10 18;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.center{
+    -fx-background-color: #23201e;
+    -fx-background-radius: 18px;
+    -fx-padding: 32 32 32 32;
+    -fx-effect: dropshadow(gaussian, #00000055, 16, 0.2, 0, 4);
+}
+
+.center-topbar{
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 18 0;
+}
+.center-topbar-text{
+    -fx-background-color: #a82525;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-background-radius: 24px;
+    -fx-padding: 10 18 10 18;
+    -fx-prompt-text-fill: #fff8;
+    -fx-border-width: 0;
+}
+
+.center-sections{
+    -fx-padding: 0 6 0 6;
+}
+
+.section{
+    -fx-background-color: transparent;
+    -fx-padding: 6 6 6 6;
+    -fx-spacing: 6;
+}
+.section-title{
+    -fx-text-fill: #f5f5f5;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+.problem-table{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 0;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 10, 0, 0, 4);
+}
+
+
+.right-sidebar{
+    -fx-padding: 18 8 18 8;
+    -fx-background-color: #1d1a1a;
+    -fx-background-radius: 24px;
+    -fx-padding: 18 10 18 10;
+    -fx-effect: dropshadow(gaussian, #00000088, 18, 0.28, 0, 6);
+}
+.right-header{
+    -fx-text-fill: #f2f2f2;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.right-menu{
+    -fx-background-color: transparent;
+    -fx-text-fill: #f3f3f3;
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-padding: -2 0 0 0;
+    -fx-cursor: hand;
+}
+
+.right-menu .arrow-button {
+    -fx-padding: 0;
+}
+
+.right-menu .arrow-button .arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+.right-menu .menu-item .label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #f3f3f3;
+}
+
+.right-menu .context-menu {
+    -fx-background-color: #23201e;
+    -fx-border-color: #4f4f4f;
+    -fx-padding: 2;
+}
+
+.right-profile{
+    -fx-padding: 4 4 4 4;
+}
+.right-profile-image-border{
+    -fx-progress-color: #f15e67;
+    -fx-control-inner-background: #1d1a1a;
+}
+.right-profile-image{
+    -fx-effect: dropshadow(gaussian, #000000aa, 8, 0.22, 0, 2);
+}
+.right-profile-header{
+    -fx-text-fill: #f3f3f3;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 12 0 12 0 ;
+}
+.right-profile-text{
+    -fx-text-fill: #a5a5a5;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-padding: 0 0 24 0;
+}
+
+.right-streak-header{
+    -fx-text-fill: #f15e67;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.right-streak-text{
+    -fx-text-fill: #f15e67;
+    -fx-font-size: 44px;
+    -fx-font-weight: bold;
+}
+
+.right-question-header{
+    -fx-text-fill: #f0f0f0;
+    -fx-font-size: 15px;
+    -fx-padding: 12 0 6 0;
+}
+.right-question-text{
+    -fx-text-fill: #f15e67;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
