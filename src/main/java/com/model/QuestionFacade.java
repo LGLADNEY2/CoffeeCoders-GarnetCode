@@ -279,7 +279,7 @@ public class QuestionFacade {
     public void updateDailyStreak() {
         if (currentAccount != null && currentAccount.getRole() == Role.STUDENT) {
             Student student = (Student) currentAccount;
-            student.updateDailyStreak(new java.util.Date());
+            student.updateDailyStreak();
             save();
         }
     }

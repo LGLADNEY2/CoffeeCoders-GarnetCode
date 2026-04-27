@@ -232,7 +232,7 @@ public class Driver {
 		}
         // Gets the student account for Jimmy Bauer and updates his daily streak with the current date, then prints out his new daily streak        
         Student jimmy = (Student) AccountList.getInstance().getAccount("JBauer", "L!obster67");
-        jimmy.updateDailyStreak(new java.util.Date());
+        jimmy.updateDailyStreak();
         System.out.println("Jimmy Bauer is now logged in");
         System.out.println("Jimmy Bauer's current daily streak: " + jimmy.getDailyStreak());
 

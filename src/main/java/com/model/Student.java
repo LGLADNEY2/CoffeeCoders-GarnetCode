@@ -1,5 +1,7 @@
 package com.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,7 +13,7 @@ import java.util.UUID;
  */
 public class Student extends Account {
     private int dailyStreak;
-    private Date lastLogin;
+    private String lastLogin;
     private ArrayList<Question> favoriteQuestions;
     private ArrayList<Question> completedQuestions;
     private ArrayList<QuestionTag> trustedRoles;
@@ -47,7 +49,8 @@ public class Student extends Account {
     public Student(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(accountID, username, password, firstName, lastName, email, role);
         this.dailyStreak = dailyStreak;
-        this.lastLogin = new Date();
+        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk");
+        this.lastLogin = dp.format(new Date());
         this.favoriteQuestions = favoriteQuestions;
         this.completedQuestions = completedQuestions;
         this.trustedRoles = trustedRoles;
@@ -72,7 +75,8 @@ public class Student extends Account {
     public Student(String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(UUID.randomUUID(), username, password, firstName, lastName, email, role);
         this.dailyStreak = 1;
-        this.lastLogin = new Date();
+        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk");
+        this.lastLogin = dp.format(new Date());
         this.favoriteQuestions = favoriteQuestions;
         this.completedQuestions = completedQuestions;
         this.trustedRoles = trustedRoles;
@@ -91,7 +95,7 @@ public class Student extends Account {
      *
      * @return last login date
      */
-    public Date getLastLogin() {return lastLogin;}
+    public String getLastLogin() {return lastLogin;}
 
     /**
      * Returns the student's favorite questions.
@@ -135,7 +139,7 @@ public class Student extends Account {
      *
      * @param lastLogin new login date
      */
-    public void setLastLogin(Date lastLogin) {
+    public void setLastLogin(String lastLogin) {
         this.lastLogin = lastLogin;
     }
 
@@ -274,22 +278,54 @@ public class Student extends Account {
     }
 
     /**
-     * Updates the daily streak based on the provided login date.
+     * Updates the daily streak
      *
      * @param newLogin new login date
      */
-    public void updateDailyStreak(Date newLogin) {
-        Calendar c = Calendar.getInstance();
-        c.setTime(lastLogin);
-        c.add(Calendar.DATE, 1);
-        Date dayAfter = c.getTime();
-        if(newLogin.after(dayAfter)) {
-            this.dailyStreak = 1;
-            setLastLogin(newLogin);
+    public void updateDailyStreak() {
+        if (lastLogin == null || lastLogin.isEmpty()) {
+            DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk:mm");
+            lastLogin = dp.format(new Date());
+            dailyStreak = 1;
+            return;
         }
-        this.dailyStreak++;
-        setLastLogin(newLogin);
+        try {
+            // Parse the stored lastLogin date
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy kk:mm");
+            Date lastDate = sdf.parse(lastLogin);
         
+            // Get current date
+            Date now = new Date();
+        
+            // Reset both dates to midnight for day comparison
+            Calendar lastCal = Calendar.getInstance();
+            lastCal.setTime(lastDate);
+        
+            Calendar nowCal = Calendar.getInstance();
+            nowCal.setTime(now);
+
+        
+            // Calculate difference in days
+            long diffMillis = nowCal.getTimeInMillis() - lastCal.getTimeInMillis();
+            int daysDiff = (int) (diffMillis / (24 * 60 * 60 * 1000));
+        
+            if (daysDiff == 1) {
+                dailyStreak++;
+            } else if (daysDiff > 1) {
+                dailyStreak = 1;
+            }
+        
+            // Update lastLogin to current date and time
+            DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk:mm");
+            lastLogin = dp.format(new Date());
+        
+        } catch (java.text.ParseException e) {
+            // If parsing fails, reset everything
+            System.err.println("Failed to parse lastLogin: " + lastLogin);
+            DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk:mm");
+            lastLogin = dp.format(new Date());
+            dailyStreak = 1;
+        }
     }
 
     /**

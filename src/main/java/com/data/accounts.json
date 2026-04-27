@@ -1,1 +1,17 @@
-[{"lastName":"Blackheart","lastLogin":"Sun Apr 26 19:28:44 EDT 2026","role":"STUDENT","completedQuestions":[],"accountID":"4352f386-faa8-4698-af33-f9fe5315556f","firstName":"Ballister","dailyStreak":1,"password":"Passw0rd@123","userQuestions":[],"favoriteQuestions":[],"trustedRoles":[],"email":"BBH2012@Institution.org","username":"BBH2012"}]
+[
+    {
+        "lastName": "Blackheart",
+        "lastLogin": "01/01/2001 20:10",
+        "role": "STUDENT",
+        "completedQuestions": [],
+        "accountID": "4352f386-faa8-4698-af33-f9fe5315556f",
+        "firstName": "Ballister",
+        "dailyStreak": 1,
+        "password": "Passw0rd@123",
+        "userQuestions": [],
+        "favoriteQuestions": [],
+        "trustedRoles": [],
+        "email": "BBH2012@Institution.org",
+        "username": "BBH2012"
+    }
+]

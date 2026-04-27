@@ -2,7 +2,6 @@ package com.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -221,7 +220,7 @@ public class DashboardController implements Initializable{
 
         if (account.getRole() == Role.STUDENT) {
             Student student = (Student) account;
-            student.updateDailyStreak(new Date());
+            student.updateDailyStreak();
             completedQuestions.setText(String.valueOf(student.getCompletedQuestions().size()));
             dailyStreak.setText(String.valueOf(student.getDailyStreak()));
 

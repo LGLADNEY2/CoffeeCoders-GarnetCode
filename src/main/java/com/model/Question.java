@@ -1,5 +1,7 @@
 package com.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -38,7 +40,8 @@ public class Question {
         this.questionID = UUID.randomUUID();
         this.authorID = authorID;
         this.title = title;
-        this.datePosted = new Date().toString();
+        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk:mm");
+        this.datePosted = dp.format(new Date());
         this.rating = -1;
         this.totalRatings = 0;
         this.recommendedTime = -1;
@@ -66,7 +69,8 @@ public class Question {
         this.questionID = UUID.randomUUID();
         this.authorID = authorID;
         this.title = title;
-        this.datePosted = new Date().toString();
+        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk");
+        this.datePosted = dp.format(new Date());
         this.recommendedTime = recommendedTime;
         this.difficulty = difficulty;
         this.segments = segments;
@@ -443,12 +447,7 @@ public class Question {
      * @return a date formatted in mm/dd/yyyy
      */
     public String formatDate(String date) {
-        String formattedDate = date;
-        String month = formattedDate.substring(0,2);
-        String day = formattedDate.substring(2,4);
-        String year = formattedDate.substring(4,8);
-        formattedDate = month + "/" + day + "/" + year;
-        return formattedDate;
+        return date.substring(0,10);
     }
 
     

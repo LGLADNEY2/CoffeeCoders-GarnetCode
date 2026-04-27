@@ -2,7 +2,6 @@ package com.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.model.Account;
@@ -137,7 +136,6 @@ public class FavoritesController implements Initializable {
 
         if (account != null && account.getRole() == Role.STUDENT) {
             Student student = (Student) account;
-            student.updateDailyStreak(new Date());
             completedQuestions.setText(String.valueOf(student.getCompletedQuestions().size()));
             dailyStreak.setText(String.valueOf(student.getDailyStreak()));
             favoritesTable.setItems(FXCollections.observableArrayList(student.getFavoriteQuestions()));

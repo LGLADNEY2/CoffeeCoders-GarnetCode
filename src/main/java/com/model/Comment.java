@@ -1,5 +1,7 @@
 package com.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -24,7 +26,8 @@ public class Comment {
     public Comment(String text, UUID accountID) {
         this.text = text;
         this.accountID = accountID;
-        this.datePosted = new Date().toString();
+        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk:mm");
+        this.datePosted = dp.format(new Date());
         this.replies = new ArrayList<>();
         this.likes = 0;
     }
@@ -149,10 +152,10 @@ public class Comment {
      */
     public boolean removeComment(UUID accountID, int index) {
         ArrayList<Comment> accountReplies = getAccountComments(accountID);
+        String date = accountReplies.get(index).getDatePosted();
         if (index < 0 || index >= accountReplies.size()) {
             return false;
         }
-        String date = accountReplies.get(index).getDatePosted();
         for(Comment comment: replies) {
             if(comment.getDatePosted().equals(date)) {
                 replies.remove(comment);
