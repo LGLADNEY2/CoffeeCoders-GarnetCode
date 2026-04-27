@@ -49,7 +49,7 @@ public class Student extends Account {
     public Student(UUID accountID, String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(accountID, username, password, firstName, lastName, email, role);
         this.dailyStreak = dailyStreak;
-        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk");
+        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk:mm");
         this.lastLogin = dp.format(new Date());
         this.favoriteQuestions = favoriteQuestions;
         this.completedQuestions = completedQuestions;
@@ -75,7 +75,7 @@ public class Student extends Account {
     public Student(String firstName, String lastName, String email, String username, String password, Role role, int dailyStreak, ArrayList<Question> favoriteQuestions, ArrayList<Question> completedQuestions, ArrayList<QuestionTag> trustedRoles, ArrayList<Question> userQuestions){
         super(UUID.randomUUID(), username, password, firstName, lastName, email, role);
         this.dailyStreak = 1;
-        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk");
+        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk:mm");
         this.lastLogin = dp.format(new Date());
         this.favoriteQuestions = favoriteQuestions;
         this.completedQuestions = completedQuestions;

@@ -69,7 +69,7 @@ public class Question {
         this.questionID = UUID.randomUUID();
         this.authorID = authorID;
         this.title = title;
-        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk");
+        DateFormat dp = new SimpleDateFormat("MM/dd/yyyy kk:mm");
         this.datePosted = dp.format(new Date());
         this.recommendedTime = recommendedTime;
         this.difficulty = difficulty;
